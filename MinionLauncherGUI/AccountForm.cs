@@ -37,6 +37,8 @@ namespace MinionLauncherGUI
             InitializeComponent();
             _account = account;
             _type = type;
+            metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
+            metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
             switch (type)
             {
                 case EAccountManagementType.Add:

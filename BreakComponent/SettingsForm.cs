@@ -35,11 +35,14 @@ namespace BreakComponent
             _account = account;
             metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
             metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
-            numericUpDown1.Value = account.BreakObject.Interval;
-            numericUpDown2.Value = account.BreakObject.IntervalDelay;
-            numericUpDown3.Value = account.BreakObject.BreakDuration;
-            numericUpDown4.Value = account.BreakObject.BreakDurationDelay;
-            chkBoxEnableBreak.Checked = account.BreakObject.BreakEnabled;
+            if (account.BreakObject != null)
+            {
+                numericUpDown1.Value = account.BreakObject.Interval;
+                numericUpDown2.Value = account.BreakObject.IntervalDelay;
+                numericUpDown3.Value = account.BreakObject.BreakDuration;
+                numericUpDown4.Value = account.BreakObject.BreakDurationDelay;
+                chkBoxEnableBreak.Checked = account.BreakObject.BreakEnabled;
+            }
         }
 
         private void BtnOkClick(object sender, EventArgs e)

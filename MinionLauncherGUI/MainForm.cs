@@ -320,6 +320,10 @@ namespace MinionLauncherGUI
             {
                 metroComboBoxGlobalSettingsComponents.Items.Add(component);
             }
+            if (metroComboBoxGlobalSettingsComponents.Items.Count > 0)
+            {
+                metroComboBoxGlobalSettingsComponents.SelectedIndex = 0;
+            }
         }
 
         private void SetGW2Path(string path = "")
@@ -401,6 +405,10 @@ namespace MinionLauncherGUI
             foreach (string component in ComponentManager.Singleton.GetAccountSettingsComponentNames())
             {
                 control.Items.Add(component);
+            }
+            if (control.Items.Count > 0)
+            {
+                control.SelectedIndex = 0;
             }
         }
 

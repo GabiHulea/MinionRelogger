@@ -48,6 +48,7 @@ namespace MinionLauncherGUI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.txtBoxLoginName = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
@@ -57,6 +58,8 @@ namespace MinionLauncherGUI
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
             this.btnDelete = new MetroFramework.Controls.MetroButton();
+            this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
             this.SuspendLayout();
             // 
             // metroLabel1
@@ -138,6 +141,10 @@ namespace MinionLauncherGUI
             this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.BtnDeleteClick);
             // 
+            // metroStyleManager
+            // 
+            this.metroStyleManager.Owner = this;
+            // 
             // AccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,6 +165,7 @@ namespace MinionLauncherGUI
             this.Resizable = false;
             this.ShowIcon = false;
             this.Text = "Account Management";
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,5 +182,6 @@ namespace MinionLauncherGUI
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroToggle metroToggle1;
         private MetroFramework.Controls.MetroButton btnDelete;
+        private MetroFramework.Components.MetroStyleManager metroStyleManager;
     }
 }

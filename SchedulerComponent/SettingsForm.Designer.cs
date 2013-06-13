@@ -18,6 +18,7 @@
 *                                                                            *
 ******************************************************************************/
 
+using System.Drawing;
 using MetroFramework.Controls;
 
 namespace SchedulerComponent
@@ -107,6 +108,7 @@ namespace SchedulerComponent
             this.metroLabel3.TabIndex = 5;
             this.metroLabel3.Text = "Start Time:";
             this.metroLabel3.Theme = this.metroStyleManager.Theme;
+            this.metroLabel3.BackColor = Color.Transparent;
             // 
             // metroLabel4
             // 
@@ -118,6 +120,7 @@ namespace SchedulerComponent
             this.metroLabel4.TabIndex = 6;
             this.metroLabel4.Text = "Stop Time:";
             this.metroLabel4.Theme = this.metroStyleManager.Theme;
+            this.metroLabel4.BackColor = Color.Transparent;
             // 
             // dateTimePicker3
             // 
@@ -149,6 +152,7 @@ namespace SchedulerComponent
             this.metroLabel5.TabIndex = 9;
             this.metroLabel5.Text = "Days (24h cycles):";
             this.metroLabel5.Theme = this.metroStyleManager.Theme;
+            this.metroLabel5.BackColor = Color.Transparent;
             // 
             // metroLabel6
             // 
@@ -159,6 +163,7 @@ namespace SchedulerComponent
             this.metroLabel6.TabIndex = 159;
             this.metroLabel6.Text = "Time in minutes:";
             this.metroLabel6.Theme = this.metroStyleManager.Theme;
+            this.metroLabel6.BackColor = Color.Transparent;
             // 
             // lblTimeInMinutes
             // 
@@ -170,6 +175,7 @@ namespace SchedulerComponent
             this.lblTimeInMinutes.TabIndex = 13679;
             this.lblTimeInMinutes.Text = "0";
             this.lblTimeInMinutes.Theme = this.metroStyleManager.Theme;
+            this.lblTimeInMinutes.BackColor = Color.Transparent;
             // 
             // SettingsForm
             // 
