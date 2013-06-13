@@ -62,9 +62,10 @@ namespace BreakComponent
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.chkBoxEnableBreak = new MetroFramework.Controls.MetroCheckBox();
             this.btnOK = new MetroFramework.Controls.MetroButton();
             this.btnCancel = new MetroFramework.Controls.MetroButton();
+            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
+            this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -196,15 +197,6 @@ namespace BreakComponent
             // 
             this.metroStyleManager.Owner = this;
             // 
-            // chkBoxEnableBreak
-            // 
-            this.chkBoxEnableBreak.AutoSize = true;
-            this.chkBoxEnableBreak.Location = new System.Drawing.Point(27, 175);
-            this.chkBoxEnableBreak.Name = "chkBoxEnableBreak";
-            this.chkBoxEnableBreak.Size = new System.Drawing.Size(70, 15);
-            this.chkBoxEnableBreak.TabIndex = 14;
-            this.chkBoxEnableBreak.Text = "Enabled?";
-            // 
             // btnOK
             // 
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Default;
@@ -224,12 +216,31 @@ namespace BreakComponent
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
             // 
+            // metroLabel9
+            // 
+            this.metroLabel9.AutoSize = true;
+            this.metroLabel9.Location = new System.Drawing.Point(24, 180);
+            this.metroLabel9.Name = "metroLabel9";
+            this.metroLabel9.Size = new System.Drawing.Size(96, 19);
+            this.metroLabel9.TabIndex = 12;
+            this.metroLabel9.Text = "Enable Breaks?";
+            // 
+            // metroToggle1
+            // 
+            this.metroToggle1.AutoSize = true;
+            this.metroToggle1.Location = new System.Drawing.Point(211, 182);
+            this.metroToggle1.Name = "metroToggle1";
+            this.metroToggle1.Size = new System.Drawing.Size(80, 17);
+            this.metroToggle1.TabIndex = 13;
+            this.metroToggle1.Text = "Off";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 251);
-            this.Controls.Add(this.chkBoxEnableBreak);
+            this.Controls.Add(this.metroToggle1);
+            this.Controls.Add(this.metroLabel9);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.metroLabel8);
@@ -277,8 +288,9 @@ namespace BreakComponent
         private MetroFramework.Controls.MetroButton btnCancel;
         private MetroFramework.Controls.MetroButton btnOK;
         private MetroFramework.Components.MetroStyleManager metroStyleManager;
-        private MetroFramework.Controls.MetroCheckBox chkBoxEnableBreak;
 
         #endregion
+        private MetroFramework.Controls.MetroToggle metroToggle1;
+        private MetroFramework.Controls.MetroLabel metroLabel9;
     }
 }

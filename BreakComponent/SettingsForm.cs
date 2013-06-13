@@ -41,7 +41,7 @@ namespace BreakComponent
                 numericUpDown2.Value = account.BreakObject.IntervalDelay;
                 numericUpDown3.Value = account.BreakObject.BreakDuration;
                 numericUpDown4.Value = account.BreakObject.BreakDurationDelay;
-                chkBoxEnableBreak.Checked = account.BreakObject.BreakEnabled;
+                metroToggle1.Checked = account.BreakObject.BreakEnabled;
             }
         }
 
@@ -67,7 +67,7 @@ namespace BreakComponent
                     TimeSpanToAddToLastBreak = new TimeSpan(0, r.Next(0, (int) numericUpDown2.Value), 0),
                     TimeSpanToPause = new TimeSpan(0, (int) numericUpDown3.Value, 0),
                     TimeSpanToWaitLonger = new TimeSpan(0, r.Next(0, (int) numericUpDown4.Value), 0),
-                    BreakEnabled = chkBoxEnableBreak.Checked,
+                    BreakEnabled = metroToggle1.Checked,
                     Interval = (int) numericUpDown1.Value,
                     IntervalDelay = (int) numericUpDown2.Value,
                     BreakDuration = (int) numericUpDown3.Value,

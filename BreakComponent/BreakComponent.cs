@@ -39,7 +39,6 @@ namespace BreakComponent
                 {
                     result = EComponentResult.Continue;
                 }
-
             }
             else
             {

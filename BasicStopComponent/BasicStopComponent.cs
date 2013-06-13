@@ -18,7 +18,6 @@
 *                                                                            *
 ******************************************************************************/
 
-using System;
 using System.Windows.Forms;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Interfaces;
