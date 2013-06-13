@@ -40,6 +40,7 @@ namespace SchedulerComponent
             _account = account;
             BindEvents();
             SetTimeFields();
+            metroToggle1.Checked = _account.EnableScheduling;
         }
 
         private void BtnOkClick(object sender, EventArgs e)
@@ -80,8 +81,8 @@ namespace SchedulerComponent
             TimeSpan final = t + t2;
             _account.SetStartTime(startingTime);
             _account.SetEndTime(startingTime.Add(final));
-            _account.SetShouldBeRunning(false);
             _account.SetManuallyScheduled(true);
+            _account.SetSchedulingEnabled(metroToggle1.Checked);
         }
 
         private void SetTimeFields()

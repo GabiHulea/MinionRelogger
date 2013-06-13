@@ -28,18 +28,16 @@ namespace BasicStartComponent
 {
     public class BasicStartComponent : IRelogComponent, IRelogComponentExtension
     {
-        private bool _isEnabled;
-
         public IRelogComponent DoWork(Account account, ref EComponentResult result)
         {
             if (Check(account))
             {
-                result = EComponentResult.Continue;
-                if (IsReady(account))
-                {
+               // result = EComponentResult.Continue;
+              //  if (IsReady(account))
+               // {
                     Update(account);
                     result = EComponentResult.Start;
-                }
+              //  }
             }
             else
             {
@@ -97,21 +95,6 @@ namespace BasicStartComponent
 
         public void PostWork(Account account)
         {
-        }
-
-        public bool IsEnabled()
-        {
-            return _isEnabled;
-        }
-
-        public void Enable()
-        {
-            _isEnabled = true;
-        }
-
-        public void Disable()
-        {
-            _isEnabled = false;
         }
     }
 }

@@ -28,8 +28,6 @@ namespace BasicStopComponent
 {
     public class BasicStopComponent : IRelogComponent, IRelogComponentExtension
     {
-        private bool _isEnabled;
-
         public IRelogComponent DoWork(Account account, ref EComponentResult result)
         {
             if (Check(account))
@@ -81,9 +79,7 @@ namespace BasicStopComponent
 
         public bool Check(Account account)
         {
-            return !account.ShouldBeRunning ||
-                   (account.EnableScheduling && ((DateTime.Now - account.StartTime).TotalSeconds < 0 ||
-                                                 (DateTime.Now - account.EndTime).TotalSeconds > 0));
+            return !account.ShouldBeRunning;
         }
 
         public bool IsReady(Account account)
@@ -98,21 +94,6 @@ namespace BasicStopComponent
 
         public void PostWork(Account account)
         {
-        }
-
-        public bool IsEnabled()
-        {
-            return _isEnabled;
-        }
-
-        public void Enable()
-        {
-            _isEnabled = true;
-        }
-
-        public void Disable()
-        {
-            _isEnabled = false;
         }
     }
 }

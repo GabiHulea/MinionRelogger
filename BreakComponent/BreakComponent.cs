@@ -27,26 +27,27 @@ namespace BreakComponent
 {
     public class BreakComponent : IRelogComponent, IRelogComponentExtension
     {
-        private bool _isEnabled;
-
         public IRelogComponent DoWork(Account account, ref EComponentResult result)
         {
-            if (Check(account))
+            if (account.BreakObject != null && account.BreakObject.Check())
             {
-                result = EComponentResult.Continue;
-                Update(account);
-            }
-            else if (IsReady(account) && account.Running)
-            {
-                result = EComponentResult.Kill;
-            }
-            else if (IsReady(account))
-            {
-                result = EComponentResult.Halt;
+                if (account.BreakObject.IsReady())
+                {
+                    result = Check(account) ? EComponentResult.Kill : EComponentResult.Halt;
+                }
+                else
+                {
+                    result = EComponentResult.Continue;
+                }
+
             }
             else
             {
                 result = EComponentResult.Ignore;
+            }
+            if (IsReady(account))
+            {
+                Update(account);
             }
             return this;
         }
@@ -84,8 +85,7 @@ namespace BreakComponent
 
         public bool Check(Account account)
         {
-            return account.Running && account.BreakObject != null && account.BreakObject.Check() &&
-                   account.BreakObject.IsReady();
+            return account.Running;
         }
 
         public bool IsReady(Account account)
@@ -100,21 +100,6 @@ namespace BreakComponent
 
         public void PostWork(Account account)
         {
-        }
-
-        public bool IsEnabled()
-        {
-            return _isEnabled;
-        }
-
-        public void Enable()
-        {
-            _isEnabled = true;
-        }
-
-        public void Disable()
-        {
-            _isEnabled = false;
         }
     }
 }
