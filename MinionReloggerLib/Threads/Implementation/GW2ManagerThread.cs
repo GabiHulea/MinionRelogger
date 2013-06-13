@@ -122,8 +122,16 @@ namespace MinionReloggerLib.Threads.Implementation
                     sb.ToString().ToLower() == "guild wars 2 game client")
                 {
                     Process firstOrDefault = Process.GetProcesses().FirstOrDefault(p => p.MainWindowHandle == hWnd);
+                    Account wanted = Config.Singleton.AccountSettings.FirstOrDefault(a => a.PID == firstOrDefault.Id);
                     if (firstOrDefault != null)
+                    {
+                        if (wanted != null)
+                        {
+                            wanted.SetLastCrash(DateTime.Now);
+                            wanted.SetLastStopTime(DateTime.Now);
+                        }
                         firstOrDefault.Kill();
+                    }
                 }
             }
             if (_checkAll > 6 || Config.Singleton.GeneralSettings.PollingDelay >= 20000)
@@ -179,7 +187,7 @@ namespace MinionReloggerLib.Threads.Implementation
                 if (wanted != null)
                 {
                     wanted.SetPID((uint) gw2Process.Id);
-                    wanted.SetShouldBeRunning(true);
+                    wanted.SetLastStartTime(DateTime.Now);
                 }
             }
         }

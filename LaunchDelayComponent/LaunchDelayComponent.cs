@@ -30,8 +30,6 @@ namespace LaunchDelayComponent
 {
     public class LaunchDelayComponent : IRelogComponent, IRelogComponentExtension
     {
-        private bool _isEnabled;
-
         public IRelogComponent DoWork(Account account, ref EComponentResult result)
         {
             if (Check(account))
@@ -99,21 +97,6 @@ namespace LaunchDelayComponent
 
         public void PostWork(Account account)
         {
-        }
-
-        public bool IsEnabled()
-        {
-            return _isEnabled;
-        }
-
-        public void Enable()
-        {
-            _isEnabled = true;
-        }
-
-        public void Disable()
-        {
-            _isEnabled = false;
         }
     }
 }

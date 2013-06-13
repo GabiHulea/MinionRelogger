@@ -93,7 +93,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
 
             // class: WatchObject
             Translations.Add(ETranslations.WatchObjectNotRespondingFor,
-                             "The GW 2 instance, running {0}, has not been responding for 90 seconds, restarting it.");
+                             "The GW 2 instance, running {0}, has not been responding for 90 seconds, scheduling it for restart.");
         }
 
         public override string GetLanguageDescription()

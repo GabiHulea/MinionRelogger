@@ -32,8 +32,8 @@ namespace RestartDelayComponent
         public IRelogComponent DoWork(Account account, ref EComponentResult result)
         {
             //   if (Check(account))
-            //  {
-            //     result = EComponentResult.Start;
+          //  {
+           //     result = EComponentResult.Start;
             result = IsReady(account) ? EComponentResult.Halt : EComponentResult.Ignore;
             return this;
         }
