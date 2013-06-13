@@ -58,6 +58,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
 
         public void Update(Account account)
         {
+            account.SetRestartDelayActive(false);
             account.SetPID(_newPID);
             account.SetLastStartTime(DateTime.Now);
         }

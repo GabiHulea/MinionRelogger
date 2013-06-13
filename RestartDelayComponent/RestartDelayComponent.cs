@@ -31,8 +31,11 @@ namespace RestartDelayComponent
     {
         public IRelogComponent DoWork(Account account, ref EComponentResult result)
         {
-            //   if (Check(account))
-            //  {
+            if (!account.RestartDelayActive && Check(account))
+            {
+                account.SetRestartDelayActive(true);
+                account.SetLastStopTime(DateTime.Now);
+            }
             //     result = EComponentResult.Start;
             result = IsReady(account) ? EComponentResult.Halt : EComponentResult.Ignore;
             return this;
@@ -71,13 +74,13 @@ namespace RestartDelayComponent
 
         public bool Check(Account account)
         {
-            return account.ShouldBeRunning && !account.Running;
+            return !account.Running && account.PID < uint.MaxValue && account.PID > 0;
         }
 
         public bool IsReady(Account account)
         {
-            return (DateTime.Now - account.LastCrash).TotalSeconds <= Config.Singleton.GeneralSettings.RestartDelay &&
-                   (DateTime.Now - account.LastStop).TotalSeconds <= Config.Singleton.GeneralSettings.RestartDelay &&
+            return (DateTime.Now - account.LastCrash).TotalSeconds <= Config.Singleton.GeneralSettings.RestartDelay ||
+                   (DateTime.Now - account.LastStop).TotalSeconds <= Config.Singleton.GeneralSettings.RestartDelay ||
                    (DateTime.Now - account.LastStart).TotalSeconds <=
                    Config.Singleton.GeneralSettings.RestartDelay;
         }

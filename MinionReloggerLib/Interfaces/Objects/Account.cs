@@ -71,6 +71,8 @@ namespace MinionReloggerLib.Interfaces.Objects
         public DateTime LastCrash { get; private set; }
         public DateTime LastStop { get; private set; }
 
+        public bool RestartDelayActive { get; private set; }
+
         public string LoginName
         {
             get { return DataProtector.DecryptData(_loginName); }
@@ -191,6 +193,11 @@ namespace MinionReloggerLib.Interfaces.Objects
         {
             BreakObject = newBreak;
             BreakObject.LoginName = LoginName;
+        }
+
+        public void SetRestartDelayActive(bool newRestartDelayActive)
+        {
+            RestartDelayActive = newRestartDelayActive;
         }
     }
 }
