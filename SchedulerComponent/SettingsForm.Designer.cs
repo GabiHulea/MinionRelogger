@@ -63,8 +63,6 @@ namespace SchedulerComponent
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.lblTimeInMinutes = new MetroFramework.Controls.MetroLabel();
-            this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +74,7 @@ namespace SchedulerComponent
             // btnOK
             // 
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnOK.Location = new System.Drawing.Point(276, 252);
+            this.btnOK.Location = new System.Drawing.Point(276, 214);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -85,7 +83,7 @@ namespace SchedulerComponent
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(23, 252);
+            this.btnCancel.Location = new System.Drawing.Point(23, 214);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -103,7 +101,6 @@ namespace SchedulerComponent
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel3.Location = new System.Drawing.Point(24, 78);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(72, 19);
@@ -111,11 +108,11 @@ namespace SchedulerComponent
             this.metroLabel3.TabIndex = 5;
             this.metroLabel3.Text = "Start Time:";
             this.metroLabel3.Theme = this.metroStyleManager.Theme;
+            this.metroLabel3.BackColor = Color.Transparent;
             // 
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel4.Location = new System.Drawing.Point(24, 111);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(72, 19);
@@ -123,6 +120,7 @@ namespace SchedulerComponent
             this.metroLabel4.TabIndex = 6;
             this.metroLabel4.Text = "Stop Time:";
             this.metroLabel4.Theme = this.metroStyleManager.Theme;
+            this.metroLabel4.BackColor = Color.Transparent;
             // 
             // dateTimePicker3
             // 
@@ -147,7 +145,6 @@ namespace SchedulerComponent
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel5.Location = new System.Drawing.Point(24, 150);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(109, 19);
@@ -155,22 +152,22 @@ namespace SchedulerComponent
             this.metroLabel5.TabIndex = 9;
             this.metroLabel5.Text = "Days (24h cycles):";
             this.metroLabel5.Theme = this.metroStyleManager.Theme;
+            this.metroLabel5.BackColor = Color.Transparent;
             // 
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel6.Location = new System.Drawing.Point(24, 183);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(104, 19);
             this.metroLabel6.TabIndex = 159;
             this.metroLabel6.Text = "Time in minutes:";
             this.metroLabel6.Theme = this.metroStyleManager.Theme;
+            this.metroLabel6.BackColor = Color.Transparent;
             // 
             // lblTimeInMinutes
             // 
             this.lblTimeInMinutes.AutoSize = true;
-            this.lblTimeInMinutes.BackColor = System.Drawing.Color.Transparent;
             this.lblTimeInMinutes.Location = new System.Drawing.Point(139, 183);
             this.lblTimeInMinutes.Name = "lblTimeInMinutes";
             this.lblTimeInMinutes.Size = new System.Drawing.Size(16, 19);
@@ -178,34 +175,13 @@ namespace SchedulerComponent
             this.lblTimeInMinutes.TabIndex = 13679;
             this.lblTimeInMinutes.Text = "0";
             this.lblTimeInMinutes.Theme = this.metroStyleManager.Theme;
-            // 
-            // metroToggle1
-            // 
-            this.metroToggle1.AutoSize = true;
-            this.metroToggle1.Location = new System.Drawing.Point(142, 219);
-            this.metroToggle1.Name = "metroToggle1";
-            this.metroToggle1.Size = new System.Drawing.Size(80, 17);
-            this.metroToggle1.TabIndex = 13680;
-            this.metroToggle1.Text = "Off";
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.metroLabel1.Location = new System.Drawing.Point(24, 217);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(115, 19);
-            this.metroLabel1.TabIndex = 13681;
-            this.metroLabel1.Text = "Enable Scheduler?";
-            this.metroLabel1.Theme = this.metroStyleManager.Theme;
+            this.lblTimeInMinutes.BackColor = Color.Transparent;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 299);
-            this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.metroToggle1);
+            this.ClientSize = new System.Drawing.Size(374, 256);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.metroLabel5);
@@ -244,7 +220,5 @@ namespace SchedulerComponent
         private MetroFramework.Controls.MetroButton btnCancel;
 
         #endregion
-        private MetroLabel metroLabel1;
-        private MetroToggle metroToggle1;
     }
 }

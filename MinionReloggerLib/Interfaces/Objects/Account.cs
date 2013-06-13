@@ -54,21 +54,16 @@ namespace MinionReloggerLib.Interfaces.Objects
         [ProtoMember(6)]
         public bool EnableScheduling { get; private set; }
 
-        [ProtoMember(7)]
         public bool ManuallyScheduled { get; private set; }
-
-        [ProtoMember(8)]
-        public DateTime StartTime { get; private set; }
-
-        [ProtoMember(9)]
-        public DateTime EndTime { get; private set; }
-
         public bool ShouldBeRunning { get; private set; }
         public uint PID { get; private set; }
         public int Index { get; private set; }
 
-        public DateTime LastStart { get; private set; }
         public DateTime LastCrash { get; private set; }
+
+        public DateTime StartTime { get; private set; }
+        public DateTime EndTime { get; private set; }
+        public DateTime LastStart { get; private set; }
         public DateTime LastStop { get; private set; }
 
         public string LoginName

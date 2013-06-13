@@ -75,7 +75,6 @@ namespace MinionReloggerLib.Interfaces.Objects
         public void Update()
         {
             Account.SetLastStopTime(DateTime.Now);
-            Account.SetLastCrash(DateTime.Now);
             Logger.LoggingObject.Log(ELogType.Critical,
                                      LanguageManager.Singleton.GetTranslation(ETranslations.WatchObjectNotRespondingFor),
                                      Account.LoginName);

@@ -89,7 +89,7 @@ namespace MinionReloggerLib.Interfaces.Objects
 
         public bool IsReady()
         {
-            return BreakEnabled && (DateTime.Now - TimeActualStopBreak).TotalSeconds <= 0;
+            return BreakEnabled && (DateTime.Now - TimeActualStopBreak).TotalSeconds > 0;
         }
 
         public void Update()

@@ -77,6 +77,7 @@ namespace BreakComponent
                                                breakObject.TimeSpanToAddToLastBreak;
             breakObject.TimeActualStopBreak = breakObject.TimeActualStartBreak + breakObject.TimeSpanToPause +
                                               breakObject.TimeSpanToWaitLonger;
+            chkBoxEnableBreak.Checked = _account.BreakObject.BreakEnabled;
             _account.SetBreak(breakObject);
         }
     }

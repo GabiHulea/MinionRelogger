@@ -199,6 +199,8 @@ namespace BreakComponent
             // chkBoxEnableBreak
             // 
             this.chkBoxEnableBreak.AutoSize = true;
+            this.chkBoxEnableBreak.Checked = true;
+            this.chkBoxEnableBreak.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkBoxEnableBreak.Location = new System.Drawing.Point(27, 175);
             this.chkBoxEnableBreak.Name = "chkBoxEnableBreak";
             this.chkBoxEnableBreak.Size = new System.Drawing.Size(70, 15);

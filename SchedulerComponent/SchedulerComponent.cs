@@ -28,11 +28,13 @@ namespace SchedulerComponent
 {
     public class SchedulerComponent : IRelogComponent, IRelogComponentExtension
     {
+        private bool _isEnabled;
+
         public IRelogComponent DoWork(Account account, ref EComponentResult result)
         {
             if (Check(account))
             {
-                result = EComponentResult.Halt;
+                result = EComponentResult.Continue;
                 if (IsReady(account))
                 {
                     Update(account);
@@ -79,18 +81,14 @@ namespace SchedulerComponent
 
         public bool Check(Account account)
         {
-            if (account.EnableScheduling)
-            {
-                double differenceFuture = (DateTime.Now - account.EndTime).TotalSeconds;
-                double differencePast = (account.StartTime - DateTime.Now).TotalSeconds;
-                return differenceFuture > 0 || differencePast > 0;
-            }
-            return false;
+            return account.EnableScheduling;
         }
 
         public bool IsReady(Account account)
         {
-            return account.Running;
+            double differenceFuture = (DateTime.Now - account.EndTime).TotalSeconds;
+            double differencePast = (account.StartTime - DateTime.Now).TotalSeconds;
+            return account.Running && (differenceFuture > 0 || differencePast > 0);
         }
 
         public void Update(Account account)
@@ -100,6 +98,21 @@ namespace SchedulerComponent
 
         public void PostWork(Account account)
         {
+        }
+
+        public bool IsEnabled()
+        {
+            return _isEnabled;
+        }
+
+        public void Enable()
+        {
+            _isEnabled = true;
+        }
+
+        public void Disable()
+        {
+            _isEnabled = false;
         }
     }
 }

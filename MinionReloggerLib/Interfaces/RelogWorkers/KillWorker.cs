@@ -43,6 +43,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                 try
                 {
                     _done = GW2MinionLauncher.KillInstance(account.PID);
+                    Logger.LoggingObject.Log("KILLING FOR {0}", account.LoginName);
                 }
                 catch (Exception ex)
                 {

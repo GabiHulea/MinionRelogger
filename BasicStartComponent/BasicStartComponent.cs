@@ -32,12 +32,12 @@ namespace BasicStartComponent
         {
             if (Check(account))
             {
-               // result = EComponentResult.Continue;
-              //  if (IsReady(account))
-               // {
-                    Update(account);
-                    result = EComponentResult.Start;
-              //  }
+                // result = EComponentResult.Continue;
+                //  if (IsReady(account))
+                // {
+                Update(account);
+                result = EComponentResult.Start;
+                //  }
             }
             else
             {
