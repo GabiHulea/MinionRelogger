@@ -69,9 +69,9 @@ namespace SchedulerComponent
         {
         }
 
-        public Form ShowSettingsForm()
+        public Form ShowSettingsForm(Account account = null)
         {
-            return new Form();
+            return new SettingsForm(account);
         }
 
         public ESettingsType GetSettingType()

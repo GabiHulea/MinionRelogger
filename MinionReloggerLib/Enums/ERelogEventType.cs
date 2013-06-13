@@ -24,7 +24,8 @@ namespace MinionReloggerLib.Enums
     {
         OnStart,
         OnKill,
-        OnSchedule,
+        OnSettings,
+        OnManage,
         OnError,
         OnCrash,
         OnUnknown,

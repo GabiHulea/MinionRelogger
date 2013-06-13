@@ -72,9 +72,9 @@ namespace BreakComponent
         {
         }
 
-        public Form ShowSettingsForm()
+        public Form ShowSettingsForm(Account account = null)
         {
-            return new SettingsForm();
+            return new SettingsForm(account);
         }
 
         public ESettingsType GetSettingType()

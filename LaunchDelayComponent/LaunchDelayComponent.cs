@@ -70,7 +70,7 @@ namespace LaunchDelayComponent
         {
         }
 
-        public Form ShowSettingsForm()
+        public Form ShowSettingsForm(Account account = null)
         {
             return new SettingsForm();
         }

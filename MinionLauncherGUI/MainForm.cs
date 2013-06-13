@@ -20,22 +20,35 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using MetroFramework.Components;
+using MetroFramework.Controls;
+using MetroFramework.Drawing;
 using MetroFramework.Forms;
+using MinionLauncherGUI.CustomControls;
+using MinionLauncherGUI.Helpers;
 using MinionLauncherGUI.VersionControl;
 using MinionReloggerLib.Configuration;
 using MinionReloggerLib.Core;
+using MinionReloggerLib.CustomEventArgs;
 using MinionReloggerLib.Helpers.Input;
 using MinionReloggerLib.Interfaces.Objects;
 using MinionReloggerLib.Logging;
 
 namespace MinionLauncherGUI
 {
+    public delegate void ReloggerHandler(object sender, ReloggerEventArgs reloggerEventArgs);
+
     public partial class MainForm : MetroForm
     {
+        internal readonly List<AccountControl> AccountControls = new List<AccountControl>();
+
+        private int _newSet;
+        private int _totalAccounts;
+
         public MainForm()
         {
             InitializeComponent();
@@ -47,60 +60,70 @@ namespace MinionLauncherGUI
             if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
                 SetGW2Path();
             VersionChecker.CheckForUpdates(this);
-            var test = new Account();
-            test.SetBotPath(AppDomain.CurrentDomain.BaseDirectory);
-            test.SetEndTime(DateTime.Now.AddMinutes(1337));
-            test.SetLoginName("robert.vd.boorn@gmail.com");
-            test.SetManuallyScheduled(false);
-            test.SetNoSound(true);
-            test.SetPassword("minion-bot");
-            test.SetStartTime(DateTime.Now.AddSeconds(30));
-            test.SetSchedulingEnabled(true);
-            var test2 = new BreakObject();
-            test.SetBreak(test2);
-            test.BreakObject.Interval = 1;
-            test.BreakObject.BreakDuration = 1;
-            test.BreakObject.IntervalDelay = 1;
-            test.BreakObject.BreakDurationDelay = 1;
-            test.BreakObject.BreakEnabled = true;
-            Config.Singleton.AddAccount(test);
-            test.BreakObject.Update();
-
-
-            var test3 = new Account();
-            test3.SetSchedulingEnabled(true);
-            test3.SetBotPath(AppDomain.CurrentDomain.BaseDirectory);
-            test3.SetEndTime(DateTime.Now.AddMinutes(1337));
-            test3.SetLoginName("mmopewpew@gmail.com");
-            test3.SetManuallyScheduled(false);
-            test3.SetNoSound(true);
-            test3.SetPassword("mmominion");
-            test3.SetSchedulingEnabled(true);
-            test3.SetStartTime(DateTime.Now.AddSeconds(120));
-            var test4 = new BreakObject();
-            test3.SetBreak(test4);
-            test3.BreakObject.Interval = 1;
-            test3.BreakObject.BreakDuration = 1;
-            test3.BreakObject.IntervalDelay = 1;
-            test3.BreakObject.BreakDurationDelay = 1;
-            test3.BreakObject.BreakEnabled = true;
-            Config.Singleton.AddAccount(test3);
-            test3.BreakObject.Update();
         }
 
         private void MetroTileStartAllClick(object sender, EventArgs e)
         {
-            foreach (var account in Config.Singleton.AccountSettings)
+            foreach (Account account in Config.Singleton.AccountSettings)
             {
                 account.SetShouldBeRunning(true);
+            }
+            foreach (TabPage page in metroTabControl2.TabPages)
+            {
+                foreach (
+                    object control in
+                        page.Controls.Cast<object>()
+                            .Where(control => control as MetroLabel != null && ((MetroLabel) control).Text == "Disabled")
+                    )
+                {
+                    ((MetroLabel) control).Text = "Enabled";
+                }
             }
         }
 
         private void MetroTileStopAllClick(object sender, EventArgs e)
         {
-            foreach (var account in Config.Singleton.AccountSettings)
+            foreach (Account account in Config.Singleton.AccountSettings)
             {
                 account.SetShouldBeRunning(false);
+                foreach (TabPage page in metroTabControl2.TabPages)
+                {
+                    foreach (
+                        object control in
+                            page.Controls.Cast<object>()
+                                .Where(
+                                    control => control as MetroLabel != null && ((MetroLabel) control).Text == "Enabled")
+                        )
+                    {
+                        ((MetroLabel) control).Text = "Disabled";
+                    }
+                }
+            }
+            foreach (TabPage page in metroTabControl2.TabPages)
+            {
+                foreach (object control in page.Controls)
+                {
+                    if (control as MetroControlBase != null)
+                    {
+                        ((MetroControlBase) control).Theme = metroStyleManager.Theme;
+                        ((MetroControlBase) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroButton != null)
+                    {
+                        ((MetroButton) control).Theme = metroStyleManager.Theme;
+                        ((MetroButton) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroLabel != null)
+                    {
+                        ((MetroLabel) control).Theme = metroStyleManager.Theme;
+                        ((MetroLabel) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroComboBox != null)
+                    {
+                        ((MetroComboBox) control).Theme = metroStyleManager.Theme;
+                        ((MetroComboBox) control).Style = metroStyleManager.Style;
+                    }
+                }
             }
         }
 
@@ -114,7 +137,35 @@ namespace MinionLauncherGUI
                 if (newTheme == metroStyleManager.Theme) continue;
                 metroStyleManager.Theme = newTheme;
                 Config.Singleton.GeneralSettings.SetTheme(newTheme);
-                return;
+                metroStyleManager.Update();
+                break;
+            }
+
+            foreach (TabPage page in metroTabControl2.TabPages)
+            {
+                foreach (object control in page.Controls)
+                {
+                    if (control as MetroControlBase != null)
+                    {
+                        ((MetroControlBase) control).Theme = metroStyleManager.Theme;
+                        ((MetroControlBase) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroButton != null)
+                    {
+                        ((MetroButton) control).Theme = metroStyleManager.Theme;
+                        ((MetroButton) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroLabel != null)
+                    {
+                        ((MetroLabel) control).Theme = metroStyleManager.Theme;
+                        ((MetroLabel) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroComboBox != null)
+                    {
+                        ((MetroComboBox) control).Theme = metroStyleManager.Theme;
+                        ((MetroComboBox) control).Style = metroStyleManager.Style;
+                    }
+                }
             }
         }
 
@@ -128,7 +179,34 @@ namespace MinionLauncherGUI
                 if (newStyle == metroStyleManager.Style || newStyle == "White") continue;
                 metroStyleManager.Style = newStyle;
                 Config.Singleton.GeneralSettings.SetStyle(metroStyleManager.Style);
-                return;
+                break;
+            }
+
+            foreach (TabPage page in metroTabControl2.TabPages)
+            {
+                foreach (object control in page.Controls)
+                {
+                    if (control as MetroControlBase != null)
+                    {
+                        ((MetroControlBase) control).Theme = metroStyleManager.Theme;
+                        ((MetroControlBase) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroButton != null)
+                    {
+                        ((MetroButton) control).Theme = metroStyleManager.Theme;
+                        ((MetroButton) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroLabel != null)
+                    {
+                        ((MetroLabel) control).Theme = metroStyleManager.Theme;
+                        ((MetroLabel) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroComboBox != null)
+                    {
+                        ((MetroComboBox) control).Theme = metroStyleManager.Theme;
+                        ((MetroComboBox) control).Style = metroStyleManager.Style;
+                    }
+                }
             }
         }
 
@@ -166,8 +244,69 @@ namespace MinionLauncherGUI
             SetPollingDelay(false, Config.Singleton.GeneralSettings.PollingDelay);
         }
 
+        private void NewControlOnSettingsClick(object sender, ReloggerEventArgs reloggereventargs)
+        {
+            if (((AccountControl) reloggereventargs.Control).CmbSettings.SelectedIndex != -1)
+                ComponentManager.Singleton.OpenSettingsForm(
+                    ComponentManager.Singleton.GetAccountSettingsComponentNames()[
+                        ((AccountControl) reloggereventargs.Control).CmbSettings.SelectedIndex],
+                    reloggereventargs.Account);
+        }
+
+        private void BtnAddAccountClick(object sender, EventArgs e)
+        {
+            new AccountForm(EAccountManagementType.Add).ShowDialog();
+            CleanupFirstTab();
+            metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
+            metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
+            metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
+            UpdateFormWithAccountSettings();
+        }
+
+        private void NewControlOnKillClick(object sender, ReloggerEventArgs reloggereventargs)
+        {
+            reloggereventargs.Account.SetShouldBeRunning(false);
+            ((AccountControl) reloggereventargs.Control).LblStatus.Text = "Disabled";
+        }
+
+        private void NewControlOnStartClick(object sender, ReloggerEventArgs reloggereventargs)
+        {
+            reloggereventargs.Account.SetShouldBeRunning(true);
+            ((AccountControl) reloggereventargs.Control).LblStatus.Text = "Enabled";
+        }
+
+        private void NewControlOnManageClick(object sender, ReloggerEventArgs reloggerEventArgs)
+        {
+            new AccountForm(EAccountManagementType.Edit, reloggerEventArgs.Account).ShowDialog();
+            CleanupFirstTab();
+            metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
+            metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
+            metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
+            UpdateFormWithAccountSettings();
+        }
+
         private void CycleTabsForRenderer()
         {
+            metroTabPage1.Controls.Add(new MetroLabel
+                {
+                    FontWeight = MetroFontWeight.Bold,
+                    Text = "Login Name",
+                    Theme = metroStyleManager.Theme,
+                    Style = metroStyleManager.Style,
+                    Location = new Point(3, 10),
+                    BackColor = Color.Transparent,
+                });
+
+            metroTabPage1.Controls.Add(new MetroLabel
+                {
+                    FontWeight = MetroFontWeight.Bold,
+                    Text = "Status",
+                    Theme = metroStyleManager.Theme,
+                    Style = metroStyleManager.Style,
+                    Location = new Point(490, 10),
+                    BackColor = Color.Transparent,
+                });
+
             metroTabControl1.SelectTab(0);
             metroTabControl1.SelectTab(1);
             metroTabControl1.SelectTab(2);
@@ -226,12 +365,86 @@ namespace MinionLauncherGUI
         {
             if (Config.LoadConfig(manual))
             {
+                CleanupFirstTab();
                 metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
                 metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
                 metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
+                UpdateFormWithAccountSettings();
                 return true;
             }
             return false;
+        }
+
+        private void CreateCustomControlForLauncher(Account account)
+        {
+            _newSet++;
+            var newControl = new AccountControl(metroTabControl2,
+                                                AccountControls.Count,
+                                                _totalAccounts, _newSet, metroStyleManager, account);
+            newControl.StartClick += NewControlOnStartClick;
+            newControl.KillClick += NewControlOnKillClick;
+            newControl.ManageClick += NewControlOnManageClick;
+            newControl.SettingsClick += NewControlOnSettingsClick;
+            PopulateAccountSettings(newControl.CmbSettings);
+            AccountControls.Add(newControl);
+            _totalAccounts++;
+            if (_newSet == 10)
+            {
+                _newSet = 0;
+            }
+            metroStyleManager.Update();
+        }
+
+        private void PopulateAccountSettings(MetroComboBox control)
+        {
+            control.Items.Clear();
+            foreach (string component in ComponentManager.Singleton.GetAccountSettingsComponentNames())
+            {
+                control.Items.Add(component);
+            }
+        }
+
+        private void CleanupFirstTab()
+        {
+            if (_totalAccounts > 0)
+            {
+                for (int i = 1; i < metroTabControl2.TabPages.Count; i++)
+                {
+                    metroTabControl2.TabPages.Remove(metroTabControl2.TabPages[i]);
+                    i = i - 1;
+                }
+                metroTabPage1.Controls.Clear();
+                metroTabPage1.Controls.Add(new MetroLabel
+                    {
+                        FontWeight = MetroFontWeight.Bold,
+                        Text = "Login Name",
+                        Theme = metroStyleManager.Theme,
+                        Style = metroStyleManager.Style,
+                        Location = new Point(3, 10),
+                        BackColor = Color.Transparent,
+                    });
+
+                metroTabPage1.Controls.Add(new MetroLabel
+                    {
+                        FontWeight = MetroFontWeight.Bold,
+                        Text = "Status",
+                        Theme = metroStyleManager.Theme,
+                        Style = metroStyleManager.Style,
+                        Location = new Point(490, 10),
+                        BackColor = Color.Transparent,
+                    });
+                _newSet = 0;
+                _totalAccounts = 0;
+                AccountControls.Clear();
+            }
+        }
+
+        private void UpdateFormWithAccountSettings()
+        {
+            foreach (Account account in Config.Singleton.AccountSettings)
+            {
+                CreateCustomControlForLauncher(account);
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace MinionReloggerLib.Interfaces
         void OnDisable();
         void OnLoad();
         void OnUnload();
-        Form ShowSettingsForm();
+        Form ShowSettingsForm(Account account = null);
         ESettingsType GetSettingType();
     }
 }

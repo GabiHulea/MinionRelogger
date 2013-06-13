@@ -52,6 +52,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                                          ETranslations.StartWorkerScanningForExisting));
             _attached = Check(account);
             _newPID = CreateNewProcess(_attached, account, ref _newPID);
+            Update(account);
             return this;
         }
 
@@ -84,7 +85,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                         newPID = GW2MinionLauncher.LaunchAccount(Config.Singleton.GeneralSettings.GW2Path,
                                                                  account.LoginName, account.Password, account.NoSound);
                     }
-                    catch (AccessViolationException ex)
+                    catch (Exception ex)
                     {
                         Logger.LoggingObject.Log(ELogType.Error, ex.Message);
                     }
@@ -125,7 +126,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                             Kernel32.SetDllDirectory(account.BotPath);
                         attached = GW2MinionLauncher.AttachToPid((uint) p.Id);
                     }
-                    catch (AccessViolationException ex)
+                    catch (Exception ex)
                     {
                         Logger.LoggingObject.Log(ELogType.Critical, ex.Message);
                     }

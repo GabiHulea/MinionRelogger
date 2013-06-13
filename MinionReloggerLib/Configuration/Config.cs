@@ -72,6 +72,7 @@ namespace MinionReloggerLib.Configuration
             Logger.LoggingObject.Log(ELogType.Debug,
                                      LanguageManager.Singleton.GetTranslation(ETranslations.ConfigNewAccount));
             account.SetIndex(AccountSettings.Count);
+            account.SetPID(uint.MaxValue);
             AccountSettings.Add(account);
         }
 

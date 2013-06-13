@@ -134,7 +134,14 @@ namespace MinionReloggerLib.Threads.Implementation
                         }
                         else if (results.Any(r => r == EComponentResult.Start))
                         {
-                            new StartWorker().DoWork(account).Update(account);
+                            try
+                            {
+                                new StartWorker().DoWork(account).Update(account);
+                            }
+                            finally
+                            {
+                                GC.Collect();
+                            }
                         }
                         else if (results.Any(r => r == EComponentResult.Continue))
                         {

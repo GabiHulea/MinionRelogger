@@ -60,7 +60,7 @@ namespace ComponentTest
             Logger.LoggingObject.Log("[TestComponent] OnUnload");
         }
 
-        public Form ShowSettingsForm()
+        public Form ShowSettingsForm(Account account = null)
         {
             return new Form();
         }

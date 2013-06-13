@@ -69,7 +69,7 @@ namespace BasicStopComponent
         {
         }
 
-        public Form ShowSettingsForm()
+        public Form ShowSettingsForm(Account account = null)
         {
             return new Form();
         }
@@ -81,8 +81,9 @@ namespace BasicStopComponent
 
         public bool Check(Account account)
         {
-            return  !account.ShouldBeRunning || (account.EnableScheduling && ((DateTime.Now - account.StartTime).TotalSeconds < 0 ||
-                                                (DateTime.Now - account.EndTime).TotalSeconds > 0));
+            return !account.ShouldBeRunning ||
+                   (account.EnableScheduling && ((DateTime.Now - account.StartTime).TotalSeconds < 0 ||
+                                                 (DateTime.Now - account.EndTime).TotalSeconds > 0));
         }
 
         public bool IsReady(Account account)

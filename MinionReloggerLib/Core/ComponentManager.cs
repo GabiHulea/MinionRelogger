@@ -26,6 +26,7 @@ using System.Reflection;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces;
+using MinionReloggerLib.Interfaces.Objects;
 using MinionReloggerLib.Logging;
 
 namespace MinionReloggerLib.Core
@@ -117,17 +118,17 @@ namespace MinionReloggerLib.Core
             return first != null && first.Component != null;
         }
 
-        public void OpenSettingsForm(IRelogComponent componentToCall)
+        public void OpenSettingsForm(IRelogComponent componentToCall, Account account = null)
         {
-            componentToCall.ShowSettingsForm().ShowDialog();
+            componentToCall.ShowSettingsForm(account).ShowDialog();
         }
 
-        public void OpenSettingsForm(string nameofComponentToCall)
+        public void OpenSettingsForm(string nameofComponentToCall, Account account = null)
         {
             ComponentClass first = _components.FirstOrDefault(c => c.Component.GetName() == nameofComponentToCall);
             if (first != null)
             {
-                OpenSettingsForm(first.Component);
+                OpenSettingsForm(first.Component, account);
             }
         }
 

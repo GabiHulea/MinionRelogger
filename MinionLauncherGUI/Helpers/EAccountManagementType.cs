@@ -18,24 +18,11 @@
 *                                                                            *
 ******************************************************************************/
 
-using System;
-using MinionReloggerLib.Enums;
-using MinionReloggerLib.Interfaces.Objects;
-
-namespace MinionReloggerLib.CustomEventArgs
+namespace MinionLauncherGUI.Helpers
 {
-    public class ReloggerEventArgs : EventArgs
+    public enum EAccountManagementType
     {
-        public ReloggerEventArgs(Object control, Account account = null,
-                                 ERelogEventArgsType type = ERelogEventArgsType.OnUnknown)
-        {
-            Control = control;
-            Account = account;
-            Type = type;
-        }
-
-        public Account Account { get; private set; }
-        public ERelogEventArgsType Type { get; private set; }
-        public Object Control { get; private set; }
+        Add,
+        Edit,
     }
 }

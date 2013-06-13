@@ -1,0 +1,172 @@
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+using MetroFramework.Components;
+using MetroFramework.Controls;
+using MetroFramework.Drawing;
+using MinionReloggerLib.CustomEventArgs;
+using MinionReloggerLib.Enums;
+using MinionReloggerLib.Interfaces.Objects;
+
+namespace MinionLauncherGUI.CustomControls
+{
+    internal class AccountControl
+    {
+        private readonly Account _account;
+        private readonly MetroStyleManager _formStyleManager;
+
+        internal MetroButton BtnKill = new MetroButton();
+        internal MetroButton BtnManage = new MetroButton();
+        internal MetroButton BtnSetDirectory = new MetroButton();
+        internal MetroButton BtnSettings = new MetroButton();
+        internal MetroButton BtnStart = new MetroButton();
+        internal MetroComboBox CmbSettings = new MetroComboBox();
+        internal MetroLabel LblAccountName = new MetroLabel();
+        internal MetroLabel LblStatus = new MetroLabel();
+
+        internal AccountControl(MetroTabControl tabControl, int totalCount, int activeCount, int newSet,
+                                MetroStyleManager styleManager, Account account)
+        {
+            _account = account;
+            FixControls(newSet, styleManager, account);
+            AddControlsToForm(tabControl, styleManager, activeCount, newSet);
+            ID = totalCount;
+            BindEvents();
+        }
+
+        internal int ID { get; set; }
+
+
+        internal string LoginName
+        {
+            get { return LblAccountName.Text; }
+            set { LblAccountName.Text = value; }
+        }
+
+        internal string Status
+        {
+            get { return LblStatus.Text; }
+            set { LblStatus.Text = value; }
+        }
+
+        private void BindEvents()
+        {
+            BtnStart.Click += OnStartClick;
+            BtnKill.Click += OnKillClick;
+            BtnManage.Click += OnManageClick;
+            BtnSettings.Click += OnSettingsClick;
+        }
+
+        private void AddControlsToForm(MetroTabControl tabControl, MetroStyleManager styleManager, int activeCount,
+                                       int newSet)
+        {
+            TabPage page = tabControl.TabPages[tabControl.TabPages.Count - 1];
+            var newPage = new MetroTabPage
+                {
+                    BackColor = Color.Transparent,
+                    Text = string.Format("{0}-{1}", activeCount + 2, activeCount + 11),
+                };
+            if (newSet == 10 && tabControl.TabPages.Count < 10)
+                tabControl.TabPages.Add(newPage);
+            newPage.Controls.Add(new MetroLabel
+                {
+                    FontWeight = MetroFontWeight.Bold,
+                    Text = "Login Name",
+                    Theme = styleManager.Theme,
+                    Style = styleManager.Style,
+                    Location = new Point(3, 10),
+                    BackColor = Color.Transparent,
+                });
+            newPage.Controls.Add(new MetroLabel
+                {
+                    FontWeight = MetroFontWeight.Bold,
+                    Text = "Status",
+                    Theme = styleManager.Theme,
+                    Style = styleManager.Style,
+                    Location = new Point(490, 10),
+                    BackColor = Color.Transparent,
+                });
+
+            page.Controls.Add(LblAccountName);
+            page.Controls.Add(BtnStart);
+            page.Controls.Add(BtnKill);
+            page.Controls.Add(BtnManage);
+            page.Controls.Add(LblStatus);
+            page.Controls.Add(CmbSettings);
+            page.Controls.Add(BtnSettings);
+        }
+
+        private void FixControls(int newSet, MetroStyleManager styleManager, Account account)
+        {
+            LblAccountName.Theme = styleManager.Theme;
+            LblAccountName.Style = styleManager.Style;
+            LblAccountName.Text = account.LoginName;
+            LblAccountName.Width = 280;
+            LblAccountName.BackColor = Color.Transparent;
+            BtnStart.Theme = styleManager.Theme;
+            BtnStart.Style = styleManager.Style;
+            BtnStart.Text = "Start";
+            BtnKill.Theme = styleManager.Theme;
+            BtnKill.Style = styleManager.Style;
+            BtnKill.Text = "Stop";
+            BtnManage.Theme = styleManager.Theme;
+            BtnManage.Style = styleManager.Style;
+            BtnManage.Text = "Manage";
+            BtnSettings.Theme = styleManager.Theme;
+            BtnSettings.Style = styleManager.Style;
+            BtnSettings.Text = "Settings";
+            LblStatus.Theme = styleManager.Theme;
+            LblStatus.Style = styleManager.Style;
+            LblStatus.Text = "Disabled";
+            LblStatus.BackColor = Color.Transparent;
+            CmbSettings.Theme = styleManager.Theme;
+            CmbSettings.Style = styleManager.Style;
+            int heightPosition = (newSet)*40;
+            LblAccountName.Location = new Point(3, heightPosition + 3);
+            BtnStart.Width = 53;
+            BtnStart.Height = 23;
+            BtnKill.Width = 46;
+            BtnKill.Height = 23;
+            BtnSettings.Width = 75;
+            BtnSettings.Height = 23;
+            CmbSettings.Width = 234;
+            CmbSettings.Height = 29;
+            LblStatus.Width = 70;
+            BtnStart.Location = new Point(290, heightPosition);
+            BtnKill.Location = new Point(349, heightPosition);
+            BtnManage.Location = new Point(402, heightPosition);
+            LblStatus.Location = new Point(490, heightPosition);
+            CmbSettings.Location = new Point(563, heightPosition - 3);
+            BtnSettings.Location = new Point(817, heightPosition);
+        }
+
+        internal event ReloggerHandler StartClick;
+        internal event ReloggerHandler KillClick;
+        internal event ReloggerHandler ManageClick;
+        internal event ReloggerHandler SettingsClick;
+
+        private void OnManageClick(object sender, EventArgs eventArgs)
+        {
+            if (ManageClick != null)
+                ManageClick(this, new ReloggerEventArgs(this, _account, ERelogEventArgsType.OnManage));
+        }
+
+        private void OnSettingsClick(object sender, EventArgs eventArgs)
+        {
+            if (SettingsClick != null)
+                SettingsClick(this, new ReloggerEventArgs(this, _account, ERelogEventArgsType.OnSettings));
+        }
+
+        private void OnKillClick(object sender, EventArgs eventArgs)
+        {
+            if (KillClick != null)
+                KillClick(this, new ReloggerEventArgs(this, _account, ERelogEventArgsType.OnKill));
+        }
+
+        private void OnStartClick(object sender, EventArgs eventArgs)
+        {
+            if (StartClick != null)
+                StartClick(this, new ReloggerEventArgs(this, _account, ERelogEventArgsType.OnStart));
+        }
+    }
+}

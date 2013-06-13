@@ -43,18 +43,11 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                 try
                 {
                     _done = GW2MinionLauncher.KillInstance(account.PID);
+                    Logger.LoggingObject.Log("KILLING FOR {0}", account.LoginName);
                 }
-                catch (DllNotFoundException ex)
+                catch (Exception ex)
                 {
                     Logger.LoggingObject.Log(ELogType.Error, ex.Message);
-                }
-                catch (BadImageFormatException ex)
-                {
-                    Logger.LoggingObject.Log(ELogType.Error, ex.Message);
-                }
-                catch (AccessViolationException ex)
-                {
-                    Logger.LoggingObject.Log(ELogType.Critical, ex.Message);
                 }
             }
             return this;

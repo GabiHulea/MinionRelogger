@@ -19,11 +19,9 @@
 ******************************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Text;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -39,7 +37,7 @@ namespace MinionLauncherGUI.VersionControl
             try
             {
                 string xmlURL = "http://minionrelogger.azurewebsites.net/version.xml";
-                HttpWebRequest hwRequest = (HttpWebRequest) WebRequest.Create(xmlURL);
+                var hwRequest = (HttpWebRequest) WebRequest.Create(xmlURL);
                 hwRequest.Timeout = 5000;
                 hwRequest.ReadWriteTimeout = 5000;
                 hwRequest.Proxy = null;
@@ -87,7 +85,7 @@ namespace MinionLauncherGUI.VersionControl
                 }
 
                 Version curVersion =
-                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                    Assembly.GetExecutingAssembly().GetName().Version;
                 if (curVersion.CompareTo(newVersion) < 0)
                 {
                     string title = "New version detected.";
@@ -97,7 +95,7 @@ namespace MinionLauncherGUI.VersionControl
                                         MessageBoxButtons.YesNo,
                                         MessageBoxIcon.Question))
                     {
-                        System.Diagnostics.Process.Start(url);
+                        Process.Start(url);
                     }
                 }
             }

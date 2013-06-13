@@ -20,24 +20,62 @@
 
 using System;
 using MetroFramework.Forms;
+using MinionReloggerLib.Configuration;
+using MinionReloggerLib.Interfaces.Objects;
 
 namespace BreakComponent
 {
     public partial class SettingsForm : MetroForm
     {
-        public SettingsForm()
+        private readonly Account _account;
+
+        public SettingsForm(Account account)
         {
             InitializeComponent();
+            _account = account;
+            metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
+            metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
+            numericUpDown1.Value = account.BreakObject.Interval;
+            numericUpDown2.Value = account.BreakObject.IntervalDelay;
+            numericUpDown3.Value = account.BreakObject.BreakDuration;
+            numericUpDown4.Value = account.BreakObject.BreakDurationDelay;
+            chkBoxEnableBreak.Checked = account.BreakObject.BreakEnabled;
         }
 
         private void BtnOkClick(object sender, EventArgs e)
         {
+            MakeBreak();
             Close();
         }
 
         private void BtnCancelClick(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void MakeBreak()
+        {
+            var r = new Random();
+
+            var breakObject = new BreakObject
+                {
+                    TimeSinceLastBreak = DateTime.Now,
+                    TimeSpanInterval = new TimeSpan(0, (int) numericUpDown1.Value, 0),
+                    TimeSpanToAddToLastBreak = new TimeSpan(0, r.Next(0, (int) numericUpDown2.Value), 0),
+                    TimeSpanToPause = new TimeSpan(0, (int) numericUpDown3.Value, 0),
+                    TimeSpanToWaitLonger = new TimeSpan(0, r.Next(0, (int) numericUpDown4.Value), 0),
+                    BreakEnabled = chkBoxEnableBreak.Checked,
+                    Interval = (int) numericUpDown1.Value,
+                    IntervalDelay = (int) numericUpDown2.Value,
+                    BreakDuration = (int) numericUpDown3.Value,
+                    BreakDurationDelay = (int) numericUpDown4.Value,
+                };
+            breakObject.TimeActualStartBreak = breakObject.TimeSinceLastBreak + breakObject.TimeSpanInterval +
+                                               breakObject.TimeSpanToAddToLastBreak;
+            breakObject.TimeActualStopBreak = breakObject.TimeActualStartBreak + breakObject.TimeSpanToPause +
+                                              breakObject.TimeSpanToWaitLonger;
+            chkBoxEnableBreak.Checked = _account.BreakObject.BreakEnabled;
+            _account.SetBreak(breakObject);
         }
     }
 }
