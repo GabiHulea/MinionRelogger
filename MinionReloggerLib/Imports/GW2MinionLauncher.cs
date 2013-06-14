@@ -71,5 +71,8 @@ namespace MinionReloggerLib.Imports
 
         [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern uint BuildNumberFromApi();
+
+        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int ViewState(uint pid);
     }
 }

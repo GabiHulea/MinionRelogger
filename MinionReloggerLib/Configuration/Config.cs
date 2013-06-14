@@ -215,7 +215,8 @@ namespace MinionReloggerLib.Configuration
                                      LanguageManager.Singleton.GetTranslation(ETranslations.ConfigDumpIntegers),
                                      Singleton.GeneralSettings.PollingDelay,
                                      Singleton.GeneralSettings.LaunchDelay,
-                                     Singleton.GeneralSettings.RestartDelay);
+                                     Singleton.GeneralSettings.RestartDelay,
+                                     Singleton.GeneralSettings.FrozenTime);
         }
 
         private static void HandleFixingOfLists()

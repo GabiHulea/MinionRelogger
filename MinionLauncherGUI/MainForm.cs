@@ -235,7 +235,7 @@ namespace MinionLauncherGUI
         {
             if (metroComboBoxGlobalSettingsComponents.SelectedIndex != -1)
                 ComponentManager.Singleton.OpenSettingsForm(
-                    ComponentManager.Singleton.GetGlobalSettingsComponentNames()[
+                    ComponentManager.Singleton.GetEnabledGlobalSettingsComponentNames()[
                         metroComboBoxGlobalSettingsComponents.SelectedIndex]);
         }
 
@@ -268,7 +268,7 @@ namespace MinionLauncherGUI
         {
             if (((AccountControl) reloggereventargs.Control).CmbSettings.SelectedIndex != -1)
                 ComponentManager.Singleton.OpenSettingsForm(
-                    ComponentManager.Singleton.GetAccountSettingsComponentNames()[
+                    ComponentManager.Singleton.GetEnabledAccountSettingsComponentNames()[
                         ((AccountControl) reloggereventargs.Control).CmbSettings.SelectedIndex],
                     reloggereventargs.Account);
         }
@@ -305,7 +305,10 @@ namespace MinionLauncherGUI
             UpdateFormWithAccountSettings();
         }
 
-
+        private void BtnSetFrozenTimeClick(object sender, EventArgs e)
+        {
+           SetFrozenTime(false, Config.Singleton.GeneralSettings.FrozenTime);
+        }
 
         private void BtnDisableComponentClick(object sender, EventArgs e)
         {
@@ -477,6 +480,25 @@ namespace MinionLauncherGUI
 
             if (dialogResult == DialogResult.OK)
                 Config.Singleton.GeneralSettings.SetPollingDelay(final);
+        }
+
+        private void SetFrozenTime(bool mustBeEntered = true, int currentValue = 0)
+        {
+            int final;
+            string result = currentValue == 0 ? @"300" : currentValue.ToString();
+            var dialogResult = DialogResult.OK;
+            bool done = false;
+            while ((!Int32.TryParse(result, out final) || final < 60 || !done) &&
+                   (dialogResult == DialogResult.OK || mustBeEntered))
+            {
+                dialogResult = InputBox.ShowInputBox("Frozen Time",
+                                                     "Please enter the desired time after which a GW2 instance is considered frozen/stuck (!minimum: 60, in seconds!).",
+                                                     ref result);
+                done = true;
+            }
+
+            if (dialogResult == DialogResult.OK)
+                Config.Singleton.GeneralSettings.SetFrozenTime(final);
         }
 
 

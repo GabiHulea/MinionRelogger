@@ -45,6 +45,7 @@ namespace MinionReloggerLib.Enums
         // class: General Settings
         GeneralSettingsGW2PathChanged,
         GeneralSettingsPollingDelayChanged,
+        GeneralSettingsFrozenTimeChanged,
         GeneralSettingsLaunchDelayChanged,
         GeneralSettingsRestartDelayChanged,
         GeneralSettingsColorChanged,
@@ -70,6 +71,9 @@ namespace MinionReloggerLib.Enums
         StartWorkerLaunchingInstance,
         StartWorkerFoundWantedProcess,
         StartWorkerAttachingTo,
+
+        // class: ViewStateObject
+        ViewStateObjectClientStuckSomewhere,
 
         // class: WatchObject
         WatchObjectNotRespondingFor,

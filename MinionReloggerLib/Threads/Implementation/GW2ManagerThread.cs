@@ -37,6 +37,8 @@ namespace MinionReloggerLib.Threads.Implementation
     {
         private static readonly Dictionary<Process, WatchObject> FrozenGW2Windows =
             new Dictionary<Process, WatchObject>();
+        private static readonly Dictionary<Process, ViewStateObject> DeadGW2Windows =
+    new Dictionary<Process, ViewStateObject>();
 
         private static int _checkAll;
 
@@ -113,30 +115,39 @@ namespace MinionReloggerLib.Threads.Implementation
 
         protected static bool EnumTheWindows(IntPtr hWnd, IntPtr lParam)
         {
-            int size = User32.GetWindowTextLength(hWnd);
-            if (size++ > 0 && User32.IsWindowVisible(hWnd))
+            try
             {
-                var sb = new StringBuilder(size);
-                User32.GetWindowText(hWnd, sb, size);
-                if (sb.ToString().ToLower() == "gw2.exe" ||
-                    sb.ToString().ToLower() == "guild wars 2 game client")
+                int size = User32.GetWindowTextLength(hWnd);
+                if (size++ > 0 && User32.IsWindowVisible(hWnd))
                 {
-                    Process firstOrDefault = Process.GetProcesses().FirstOrDefault(p => p.MainWindowHandle == hWnd);
-                    Account wanted = Config.Singleton.AccountSettings.FirstOrDefault(a => a.PID == firstOrDefault.Id);
-                    if (firstOrDefault != null)
+                    var sb = new StringBuilder(size);
+                    User32.GetWindowText(hWnd, sb, size);
+                    if (sb.ToString().ToLower() == "gw2.exe" ||
+                        sb.ToString().ToLower() == "guild wars 2 game client")
                     {
-                        if (wanted != null)
+                        Process firstOrDefault = Process.GetProcesses().FirstOrDefault(p => p.MainWindowHandle == hWnd);
+                        Account wanted = Config.Singleton.AccountSettings.FirstOrDefault(a => a.PID == firstOrDefault.Id);
+                        if (firstOrDefault != null)
                         {
-                            wanted.SetLastCrash(DateTime.Now);
-                            wanted.SetLastStopTime(DateTime.Now);
+                            if (wanted != null)
+                            {
+                                wanted.SetLastCrash(DateTime.Now);
+                                wanted.SetLastStopTime(DateTime.Now);
+                            }
+                            firstOrDefault.Kill();
                         }
-                        firstOrDefault.Kill();
                     }
                 }
             }
-            if (_checkAll > 6 || Config.Singleton.GeneralSettings.PollingDelay >= 20000)
+            catch (Exception ex)
             {
-                Process[] gw2Processes = UpdateListWithRemainingGW2Processes();
+                Logger.LoggingObject.Log(ELogType.Error, ex.Message);
+            }
+            try
+            {
+            if (_checkAll > 6 || Config.Singleton.GeneralSettings.PollingDelay >= 60)
+            {
+                IEnumerable<Process> gw2Processes = UpdateListWithRemainingGW2Processes();
                 foreach (Process gw2Process in gw2Processes)
                 {
                     UpdateProcessIdForMatchingScheduler(gw2Process);
@@ -153,17 +164,35 @@ namespace MinionReloggerLib.Threads.Implementation
                     }
                     else
                     {
+                        EViewState viewState = (EViewState)GW2MinionLauncher.ViewState((uint)gw2Process.Id);
+                        if (viewState != EViewState.ViewGameplay && DeadGW2Windows.All(p => p.Key.Id != gw2Process.Id))
+                        {
+                            AddDeadProcessToTheList(gw2Process, viewState);
+                        }
+                        else if (viewState != EViewState.ViewGameplay)
+                        {
+                            GetRidOfProcessesThatHaveBeenIdleForLong(gw2Process, viewState);
+                        }
+                        else
+                        {
+                            RemoveWorkingWindowsFromTheList(gw2Process);
+                        }
                         RemoveRespondingWindowsFromTheList(gw2Process);
                         MinimizeGW2Windows(gw2Process);
                     }
                 }
                 _checkAll = -1;
             }
+                     }
+            catch (Exception ex)
+            {
+                Logger.LoggingObject.Log(ELogType.Error, ex.Message);
+            }
             _checkAll++;
             return true;
         }
 
-        private static Process[] UpdateListWithRemainingGW2Processes()
+        private static IEnumerable<Process> UpdateListWithRemainingGW2Processes()
         {
             Process[] gw2Processes = Process.GetProcessesByName("GW2");
             for (int i = 0; i < FrozenGW2Windows.Count; i++)
@@ -174,21 +203,36 @@ namespace MinionReloggerLib.Threads.Implementation
                     i--;
                 }
             }
+            for (int i = 0; i < DeadGW2Windows.Count; i++)
+            {
+                if (DeadGW2Windows.ElementAt(i).Key.HasExited)
+                {
+                    DeadGW2Windows.Remove(DeadGW2Windows.ElementAt(i).Key);
+                    i--;
+                }
+            }
             return gw2Processes;
         }
 
         private static void UpdateProcessIdForMatchingScheduler(Process gw2Process)
         {
-            if (Config.Singleton.AccountSettings.All(a => a.PID != gw2Process.Id))
+            try
             {
-                string name = GW2MinionLauncher.GetAccountName((uint) gw2Process.Id);
-                Account wanted =
-                    Config.Singleton.AccountSettings.FirstOrDefault(a => a.LoginName == name);
-                if (wanted != null)
+                if (Config.Singleton.AccountSettings.All(a => a.PID != gw2Process.Id))
                 {
-                    wanted.SetPID((uint) gw2Process.Id);
-                    wanted.SetLastStartTime(DateTime.Now);
+                    string name = GW2MinionLauncher.GetAccountName((uint) gw2Process.Id);
+                    Account wanted =
+                        Config.Singleton.AccountSettings.FirstOrDefault(a => a.LoginName == name);
+                    if (wanted != null)
+                    {
+                        wanted.SetPID((uint) gw2Process.Id);
+                        wanted.SetLastStartTime(DateTime.Now);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.LoggingObject.Log(ELogType.Error, ex.Message);
             }
         }
 
@@ -210,17 +254,57 @@ namespace MinionReloggerLib.Threads.Implementation
             }
         }
 
+        private static void AddDeadProcessToTheList(Process gw2Process, EViewState viewState)
+        {
+            Account wanted =
+                Config.Singleton.AccountSettings.FirstOrDefault(a => a.PID == gw2Process.Id);
+            if (wanted != null)
+            {
+                DeadGW2Windows.Add(gw2Process, new ViewStateObject(wanted, DateTime.Now, gw2Process, viewState));
+            }
+            else
+            {
+                DeadGW2Windows.Add(gw2Process, new ViewStateObject(new Account(), DateTime.Now, gw2Process,viewState));
+            }
+        }
+
 
         private static void GetRidOfProcessesThatHaveBeenFrozenForLong(Process gw2Process)
         {
-            KeyValuePair<Process, WatchObject> wanted =
-                FrozenGW2Windows.FirstOrDefault(p => p.Key.Id == gw2Process.Id);
-            if (wanted.Key != null && (DateTime.Now - wanted.Value.Time).TotalSeconds > 90)
+            try
             {
-                if (wanted.Value.Account != null && wanted.Value.Check())
+                KeyValuePair<Process, WatchObject> wanted =
+                    FrozenGW2Windows.FirstOrDefault(p => p.Key.Id == gw2Process.Id);
+                if (wanted.Key != null && (DateTime.Now - wanted.Value.Time).TotalSeconds > 90)
                 {
-                    wanted.Value.DoWork();
+                    if (wanted.Value.Account != null && wanted.Value.Check())
+                    {
+                        wanted.Value.DoWork();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.LoggingObject.Log(ELogType.Error, ex.Message);
+            }
+        }
+        private static void GetRidOfProcessesThatHaveBeenIdleForLong(Process gw2Process, EViewState viewState)
+        {
+            try
+            {
+                KeyValuePair<Process, ViewStateObject> wanted =
+                    DeadGW2Windows.FirstOrDefault(p => p.Key.Id == gw2Process.Id);
+                if (wanted.Key != null && (DateTime.Now - wanted.Value.Time).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime)
+                {
+                    if (viewState != EViewState.ViewGameplay && wanted.Value.Account != null && wanted.Value.Check())
+                    {
+                        wanted.Value.DoWork();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LoggingObject.Log(ELogType.Error, ex.Message);
             }
         }
 
@@ -236,6 +320,16 @@ namespace MinionReloggerLib.Threads.Implementation
                                                  ETranslations.GW2ManagerThreadStartedRespondingAgain),
                                              wanted.Value.Account.LoginName);
                 FrozenGW2Windows.Remove(wanted.Key);
+            }
+        }
+
+        private static void RemoveWorkingWindowsFromTheList(Process gw2Process)
+        {
+            KeyValuePair<Process, ViewStateObject> wanted =
+                DeadGW2Windows.FirstOrDefault(p => p.Key.Id == gw2Process.Id);
+            if (wanted.Key != null)
+            {
+                DeadGW2Windows.Remove(wanted.Key);
             }
         }
 

@@ -18,51 +18,25 @@
 *                                                                            *
 ******************************************************************************/
 
-using System;
-using MinionReloggerLib.Enums;
-using MinionReloggerLib.Helpers.Language;
-using MinionReloggerLib.Imports;
-using MinionReloggerLib.Interfaces.Objects;
-using MinionReloggerLib.Logging;
-
-namespace MinionReloggerLib.Interfaces.RelogWorkers
+namespace MinionReloggerLib.Enums
 {
-    public class KillWorker : IRelogWorker
+    public enum EViewState
     {
-        private bool _done;
-
-        public bool Check(Account account)
-        {
-            return account.Running && account.PID != uint.MaxValue && account.PID != 0;
-        }
-
-        public IRelogWorker DoWork(Account account)
-        {
-            if (Check(account))
-            {
-                try
-                {
-                    _done = GW2MinionLauncher.KillInstance(account.PID);
-                }
-                catch
-                {
-                    
-                }
-            }
-            return this;
-        }
-
-        public void Update(Account account)
-        {
-            Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.KillWorkerStoppingProcess),
-                                     account.PID);
-            account.SetLastStopTime(DateTime.Now);
-        }
-
-        public bool PostWork(Account account)
-        {
-            return _done;
-        }
+        OutdatedPattern = -1,
+        Default = 0,
+        ViewCharCreateCinema = 1,
+        ViewCharCreateCinemaLoad = 2,
+        ViewCharCreateLoad = 3,
+        ViewCharSelect = 4,
+        ViewCharSelectLoad = 5,
+        ViewCinemaPreview = 6,
+        ViewCinemaPreviewLoad = 7,
+        ViewGameCinemaStory = 10,
+        ViewGameCinemaStoryLoad = 11,
+        ViewGameLeave = 12,
+        ViewGameLoad = 13,
+        ViewGameMapCinematic = 14,
+        ViewGameplay = 16,
+        ViewLogin = 17
     }
 }

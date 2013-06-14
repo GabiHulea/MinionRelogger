@@ -46,7 +46,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.ConfigCouldntFindValidSaveFile,
                              "Couldn't find a valid save file. Please create a new save file.");
             Translations.Add(ETranslations.ConfigDumpIntegers,
-                             "Polling Delay: {0}, Launch Delay: {1}, Restart Delay: {2}");
+                             "Polling Delay: {0}, Launch Delay: {1}, Restart Delay: {2}, Frozen Time: {3}.");
 
             // class: DataProtector
             Translations.Add(ETranslations.DataProtectorErrorOccured, "An error has occurred during data encryption!");
@@ -57,6 +57,8 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.GeneralSettingsGW2PathChanged, "GW2 Path has been changed to: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsPollingDelayChanged,
                              "Polling delay has been changed to: [{0}].");
+            Translations.Add(ETranslations.GeneralSettingsFrozenTimeChanged,
+                 "Frozen time has been changed to: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsLaunchDelayChanged, "Launch delay has been changed to: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsRestartDelayChanged,
                              "Restart delay has been changed to: [{0}].");
@@ -91,9 +93,12 @@ namespace MinionReloggerLib.Helpers.Language.Languages
                              "Found wanted process for {0}, no need to launch.");
             Translations.Add(ETranslations.StartWorkerAttachingTo, "Attaching to {0} with {1}.");
 
+            // class: ViewStateObject
+            Translations.Add(ETranslations.ViewStateObjectClientStuckSomewhere, "The GW2 instance, running {0}, has not been in-game for {1} seconds, scheduling it for a restart.");
+
             // class: WatchObject
             Translations.Add(ETranslations.WatchObjectNotRespondingFor,
-                             "The GW 2 instance, running {0}, has not been responding for 90 seconds, scheduling it for restart.");
+                             "The GW 2 instance, running {0}, has not been responding for 90 seconds, scheduling it for a restart.");
         }
 
         public override string GetLanguageDescription()

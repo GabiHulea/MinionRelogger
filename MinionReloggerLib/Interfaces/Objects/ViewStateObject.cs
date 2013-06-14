@@ -19,50 +19,73 @@
 ******************************************************************************/
 
 using System;
+using System.Diagnostics;
+using System.Threading;
+using MinionReloggerLib.Configuration;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Imports;
-using MinionReloggerLib.Interfaces.Objects;
 using MinionReloggerLib.Logging;
 
-namespace MinionReloggerLib.Interfaces.RelogWorkers
+namespace MinionReloggerLib.Interfaces.Objects
 {
-    public class KillWorker : IRelogWorker
+    public class ViewStateObject : IObject
     {
-        private bool _done;
-
-        public bool Check(Account account)
+        public ViewStateObject(Account account, DateTime time, Process process, EViewState viewstate)
         {
-            return account.Running && account.PID != uint.MaxValue && account.PID != 0;
+            Account = account;
+            Time = time;
+            Process = process;
+            ViewState = viewstate;
         }
 
-        public IRelogWorker DoWork(Account account)
+        public Account Account { get; private set; }
+        public DateTime Time { get; private set; }
+        public Process Process { get; private set; }
+        public EViewState ViewState { get; private set; }
+
+        public bool Check()
         {
-            if (Check(account))
+            return IsReady() && (DateTime.Now - Process.StartTime).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime && ViewState != EViewState.ViewGameplay;
+        }
+
+        public IObject DoWork()
+        {
+            if (!Process.HasExited)
             {
                 try
                 {
-                    _done = GW2MinionLauncher.KillInstance(account.PID);
+                    bool result = GW2MinionLauncher.KillInstance((uint)Process.Id);
+                    Thread.Sleep(3000);
+                    if (!result || (Process != null && !Process.HasExited))
+                        Process.Kill();
                 }
                 catch
                 {
                     
                 }
             }
+            Update();
             return this;
         }
 
-        public void Update(Account account)
+        public bool IsReady()
         {
-            Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.KillWorkerStoppingProcess),
-                                     account.PID);
-            account.SetLastStopTime(DateTime.Now);
+            return (DateTime.Now - Time).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime;
         }
 
-        public bool PostWork(Account account)
+        public void Update()
         {
-            return _done;
+            Account.SetLastStopTime(DateTime.Now);
+            Account.SetLastCrash(DateTime.Now);
+            Logger.LoggingObject.Log(ELogType.Critical,
+                                     LanguageManager.Singleton.GetTranslation(ETranslations.ViewStateObjectClientStuckSomewhere),
+                                     Account.LoginName, Config.Singleton.GeneralSettings.FrozenTime);
+        }
+
+        public bool IsViewState(EViewState toCompare)
+        {
+            return ViewState == toCompare;
         }
     }
 }

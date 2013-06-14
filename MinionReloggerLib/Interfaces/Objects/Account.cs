@@ -20,7 +20,9 @@
 
 using System;
 using System.Diagnostics;
+using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Encryption;
+using MinionReloggerLib.Logging;
 using ProtoBuf;
 
 namespace MinionReloggerLib.Interfaces.Objects
@@ -92,9 +94,9 @@ namespace MinionReloggerLib.Interfaces.Objects
             {
                 try
                 {
-                    return Process.GetProcessById((int) PID).Id != 0;
+                    return PID > 0 && PID < uint.MaxValue && Process.GetProcessById((int) PID).Id != 0;
                 }
-                catch (ArgumentException)
+                catch
                 {
                     return false;
                 }

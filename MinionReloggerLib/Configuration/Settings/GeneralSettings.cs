@@ -45,6 +45,7 @@ namespace MinionReloggerLib.Configuration.Settings
             PollingDelay = 3;
             LaunchDelay = 20;
             RestartDelay = 300;
+            FrozenTime = 300;
             StyleSetting = "Blue";
             ThemeSetting = "Light";
         }
@@ -73,12 +74,23 @@ namespace MinionReloggerLib.Configuration.Settings
         [ProtoMember(8)]
         public int RestartDelay { get; private set; }
 
+        [ProtoMember(11)]
+        public int FrozenTime { get; private set; }
+
         public void SetGW2Path(string newPath)
         {
             Logger.LoggingObject.Log(ELogType.Info,
                                      LanguageManager.Singleton.GetTranslation(
                                          ETranslations.GeneralSettingsGW2PathChanged), newPath);
             GW2Path = newPath;
+        }
+
+        public void SetFrozenTime(int newTime)
+        {
+            Logger.LoggingObject.Log(ELogType.Info,
+                                     LanguageManager.Singleton.GetTranslation(
+                                         ETranslations.GeneralSettingsFrozenTimeChanged), newTime);
+            FrozenTime = newTime;
         }
 
         public void SetPollingDelay(int newDelay)

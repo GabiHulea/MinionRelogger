@@ -58,9 +58,8 @@ namespace MinionReloggerLib.Interfaces.Objects
                     if (!result || (Process != null && !Process.HasExited))
                         Process.Kill();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Logger.LoggingObject.Log(ELogType.Critical, ex.Message);
                 }
             }
             Update();

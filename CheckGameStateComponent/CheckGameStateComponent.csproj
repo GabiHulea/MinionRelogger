@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{01FF14C7-A5D9-404A-8AE1-FABD633A9B55}</ProjectGuid>
+    <ProjectGuid>{649C233A-15F8-4463-A0C1-462CBABF1DFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MinionReloggerLib</RootNamespace>
-    <AssemblyName>MinionReloggerLib</AssemblyName>
+    <RootNamespace>CheckGameStateComponent</RootNamespace>
+    <AssemblyName>CheckGameStateComponent</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\MinionLauncherGUI\bin\x86\Release\Components\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,7 +40,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>..\TestConsole\bin\x86\Release\Components\</OutputPath>
+    <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -49,13 +49,15 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="protobuf-net">
-      <HintPath>..\packages\protobuf-net.2.0.0.640\lib\net40\protobuf-net.dll</HintPath>
+    <Reference Include="MetroFramework">
+      <HintPath>..\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design">
+      <HintPath>..\MetroFramework.Design.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,53 +66,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Config.cs" />
-    <Compile Include="Configuration\Settings\GeneralSettings.cs" />
-    <Compile Include="Core\ComponentClass.cs" />
-    <Compile Include="Core\ComponentManager.cs" />
-    <Compile Include="Core\ThreadManager.cs" />
-    <Compile Include="CustomEventArgs\ReloggerEventArgs.cs" />
-    <Compile Include="Enums\EComponentResult.cs" />
-    <Compile Include="Enums\ELanguages.cs" />
-    <Compile Include="Enums\ELogType.cs" />
-    <Compile Include="CustomEventArgs\LogEventArgs.cs" />
-    <Compile Include="Enums\ERelogEventType.cs" />
-    <Compile Include="Enums\ESettingsType.cs" />
-    <Compile Include="Enums\ETranslations.cs" />
-    <Compile Include="Enums\EViewState.cs" />
-    <Compile Include="Helpers\Encryption\DataProtector.cs" />
-    <Compile Include="Helpers\Input\InputBox.cs" />
-    <Compile Include="Helpers\Language\LanguageManager.cs" />
-    <Compile Include="Helpers\Language\Languages\English.cs" />
-    <Compile Include="Helpers\Language\Language.cs" />
-    <Compile Include="Helpers\MyIP\GetMyIP.cs" />
-    <Compile Include="Helpers\MyIP\HTTPGet.cs" />
-    <Compile Include="Imports\GW2MinionLauncher.cs" />
-    <Compile Include="Imports\Kernel32.cs" />
-    <Compile Include="Imports\User32.cs" />
-    <Compile Include="Interfaces\IRelogComponentExtension.cs" />
-    <Compile Include="Interfaces\IRelogWorker.cs" />
-    <Compile Include="Interfaces\Objects\Account.cs" />
-    <Compile Include="Interfaces\Objects\ViewStateObject.cs" />
-    <Compile Include="Interfaces\Objects\WatchObject.cs" />
-    <Compile Include="Interfaces\RelogWorkers\KillWorker.cs" />
-    <Compile Include="Interfaces\RelogWorkers\StartWorker.cs" />
-    <Compile Include="Logging\ClipboardHelper.cs" />
-    <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Logging\STAHelper.cs" />
-    <Compile Include="Interfaces\IRelogComponent.cs" />
-    <Compile Include="Interfaces\Objects\BreakObject.cs" />
-    <Compile Include="Interfaces\IObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Threads\Implementation\GW2ManagerThread.cs" />
-    <Compile Include="Threads\Implementation\InstanceThread.cs" />
-    <Compile Include="Threads\IRelogThread.cs" />
+    <Compile Include="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <ProjectReference Include="..\MinionReloggerLib\MinionReloggerLib.csproj">
+      <Project>{01FF14C7-A5D9-404A-8AE1-FABD633A9B55}</Project>
+      <Name>MinionReloggerLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
