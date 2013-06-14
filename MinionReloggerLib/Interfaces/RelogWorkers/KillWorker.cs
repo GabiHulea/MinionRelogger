@@ -46,7 +46,6 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                 }
                 catch
                 {
-                    
                 }
             }
             return this;

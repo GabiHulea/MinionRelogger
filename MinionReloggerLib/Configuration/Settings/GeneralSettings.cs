@@ -33,11 +33,9 @@ namespace MinionReloggerLib.Configuration.Settings
     {
         public List<IPAddress> AllowedIPAddresses = new List<IPAddress>();
 
-        [ProtoMember(9)] 
-        public List<string> AllowedIPAddressesAsString = new List<string>();
+        [ProtoMember(9)] public List<string> AllowedIPAddressesAsString = new List<string>();
 
-        [ProtoMember(10)]
-        public Dictionary<string, bool> ComponentStatus = new Dictionary<string, bool>();  
+        [ProtoMember(10)] public Dictionary<string, bool> ComponentStatus = new Dictionary<string, bool>();
 
         public GeneralSettings()
         {

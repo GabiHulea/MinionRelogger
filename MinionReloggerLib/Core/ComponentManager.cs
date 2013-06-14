@@ -139,11 +139,18 @@ namespace MinionReloggerLib.Core
 
         public List<string> GetComponentNamesForEnabled()
         {
-            return _components.Where(component => component.IsEnabled).Select(componentClass => componentClass.Component.GetName()).ToList();
+            return
+                _components.Where(component => component.IsEnabled)
+                           .Select(componentClass => componentClass.Component.GetName())
+                           .ToList();
         }
+
         public List<string> GetComponentNamesForDisabled()
         {
-            return _components.Where(component => !component.IsEnabled).Select(componentClass => componentClass.Component.GetName()).ToList();
+            return
+                _components.Where(component => !component.IsEnabled)
+                           .Select(componentClass => componentClass.Component.GetName())
+                           .ToList();
         }
 
         public List<string> GetEnabledGlobalSettingsComponentNames()

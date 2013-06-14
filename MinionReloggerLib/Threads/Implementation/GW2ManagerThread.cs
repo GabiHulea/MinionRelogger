@@ -37,8 +37,9 @@ namespace MinionReloggerLib.Threads.Implementation
     {
         private static readonly Dictionary<Process, WatchObject> FrozenGW2Windows =
             new Dictionary<Process, WatchObject>();
+
         private static readonly Dictionary<Process, ViewStateObject> DeadGW2Windows =
-    new Dictionary<Process, ViewStateObject>();
+            new Dictionary<Process, ViewStateObject>();
 
         private static int _checkAll;
 
@@ -145,45 +146,46 @@ namespace MinionReloggerLib.Threads.Implementation
             }
             try
             {
-            if (_checkAll > 6 || Config.Singleton.GeneralSettings.PollingDelay >= 60)
-            {
-                IEnumerable<Process> gw2Processes = UpdateListWithRemainingGW2Processes();
-                foreach (Process gw2Process in gw2Processes)
+                if (_checkAll > 6 || Config.Singleton.GeneralSettings.PollingDelay >= 60)
                 {
-                    UpdateProcessIdForMatchingScheduler(gw2Process);
-                    if (!gw2Process.Responding)
+                    IEnumerable<Process> gw2Processes = UpdateListWithRemainingGW2Processes();
+                    foreach (Process gw2Process in gw2Processes)
                     {
-                        if (FrozenGW2Windows.All(p => p.Key.Id != gw2Process.Id))
+                        UpdateProcessIdForMatchingScheduler(gw2Process);
+                        if (!gw2Process.Responding)
                         {
-                            AddUnresponsiveProcessToTheList(gw2Process);
+                            if (FrozenGW2Windows.All(p => p.Key.Id != gw2Process.Id))
+                            {
+                                AddUnresponsiveProcessToTheList(gw2Process);
+                            }
+                            else
+                            {
+                                GetRidOfProcessesThatHaveBeenFrozenForLong(gw2Process);
+                            }
                         }
                         else
                         {
-                            GetRidOfProcessesThatHaveBeenFrozenForLong(gw2Process);
+                            var viewState = (EViewState) GW2MinionLauncher.ViewState((uint) gw2Process.Id);
+                            if (viewState != EViewState.ViewGameplay &&
+                                DeadGW2Windows.All(p => p.Key.Id != gw2Process.Id))
+                            {
+                                AddDeadProcessToTheList(gw2Process, viewState);
+                            }
+                            else if (viewState != EViewState.ViewGameplay)
+                            {
+                                GetRidOfProcessesThatHaveBeenIdleForLong(gw2Process, viewState);
+                            }
+                            else
+                            {
+                                RemoveWorkingWindowsFromTheList(gw2Process);
+                            }
+                            RemoveRespondingWindowsFromTheList(gw2Process);
+                            MinimizeGW2Windows(gw2Process);
                         }
                     }
-                    else
-                    {
-                        EViewState viewState = (EViewState)GW2MinionLauncher.ViewState((uint)gw2Process.Id);
-                        if (viewState != EViewState.ViewGameplay && DeadGW2Windows.All(p => p.Key.Id != gw2Process.Id))
-                        {
-                            AddDeadProcessToTheList(gw2Process, viewState);
-                        }
-                        else if (viewState != EViewState.ViewGameplay)
-                        {
-                            GetRidOfProcessesThatHaveBeenIdleForLong(gw2Process, viewState);
-                        }
-                        else
-                        {
-                            RemoveWorkingWindowsFromTheList(gw2Process);
-                        }
-                        RemoveRespondingWindowsFromTheList(gw2Process);
-                        MinimizeGW2Windows(gw2Process);
-                    }
+                    _checkAll = -1;
                 }
-                _checkAll = -1;
             }
-                     }
             catch (Exception ex)
             {
                 Logger.LoggingObject.Log(ELogType.Error, ex.Message);
@@ -264,7 +266,7 @@ namespace MinionReloggerLib.Threads.Implementation
             }
             else
             {
-                DeadGW2Windows.Add(gw2Process, new ViewStateObject(new Account(), DateTime.Now, gw2Process,viewState));
+                DeadGW2Windows.Add(gw2Process, new ViewStateObject(new Account(), DateTime.Now, gw2Process, viewState));
             }
         }
 
@@ -288,13 +290,15 @@ namespace MinionReloggerLib.Threads.Implementation
                 Logger.LoggingObject.Log(ELogType.Error, ex.Message);
             }
         }
+
         private static void GetRidOfProcessesThatHaveBeenIdleForLong(Process gw2Process, EViewState viewState)
         {
             try
             {
                 KeyValuePair<Process, ViewStateObject> wanted =
                     DeadGW2Windows.FirstOrDefault(p => p.Key.Id == gw2Process.Id);
-                if (wanted.Key != null && (DateTime.Now - wanted.Value.Time).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime)
+                if (wanted.Key != null &&
+                    (DateTime.Now - wanted.Value.Time).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime)
                 {
                     if (viewState != EViewState.ViewGameplay && wanted.Value.Account != null && wanted.Value.Check())
                     {

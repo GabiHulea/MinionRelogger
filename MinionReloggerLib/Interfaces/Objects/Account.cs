@@ -20,9 +20,7 @@
 
 using System;
 using System.Diagnostics;
-using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Encryption;
-using MinionReloggerLib.Logging;
 using ProtoBuf;
 
 namespace MinionReloggerLib.Interfaces.Objects

@@ -46,7 +46,9 @@ namespace MinionReloggerLib.Interfaces.Objects
 
         public bool Check()
         {
-            return IsReady() && (DateTime.Now - Process.StartTime).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime && ViewState != EViewState.ViewGameplay;
+            return IsReady() &&
+                   (DateTime.Now - Process.StartTime).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime &&
+                   ViewState != EViewState.ViewGameplay;
         }
 
         public IObject DoWork()
@@ -55,14 +57,13 @@ namespace MinionReloggerLib.Interfaces.Objects
             {
                 try
                 {
-                    bool result = GW2MinionLauncher.KillInstance((uint)Process.Id);
+                    bool result = GW2MinionLauncher.KillInstance((uint) Process.Id);
                     Thread.Sleep(3000);
                     if (!result || (Process != null && !Process.HasExited))
                         Process.Kill();
                 }
                 catch
                 {
-                    
                 }
             }
             Update();
@@ -79,7 +80,8 @@ namespace MinionReloggerLib.Interfaces.Objects
             Account.SetLastStopTime(DateTime.Now);
             Account.SetLastCrash(DateTime.Now);
             Logger.LoggingObject.Log(ELogType.Critical,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.ViewStateObjectClientStuckSomewhere),
+                                     LanguageManager.Singleton.GetTranslation(
+                                         ETranslations.ViewStateObjectClientStuckSomewhere),
                                      Account.LoginName, Config.Singleton.GeneralSettings.FrozenTime);
         }
 

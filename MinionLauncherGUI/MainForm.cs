@@ -72,12 +72,12 @@ namespace MinionLauncherGUI
             SetGW2Path();
             BringToFront();
             MessageBox.Show(
-    "Alright, you now have to configure which components you want to use for the relogger. If you are a novice, I recommend enabling them all. You are able to do so by clicking the \"Move To Left\" button.",
-    "First step", MessageBoxButtons.OK);
+                "Alright, you now have to configure which components you want to use for the relogger. If you are a novice, I recommend enabling them all. You are able to do so by clicking the \"Move To Left\" button.",
+                "First step", MessageBoxButtons.OK);
             BringToFront();
             MessageBox.Show(
-"After you are done, please don't forget to click Save, or you will have to do these steps over, again.",
-"Tip!", MessageBoxButtons.OK);
+                "After you are done, please don't forget to click Save, or you will have to do these steps over, again.",
+                "Tip!", MessageBoxButtons.OK);
             BringToFront();
             metroTabControl1.SelectTab(1);
         }
@@ -307,7 +307,7 @@ namespace MinionLauncherGUI
 
         private void BtnSetFrozenTimeClick(object sender, EventArgs e)
         {
-           SetFrozenTime(false, Config.Singleton.GeneralSettings.FrozenTime);
+            SetFrozenTime(false, Config.Singleton.GeneralSettings.FrozenTime);
         }
 
         private void BtnDisableComponentClick(object sender, EventArgs e)
@@ -324,9 +324,9 @@ namespace MinionLauncherGUI
         private void BtnEnableComponentClick(object sender, EventArgs e)
         {
             if (metroComboBox2.SelectedIndex != -1)
-                    ComponentManager.Singleton.EnableComponent(
-                        ComponentManager.Singleton.GetComponentNamesForDisabled()[
-                            metroComboBox2.SelectedIndex]);
+                ComponentManager.Singleton.EnableComponent(
+                    ComponentManager.Singleton.GetComponentNamesForDisabled()[
+                        metroComboBox2.SelectedIndex]);
             FillComponentManagementComboBoxes();
             PopulateGlobalSettings();
             PopulateAccountComponentComboBoxes();
@@ -378,7 +378,7 @@ namespace MinionLauncherGUI
             {
                 metroComboBox2.SelectedIndex = 0;
             }
-                
+
             // Force redraw :/
             if (metroComboBox2.Theme == "Dark")
             {
