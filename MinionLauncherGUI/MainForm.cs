@@ -55,11 +55,31 @@ namespace MinionLauncherGUI
             Logger.Initialize(lstBoxLog);
             ComponentManager.Singleton.LoadComponents();
             ThreadManager.Singleton.Initialize();
-            PopulateGlobalSettings();
             CycleTabsForRenderer();
             if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
-                SetGW2Path();
+                FreshStart();
+            PopulateGlobalSettings();
+            FillComponentManagementComboBoxes();
             VersionChecker.CheckForUpdates(this);
+        }
+
+        private void FreshStart()
+        {
+            MessageBox.Show(
+                "Hello, since you are starting with a fresh config, you will have to go through a few steps of settings first.",
+                "Welcome", MessageBoxButtons.OK);
+            BringToFront();
+            SetGW2Path();
+            BringToFront();
+            MessageBox.Show(
+    "Alright, you now have to configure which components you want to use for the relogger. If you are a novice, I recommend enabling them all. You are able to do so by clicking the \"Move To Left\" button.",
+    "First step", MessageBoxButtons.OK);
+            BringToFront();
+            MessageBox.Show(
+"After you are done, please don't forget to click Save, or you will have to do these steps over, again.",
+"Tip!", MessageBoxButtons.OK);
+            BringToFront();
+            metroTabControl1.SelectTab(1);
         }
 
         private void MetroTileStartAllClick(object sender, EventArgs e)
@@ -285,6 +305,90 @@ namespace MinionLauncherGUI
             UpdateFormWithAccountSettings();
         }
 
+
+
+        private void BtnDisableComponentClick(object sender, EventArgs e)
+        {
+            if (metroComboBox1.SelectedIndex != -1)
+                ComponentManager.Singleton.DisableComponent(
+                    ComponentManager.Singleton.GetComponentNamesForEnabled()[
+                        metroComboBox1.SelectedIndex]);
+            FillComponentManagementComboBoxes();
+            PopulateGlobalSettings();
+            PopulateAccountComponentComboBoxes();
+        }
+
+        private void BtnEnableComponentClick(object sender, EventArgs e)
+        {
+            if (metroComboBox2.SelectedIndex != -1)
+                    ComponentManager.Singleton.EnableComponent(
+                        ComponentManager.Singleton.GetComponentNamesForDisabled()[
+                            metroComboBox2.SelectedIndex]);
+            FillComponentManagementComboBoxes();
+            PopulateGlobalSettings();
+            PopulateAccountComponentComboBoxes();
+        }
+
+        private void PopulateAccountComponentComboBoxes()
+        {
+            foreach (TabPage page in metroTabControl2.TabPages)
+            {
+                foreach (object control in page.Controls)
+                {
+                    if (control as MetroComboBox != null)
+                    {
+                        PopulateAccountSettings((MetroComboBox) control);
+                    }
+                }
+            }
+        }
+
+        private void FillComponentManagementComboBoxes()
+        {
+            metroComboBox1.Items.Clear();
+            foreach (string component in ComponentManager.Singleton.GetComponentNamesForEnabled())
+            {
+                metroComboBox1.Items.Add(component);
+            }
+            if (metroComboBox1.Items.Count > 0)
+            {
+                metroComboBox1.SelectedIndex = 0;
+            }
+            // Force redraw :/
+            if (metroComboBox1.Theme == "Dark")
+            {
+                metroComboBox1.Theme = "Light";
+                metroComboBox1.Theme = "Dark";
+            }
+            else
+            {
+                metroComboBox1.Theme = "Dark";
+                metroComboBox1.Theme = "Light";
+            }
+
+            metroComboBox2.Items.Clear();
+            foreach (string component in ComponentManager.Singleton.GetComponentNamesForDisabled())
+            {
+                metroComboBox2.Items.Add(component);
+            }
+            if (metroComboBox2.Items.Count > 0)
+            {
+                metroComboBox2.SelectedIndex = 0;
+            }
+                
+            // Force redraw :/
+            if (metroComboBox2.Theme == "Dark")
+            {
+                metroComboBox2.Theme = "Light";
+                metroComboBox2.Theme = "Dark";
+            }
+            else
+            {
+                metroComboBox2.Theme = "Dark";
+                metroComboBox2.Theme = "Light";
+            }
+        }
+
         private void CycleTabsForRenderer()
         {
             metroTabPage1.Controls.Add(new MetroLabel
@@ -316,13 +420,24 @@ namespace MinionLauncherGUI
         private void PopulateGlobalSettings()
         {
             metroComboBoxGlobalSettingsComponents.Items.Clear();
-            foreach (string component in ComponentManager.Singleton.GetGlobalSettingsComponentNames())
+            foreach (string component in ComponentManager.Singleton.GetEnabledGlobalSettingsComponentNames())
             {
                 metroComboBoxGlobalSettingsComponents.Items.Add(component);
             }
             if (metroComboBoxGlobalSettingsComponents.Items.Count > 0)
             {
                 metroComboBoxGlobalSettingsComponents.SelectedIndex = 0;
+            }
+            // Force redraw :/
+            if (metroComboBoxGlobalSettingsComponents.Theme == "Dark")
+            {
+                metroComboBoxGlobalSettingsComponents.Theme = "Light";
+                metroComboBoxGlobalSettingsComponents.Theme = "Dark";
+            }
+            else
+            {
+                metroComboBoxGlobalSettingsComponents.Theme = "Dark";
+                metroComboBoxGlobalSettingsComponents.Theme = "Light";
             }
         }
 
@@ -402,7 +517,7 @@ namespace MinionLauncherGUI
         private void PopulateAccountSettings(MetroComboBox control)
         {
             control.Items.Clear();
-            foreach (string component in ComponentManager.Singleton.GetAccountSettingsComponentNames())
+            foreach (string component in ComponentManager.Singleton.GetEnabledAccountSettingsComponentNames())
             {
                 control.Items.Add(component);
             }

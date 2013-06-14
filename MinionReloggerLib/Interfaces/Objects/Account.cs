@@ -40,6 +40,7 @@ namespace MinionReloggerLib.Interfaces.Objects
             Index = 0;
             StartTime = DateTime.Now;
             EndTime = DateTime.Now.AddYears(1);
+            BotPath = AppDomain.CurrentDomain.BaseDirectory;
         }
 
         [ProtoMember(3)]

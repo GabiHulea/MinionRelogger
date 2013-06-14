@@ -76,7 +76,8 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                 {
                     try
                     {
-                        if (Directory.Exists(account.BotPath) &&
+                        if (account.BotPath != AppDomain.CurrentDomain.BaseDirectory &&
+                            Directory.Exists(account.BotPath) &&
                             File.Exists(account.BotPath + "GW2MinionLauncherDLL.dll"))
                             Kernel32.SetDllDirectory(account.BotPath);
                         Logger.LoggingObject.Log(ELogType.Verbose,
@@ -122,7 +123,8 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                                                  LanguageManager.Singleton.GetTranslation(
                                                      ETranslations.StartWorkerAttachingTo),
                                                  account.LoginName, account.BotPath + "\\GW2MinionLauncherDLL.dll");
-                        if (Directory.Exists(account.BotPath) &&
+                        if (account.BotPath != AppDomain.CurrentDomain.BaseDirectory &&
+                            Directory.Exists(account.BotPath) &&
                             File.Exists(account + "\\GW2MinionLauncherDLL.dll"))
                             Kernel32.SetDllDirectory(account.BotPath);
                         attached = GW2MinionLauncher.AttachToPid((uint) p.Id);

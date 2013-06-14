@@ -32,7 +32,12 @@ namespace MinionReloggerLib.Configuration.Settings
     public class GeneralSettings
     {
         public List<IPAddress> AllowedIPAddresses = new List<IPAddress>();
-        [ProtoMember(7)] public List<string> AllowedIPAddressesAsString = new List<string>();
+
+        [ProtoMember(9)] 
+        public List<string> AllowedIPAddressesAsString = new List<string>();
+
+        [ProtoMember(10)]
+        public Dictionary<string, bool> ComponentStatus = new Dictionary<string, bool>();  
 
         public GeneralSettings()
         {
@@ -62,10 +67,10 @@ namespace MinionReloggerLib.Configuration.Settings
         [ProtoMember(6)]
         public int LaunchDelay { get; private set; }
 
-        [ProtoMember(8)]
+        [ProtoMember(7)]
         public bool CheckForIP { get; private set; }
 
-        [ProtoMember(9)]
+        [ProtoMember(8)]
         public int RestartDelay { get; private set; }
 
         public void SetGW2Path(string newPath)

@@ -58,7 +58,7 @@ namespace MinionReloggerLib.Core
             _components.Add(new ComponentClass
                 {
                     Component = componentToAdd,
-                    IsEnabled = true,
+                    IsEnabled = false,
                 });
             Logger.LoggingObject.Log(ELogType.Info,
                                      LanguageManager.Singleton.GetTranslation(
@@ -72,7 +72,7 @@ namespace MinionReloggerLib.Core
                 _components.Insert(index, new ComponentClass
                     {
                         Component = componentToAdd,
-                        IsEnabled = true,
+                        IsEnabled = false,
                     });
                 Logger.LoggingObject.Log(ELogType.Info,
                                          LanguageManager.Singleton.GetTranslation(
@@ -136,6 +136,64 @@ namespace MinionReloggerLib.Core
         {
             return _components.Select(componentClass => componentClass.Component.GetName()).ToList();
         }
+
+        public List<string> GetComponentNamesForEnabled()
+        {
+            return _components.Where(component => component.IsEnabled).Select(componentClass => componentClass.Component.GetName()).ToList();
+        }
+        public List<string> GetComponentNamesForDisabled()
+        {
+            return _components.Where(component => !component.IsEnabled).Select(componentClass => componentClass.Component.GetName()).ToList();
+        }
+
+        public List<string> GetEnabledGlobalSettingsComponentNames()
+        {
+            return
+                _components.Where(c => c.IsEnabled && c.Component.GetSettingType() == ESettingsType.Global)
+                           .Select(componentClass => componentClass.Component.GetName())
+                           .ToList();
+        }
+
+        public List<string> GetEnabledAccountSettingsComponentNames()
+        {
+            return
+                _components.Where(c => c.IsEnabled && c.Component.GetSettingType() == ESettingsType.AccountSpecific)
+                           .Select(componentClass => componentClass.Component.GetName())
+                           .ToList();
+        }
+
+        public List<string> GetEnabledNoSettingsComponentNames()
+        {
+            return
+                _components.Where(c => c.IsEnabled && c.Component.GetSettingType() == ESettingsType.None)
+                           .Select(componentClass => componentClass.Component.GetName())
+                           .ToList();
+        }
+
+        public List<string> GetDisabledGlobalSettingsComponentNames()
+        {
+            return
+                _components.Where(c => !c.IsEnabled && c.Component.GetSettingType() == ESettingsType.Global)
+                           .Select(componentClass => componentClass.Component.GetName())
+                           .ToList();
+        }
+
+        public List<string> GetDisabledAccountSettingsComponentNames()
+        {
+            return
+                _components.Where(c => !c.IsEnabled && c.Component.GetSettingType() == ESettingsType.AccountSpecific)
+                           .Select(componentClass => componentClass.Component.GetName())
+                           .ToList();
+        }
+
+        public List<string> GetDisabledNoSettingsComponentNames()
+        {
+            return
+                _components.Where(c => !c.IsEnabled && c.Component.GetSettingType() == ESettingsType.None)
+                           .Select(componentClass => componentClass.Component.GetName())
+                           .ToList();
+        }
+
 
         public List<string> GetGlobalSettingsComponentNames()
         {
@@ -214,7 +272,6 @@ namespace MinionReloggerLib.Core
             foreach (ComponentClass relogComponent in _components)
             {
                 relogComponent.Component.OnLoad();
-                EnableComponent(relogComponent.Component.GetName());
             }
         }
     }

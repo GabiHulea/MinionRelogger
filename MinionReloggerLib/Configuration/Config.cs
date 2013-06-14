@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using MinionReloggerLib.Configuration.Settings;
+using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces.Objects;
@@ -92,6 +93,11 @@ namespace MinionReloggerLib.Configuration
                     {
                         Singleton.GeneralSettings.AllowedIPAddressesAsString.Add(ip.ToString());
                     }
+                    Singleton.GeneralSettings.ComponentStatus.Clear();
+                    foreach (ComponentClass component in ComponentManager.Singleton.GetComponents())
+                    {
+                        Singleton.GeneralSettings.ComponentStatus.Add(component.Component.GetName(), component.IsEnabled);
+                    }
                     Serializer.Serialize(file, Singleton);
                 }
             }
@@ -133,6 +139,7 @@ namespace MinionReloggerLib.Configuration
                 try
                 {
                     LoadConfigFromFile();
+                    UpdateComponentList();
                 }
                 catch (ProtoException ex)
                 {
@@ -177,6 +184,21 @@ namespace MinionReloggerLib.Configuration
                                              ETranslations.ConfigCouldntFindValidSaveFile));
             }
             return false;
+        }
+
+        private static void UpdateComponentList()
+        {
+            foreach (var component in Singleton.GeneralSettings.ComponentStatus)
+            {
+                if (component.Value)
+                {
+                    ComponentManager.Singleton.EnableComponent(component.Key);
+                }
+                else
+                {
+                    ComponentManager.Singleton.DisableComponent(component.Key);
+                }
+            }
         }
 
         private static void LoadConfigFromFile()
