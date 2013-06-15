@@ -55,11 +55,11 @@ namespace MinionLauncherGUI
         {
             InitializeComponent();
             Logger.Initialize(lstBoxLog);
+            if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
+                FreshStart();
             ComponentManager.Singleton.LoadComponents();
             ThreadManager.Singleton.Initialize();
             CycleTabsForRenderer();
-            if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
-                FreshStart();
             PopulateGlobalSettings();
             FillComponentManagementComboBoxes();
             PopulateLanguageComboBox();
@@ -587,7 +587,6 @@ namespace MinionLauncherGUI
                 metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
                 metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
                 metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
-                LanguageManager.Singleton.SetNewLanguage((ELanguages) Config.Singleton.GeneralSettings.CurrentLanguage);
                 UpdateFormWithAccountSettings();
                 return true;
             }
