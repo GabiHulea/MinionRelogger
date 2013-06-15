@@ -55,14 +55,10 @@ namespace MinionLauncherGUI
         {
             InitializeComponent();
             Logger.Initialize(lstBoxLog);
-            if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
-                FreshStart();
             ComponentManager.Singleton.LoadComponents();
             ThreadManager.Singleton.Initialize();
-            CycleTabsForRenderer();
-            PopulateGlobalSettings();
-            FillComponentManagementComboBoxes();
-            PopulateLanguageComboBox();
+            if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
+                FreshStart();
             VersionChecker.CheckForUpdates(this);
             FixNamesForLanguage();
         }
@@ -94,6 +90,9 @@ namespace MinionLauncherGUI
             btnSetLanguage.Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormSetLanguage);
             CleanupFirstTab();
             UpdateFormWithAccountSettings();
+            PopulateGlobalSettings();
+            FillComponentManagementComboBoxes();
+            PopulateLanguageComboBox();
         }
 
         private void FreshStart()
