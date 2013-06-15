@@ -162,7 +162,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.AccountControlStop, "Stop");
             Translations.Add(ETranslations.AccountControlManage, "Manage");
             Translations.Add(ETranslations.AccountControlSettings, "Settings");
-            Translations.Add(ETranslations.AccountControlDisabled, "Dsiabled");
+            Translations.Add(ETranslations.AccountControlDisabled, "Disabled");
             Translations.Add(ETranslations.AccountControlLoginName, "Login Name");
             Translations.Add(ETranslations.AccountControlStatus, "Status");
 
