@@ -75,6 +75,9 @@ namespace MinionReloggerLib.Configuration.Settings
         [ProtoMember(11)]
         public int FrozenTime { get; private set; }
 
+        [ProtoMember(12)]
+        public int CurrentLanguage { get; private set; }
+
         public void SetGW2Path(string newPath)
         {
             Logger.LoggingObject.Log(ELogType.Info,
@@ -148,6 +151,11 @@ namespace MinionReloggerLib.Configuration.Settings
             Logger.LoggingObject.Log(ELogType.Info,
                                      LanguageManager.Singleton.GetTranslation(
                                          ETranslations.GeneralSettingsCheckForIPChanged), newValue);
+        }
+
+        public void SetLanguage(ELanguages newLanguage)
+        {
+            CurrentLanguage = (int) newLanguage;
         }
 
         public bool AlreadyContainsIP(IPAddress newAddress)

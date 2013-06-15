@@ -23,6 +23,8 @@ using System.Linq;
 using MetroFramework.Forms;
 using MinionLauncherGUI.Helpers;
 using MinionReloggerLib.Configuration;
+using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces.Objects;
 
 namespace MinionLauncherGUI
@@ -43,11 +45,11 @@ namespace MinionLauncherGUI
             {
                 case EAccountManagementType.Add:
                     btnDelete.Visible = false;
-                    Text = "Add Account";
+                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormAddAccount);
                     break;
                 case EAccountManagementType.Edit:
                     btnDelete.Visible = true;
-                    Text = "Edit Account";
+                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormEditAccount);
                     break;
             }
             if (account != null)

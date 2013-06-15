@@ -18,6 +18,9 @@
 *                                                                            *
 ******************************************************************************/
 
+using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
+
 namespace IPCheckComponent
 {
     partial class SettingsForm
@@ -72,7 +75,7 @@ namespace IPCheckComponent
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentOk);
             this.btnOK.Click += new System.EventHandler(this.BtnOkClick);
             // 
             // btnCancel
@@ -81,7 +84,7 @@ namespace IPCheckComponent
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentCancel);
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
             // 
             // btnDeleteIP
@@ -90,7 +93,7 @@ namespace IPCheckComponent
             this.btnDeleteIP.Name = "btnDeleteIP";
             this.btnDeleteIP.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteIP.TabIndex = 2;
-            this.btnDeleteIP.Text = "Delete IP";
+            this.btnDeleteIP.Text = LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentDeleteIP);
             this.btnDeleteIP.Click += new System.EventHandler(this.BtnDeleteIPClick);
             // 
             // btnAddIP
@@ -99,7 +102,7 @@ namespace IPCheckComponent
             this.btnAddIP.Name = "btnAddIP";
             this.btnAddIP.Size = new System.Drawing.Size(75, 23);
             this.btnAddIP.TabIndex = 3;
-            this.btnAddIP.Text = "Add New IP";
+            this.btnAddIP.Text = LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentAddNewIP);
             this.btnAddIP.Click += new System.EventHandler(this.BtnAddIPClick);
             // 
             // metroToggle1
@@ -127,7 +130,8 @@ namespace IPCheckComponent
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(113, 19);
             this.metroLabel1.TabIndex = 6;
-            this.metroLabel1.Text = "Enable IP Checks?";
+            this.metroLabel1.Text =
+                LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentEnableIPChecks);
             // 
             // btnAddRange
             // 
@@ -135,7 +139,7 @@ namespace IPCheckComponent
             this.btnAddRange.Name = "btnAddRange";
             this.btnAddRange.Size = new System.Drawing.Size(75, 23);
             this.btnAddRange.TabIndex = 7;
-            this.btnAddRange.Text = "Add Range";
+            this.btnAddRange.Text = LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentAddRange);
             this.btnAddRange.Click += new System.EventHandler(this.BtnAddRangeClick);
             // 
             // SettingsForm

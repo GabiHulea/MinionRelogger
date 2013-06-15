@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 using System.Collections.Generic;
+using MinionReloggerLib.Configuration;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Language.Languages;
 
@@ -36,6 +37,7 @@ namespace MinionReloggerLib.Helpers.Language
             _languages = new Dictionary<ELanguages, Language>
                 {
                     {ELanguages.English, new English()},
+                    {ELanguages.Chinese, new Chinese()},
                 };
             _currentLanguage = ELanguages.Default;
         }
@@ -46,6 +48,11 @@ namespace MinionReloggerLib.Helpers.Language
             set { _instance = value; }
         }
 
+        public Dictionary<ELanguages, Language> GetLanguages()
+        {
+            return _languages;
+        }
+
         public string GetTranslation(ETranslations key)
         {
             return _languages[_currentLanguage].GetTranslation(key);
@@ -54,6 +61,7 @@ namespace MinionReloggerLib.Helpers.Language
         public void SetNewLanguage(ELanguages newLanguage)
         {
             _currentLanguage = newLanguage;
+            Config.Singleton.GeneralSettings.SetLanguage(_currentLanguage);
         }
 
         public ELanguages GetCurrentLanguage()

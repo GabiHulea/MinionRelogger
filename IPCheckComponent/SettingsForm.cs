@@ -24,7 +24,9 @@ using System.Net;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using MinionReloggerLib.Configuration;
+using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Input;
+using MinionReloggerLib.Helpers.Language;
 
 namespace IPCheckComponent
 {
@@ -66,9 +68,11 @@ namespace IPCheckComponent
             string result = "";
             var dialogResult = DialogResult.OK;
             while (!IPAddress.TryParse(result, out final) && (dialogResult == DialogResult.OK))
-                dialogResult = InputBox.ShowInputBox("IP To Add",
-                                                     "Please enter the desired IP to add (in the format: 127.0.0.1).",
-                                                     ref result);
+                dialogResult =
+                    InputBox.ShowInputBox(
+                        LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentIPToAdd),
+                        LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentEnterIP),
+                        ref result);
             if (dialogResult == DialogResult.OK)
                 _currentIPList.Add(final.ToString());
             PopulateIPList();
@@ -77,14 +81,16 @@ namespace IPCheckComponent
         private void BtnAddRangeClick(object sender, EventArgs e)
         {
             MessageBox.Show(
-                "Adding new IP range, the last pair of digits will be skipped, 192.168.1.1 becomes 192.168.1.0-255. Enter a valid IP address though!");
+                LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentAddingNewIPRange));
             IPAddress final;
             string result = "";
             var dialogResult = DialogResult.OK;
             while (!IPAddress.TryParse(result, out final) && (dialogResult == DialogResult.OK))
-                dialogResult = InputBox.ShowInputBox("IP range to Add",
-                                                     "Please enter the desired IP range to add (in the format: 192.168.1.0).",
-                                                     ref result);
+                dialogResult =
+                    InputBox.ShowInputBox(
+                        LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentIPRangeToAdd),
+                        LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentEnterIPRange),
+                        ref result);
             if (dialogResult == DialogResult.OK)
             {
                 var first3 = new[]

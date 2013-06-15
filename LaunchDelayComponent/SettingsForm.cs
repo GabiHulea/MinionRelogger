@@ -22,7 +22,9 @@ using System;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using MinionReloggerLib.Configuration;
+using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Input;
+using MinionReloggerLib.Helpers.Language;
 
 namespace LaunchDelayComponent
 {
@@ -57,7 +59,8 @@ namespace LaunchDelayComponent
 
         private void UpdateLabelText()
         {
-            metroLabel2.Text = _currentValue + " seconds";
+            metroLabel2.Text = _currentValue + " " +
+                               LanguageManager.Singleton.GetTranslation(ETranslations.LaunchDelayComponentSeconds);
         }
 
         private void SetLaunchDelay(bool mustBeEntered = true, int currentValue = 0)
@@ -69,9 +72,11 @@ namespace LaunchDelayComponent
             while ((!Int32.TryParse(result, out final) || final < 20 || !done) &&
                    (dialogResult == DialogResult.OK || mustBeEntered))
             {
-                dialogResult = InputBox.ShowInputBox("Launch Delay",
-                                                     "Please enter the desired delay between GW2 launches (!minimum: 20, in seconds!).",
-                                                     ref result);
+                dialogResult =
+                    InputBox.ShowInputBox(
+                        LanguageManager.Singleton.GetTranslation(ETranslations.LaunchDelayComponentLaunchDelay),
+                        LanguageManager.Singleton.GetTranslation(ETranslations.LaunchDelayComponentEntireDesiredDelay),
+                        ref result);
                 done = true;
             }
             if (dialogResult == DialogResult.OK)

@@ -22,7 +22,8 @@ namespace MinionReloggerLib.Enums
 {
     public enum ELanguages
     {
-        Default,
+        Default = 0,
         English = Default,
+        Chinese = 1,
     }
 }

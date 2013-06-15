@@ -6,6 +6,7 @@ using MetroFramework.Controls;
 using MetroFramework.Drawing;
 using MinionReloggerLib.CustomEventArgs;
 using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces.Objects;
 
 namespace MinionLauncherGUI.CustomControls
@@ -71,7 +72,7 @@ namespace MinionLauncherGUI.CustomControls
             newPage.Controls.Add(new MetroLabel
                 {
                     FontWeight = MetroFontWeight.Bold,
-                    Text = "Login Name",
+                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlLoginName),
                     Theme = styleManager.Theme,
                     Style = styleManager.Style,
                     Location = new Point(3, 10),
@@ -80,7 +81,7 @@ namespace MinionLauncherGUI.CustomControls
             newPage.Controls.Add(new MetroLabel
                 {
                     FontWeight = MetroFontWeight.Bold,
-                    Text = "Status",
+                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlStatus),
                     Theme = styleManager.Theme,
                     Style = styleManager.Style,
                     Location = new Point(490, 10),
@@ -105,19 +106,19 @@ namespace MinionLauncherGUI.CustomControls
             LblAccountName.BackColor = Color.Transparent;
             BtnStart.Theme = styleManager.Theme;
             BtnStart.Style = styleManager.Style;
-            BtnStart.Text = "Start";
+            BtnStart.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlStart);
             BtnKill.Theme = styleManager.Theme;
             BtnKill.Style = styleManager.Style;
-            BtnKill.Text = "Stop";
+            BtnKill.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlStop);
             BtnManage.Theme = styleManager.Theme;
             BtnManage.Style = styleManager.Style;
-            BtnManage.Text = "Manage";
+            BtnManage.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlManage);
             BtnSettings.Theme = styleManager.Theme;
             BtnSettings.Style = styleManager.Style;
-            BtnSettings.Text = "Settings";
+            BtnSettings.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlSettings);
             LblStatus.Theme = styleManager.Theme;
             LblStatus.Style = styleManager.Style;
-            LblStatus.Text = "Disabled";
+            LblStatus.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlDisabled);
             LblStatus.BackColor = Color.Transparent;
             CmbSettings.Theme = styleManager.Theme;
             CmbSettings.Style = styleManager.Style;

@@ -18,6 +18,9 @@
 *                                                                            *
 ******************************************************************************/
 
+using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
+
 namespace BreakComponent
 {
     partial class SettingsForm
@@ -128,7 +131,7 @@ namespace BreakComponent
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(78, 19);
             this.metroLabel1.TabIndex = 4;
-            this.metroLabel1.Text = "Pause every";
+            this.metroLabel1.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentPauseEvery);
             // 
             // metroLabel2
             // 
@@ -137,7 +140,7 @@ namespace BreakComponent
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(174, 19);
             this.metroLabel2.TabIndex = 5;
-            this.metroLabel2.Text = "Random delay pre-pause of";
+            this.metroLabel2.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentDelayPrePause);
             // 
             // metroLabel3
             // 
@@ -146,7 +149,7 @@ namespace BreakComponent
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(89, 19);
             this.metroLabel3.TabIndex = 6;
-            this.metroLabel3.Text = "Pause time of";
+            this.metroLabel3.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentPause);
             // 
             // metroLabel4
             // 
@@ -155,7 +158,7 @@ namespace BreakComponent
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(179, 19);
             this.metroLabel4.TabIndex = 7;
-            this.metroLabel4.Text = "Random delay post-pause of";
+            this.metroLabel4.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentDelayPostPause);
             // 
             // metroLabel5
             // 
@@ -164,7 +167,7 @@ namespace BreakComponent
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(54, 19);
             this.metroLabel5.TabIndex = 8;
-            this.metroLabel5.Text = "minutes";
+            this.metroLabel5.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentMinutes);
             // 
             // metroLabel6
             // 
@@ -173,7 +176,7 @@ namespace BreakComponent
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(54, 19);
             this.metroLabel6.TabIndex = 9;
-            this.metroLabel6.Text = "minutes";
+            this.metroLabel6.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentMinutes);
             // 
             // metroLabel7
             // 
@@ -182,7 +185,7 @@ namespace BreakComponent
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(54, 19);
             this.metroLabel7.TabIndex = 10;
-            this.metroLabel7.Text = "minutes";
+            this.metroLabel7.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentMinutes);
             // 
             // metroLabel8
             // 
@@ -191,7 +194,7 @@ namespace BreakComponent
             this.metroLabel8.Name = "metroLabel8";
             this.metroLabel8.Size = new System.Drawing.Size(54, 19);
             this.metroLabel8.TabIndex = 11;
-            this.metroLabel8.Text = "minutes";
+            this.metroLabel8.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentMinutes);
             // 
             // metroStyleManager
             // 
@@ -204,7 +207,7 @@ namespace BreakComponent
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentOk);
             this.btnOK.Click += new System.EventHandler(this.BtnOkClick);
             // 
             // btnCancel
@@ -213,7 +216,7 @@ namespace BreakComponent
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentCancel);
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
             // 
             // metroLabel9
@@ -223,7 +226,7 @@ namespace BreakComponent
             this.metroLabel9.Name = "metroLabel9";
             this.metroLabel9.Size = new System.Drawing.Size(96, 19);
             this.metroLabel9.TabIndex = 12;
-            this.metroLabel9.Text = "Enable Breaks?";
+            this.metroLabel9.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentEnableBreaks);
             // 
             // metroToggle1
             // 

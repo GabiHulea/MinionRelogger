@@ -77,5 +77,116 @@ namespace MinionReloggerLib.Enums
 
         // class: WatchObject
         WatchObjectNotRespondingFor,
+
+        /////////////////////////////
+        /// GUI FORMS AND RELATED ///
+        /////////////////////////////
+        // component: BreakComponent
+        BreakComponentPauseEvery,
+        BreakComponentDelayPrePause,
+        BreakComponentPause,
+        BreakComponentDelayPostPause,
+        BreakComponentEnableBreaks,
+        BreakComponentMinutes,
+        BreakComponentOk,
+        BreakComponentCancel,
+
+        // component: IPCheckComponent
+        IPCheckComponentDeleteIP,
+        IPCheckComponentAddNewIP,
+        IPCheckComponentAddRange,
+        IPCheckComponentEnableIPChecks,
+        IPCheckComponentIPToAdd,
+        IPCheckComponentEnterIP,
+        IPCheckComponentAddingNewIPRange,
+        IPCheckComponentIPRangeToAdd,
+        IPCheckComponentEnterIPRange,
+        IPCheckComponentOk,
+        IPCheckComponentCancel,
+
+        // component: LaunchDelayComponent
+        LaunchDelayComponentCurrentValue,
+        LaunchDelayComponentSeconds,
+        LaunchDelayComponentSetNew,
+        LaunchDelayComponentOk,
+        LaunchDelayComponentCancel,
+        LaunchDelayComponentLaunchDelay,
+        LaunchDelayComponentEntireDesiredDelay,
+
+        // component: RestartDelayComponent
+        RestartDelayComponentCurrentValue,
+        RestartDelayComponentSeconds,
+        RestartDelayComponentSetNew,
+        RestartDelayComponentOk,
+        RestartDelayComponentCancel,
+        RestartDelayComponentRestartDelay,
+        RestartDelayComponentEntireDesiredDelay,
+
+        // component: SchedulerComponent
+        SchedulerComponentStartTime,
+        SchedulerComponentStopTime,
+        SchedulerComponentDays,
+        SchedulerComponentTimeInMinutes,
+        SchedulerComponentEnableScheduler,
+        SchedulerComponentOk,
+        SchedulerComponentCancel,
+        SchedulerComponentSaveSettings,
+
+        // class: AccountControl
+        AccountControlStart,
+        AccountControlStop,
+        AccountControlManage,
+        AccountControlSettings,
+        AccountControlDisabled,
+        AccountControlLoginName,
+        AccountControlStatus,
+
+        // GUI: AccountForm
+        AccountFormLoginName,
+        AccountFormPassword,
+        AccountFormNoSound,
+        AccountFormCancel,
+        AccountFormDelete,
+        AccountFormOk,
+        AccountFormAddAccount,
+        AccountFormEditAccount,
+
+        // GUI: MainForm
+        MainFormStartAll,
+        MainFormStopAll,
+        MainFormChangeTheme,
+        MainFormChangeColor,
+        MainFormAddAccount,
+        MainFormOpenSettings,
+        MainFormSetGW2EXEPath,
+        MainFormSetPollingDelay,
+        MainFormSetFrozenTime,
+        MainFormMinimizeGW2Windows,
+        MainFormEnabledComponents,
+        MainFormDisabledComponents,
+        MainFormMoveToRight,
+        MainFormMoveToLeft,
+        MainFormSetLanguage,
+        MainFormLoad,
+        MainFormSave,
+        MainFormAccounts,
+        MainFormSettings,
+        MainFormLog,
+        MainFormFreshConfig,
+        MainFormWelcome,
+        MainFormWhichComponents,
+        MainFormFirstStep,
+        MainFormPleaseSave,
+        MainFormTip,
+        MainFormEnabled,
+        MainFormDisabled,
+        MainFormLocateGW2Short,
+        MainFormLocateGW2Long,
+        MainFormPollingDelayShort,
+        MainFormPollingDelayLong,
+        MainFormFrozenTimeShort,
+        MainFormFrozenTimeLong,
+        MainFormLoginName,
+        MainFormStatus,
     }
 }

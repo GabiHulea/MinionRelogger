@@ -18,6 +18,9 @@
 *                                                                            *
 ******************************************************************************/
 
+using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
+
 namespace MinionLauncherGUI
 {
     partial class AccountForm
@@ -69,7 +72,7 @@ namespace MinionLauncherGUI
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(81, 19);
             this.metroLabel1.TabIndex = 0;
-            this.metroLabel1.Text = "Login Name";
+            this.metroLabel1.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormLoginName);
             // 
             // txtBoxLoginName
             // 
@@ -85,7 +88,7 @@ namespace MinionLauncherGUI
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(64, 19);
             this.metroLabel2.TabIndex = 2;
-            this.metroLabel2.Text = "Password";
+            this.metroLabel2.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormPassword);
             // 
             // txtBoxPassword
             // 
@@ -101,7 +104,7 @@ namespace MinionLauncherGUI
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 4;
-            this.btnOk.Text = "OK";
+            this.btnOk.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormOk);
             this.btnOk.Click += new System.EventHandler(this.BtnOkClick);
             // 
             // btnCancel
@@ -110,7 +113,7 @@ namespace MinionLauncherGUI
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormCancel);
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
             // 
             // metroLabel3
@@ -120,7 +123,7 @@ namespace MinionLauncherGUI
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(74, 19);
             this.metroLabel3.TabIndex = 6;
-            this.metroLabel3.Text = "No Sound?";
+            this.metroLabel3.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormNoSound);
             // 
             // metroToggle1
             // 
@@ -137,7 +140,7 @@ namespace MinionLauncherGUI
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(68, 23);
             this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormDelete);
             this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.BtnDeleteClick);
             // 

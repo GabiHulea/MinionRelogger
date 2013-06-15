@@ -81,6 +81,7 @@
     <Compile Include="Helpers\Encryption\DataProtector.cs" />
     <Compile Include="Helpers\Input\InputBox.cs" />
     <Compile Include="Helpers\Language\LanguageManager.cs" />
+    <Compile Include="Helpers\Language\Languages\Chinese.cs" />
     <Compile Include="Helpers\Language\Languages\English.cs" />
     <Compile Include="Helpers\Language\Language.cs" />
     <Compile Include="Helpers\MyIP\GetMyIP.cs" />

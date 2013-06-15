@@ -22,7 +22,9 @@ using System;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using MinionReloggerLib.Configuration;
+using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Input;
+using MinionReloggerLib.Helpers.Language;
 
 namespace RestartDelayComponent
 {
@@ -57,7 +59,8 @@ namespace RestartDelayComponent
 
         private void UpdateLabelText()
         {
-            metroLabel2.Text = _currentValue + " seconds";
+            metroLabel2.Text = _currentValue + " " +
+                               LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentSeconds);
         }
 
         private void SetRestartDelay(bool mustBeEntered = true, int currentValue = 0)
@@ -69,9 +72,11 @@ namespace RestartDelayComponent
             while ((!Int32.TryParse(result, out final) || final < 0 || !done) &&
                    (dialogResult == DialogResult.OK || mustBeEntered))
             {
-                dialogResult = InputBox.ShowInputBox("Restart Delay",
-                                                     "Please enter the desired restart delay (to avoid max key limits) (!in seconds!).",
-                                                     ref result);
+                dialogResult =
+                    InputBox.ShowInputBox(
+                        LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentRestartDelay),
+                        LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentEntireDesiredDelay),
+                        ref result);
                 done = true;
             }
             if (dialogResult == DialogResult.OK)

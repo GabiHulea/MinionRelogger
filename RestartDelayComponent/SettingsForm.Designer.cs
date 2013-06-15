@@ -18,6 +18,9 @@
 *                                                                            *
 ******************************************************************************/
 
+using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
+
 namespace RestartDelayComponent
 {
     partial class SettingsForm
@@ -69,7 +72,7 @@ namespace RestartDelayComponent
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentOk);
             this.btnOK.Click += new System.EventHandler(this.BtnOkClick);
             // 
             // btnCancel
@@ -78,7 +81,7 @@ namespace RestartDelayComponent
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentCancel);
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
             // 
             // metroLabel1
@@ -88,7 +91,8 @@ namespace RestartDelayComponent
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(90, 19);
             this.metroLabel1.TabIndex = 2;
-            this.metroLabel1.Text = "Current value:";
+            this.metroLabel1.Text =
+                LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentCurrentValue);
             // 
             // metroLabel2
             // 
@@ -97,7 +101,7 @@ namespace RestartDelayComponent
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(73, 19);
             this.metroLabel2.TabIndex = 3;
-            this.metroLabel2.Text = "20 seconds";
+            this.metroLabel2.Text = "20 " + LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentSeconds);
             this.metroLabel2.UseStyleColors = true;
             // 
             // btnNewValue
@@ -106,7 +110,7 @@ namespace RestartDelayComponent
             this.btnNewValue.Name = "btnNewValue";
             this.btnNewValue.Size = new System.Drawing.Size(73, 23);
             this.btnNewValue.TabIndex = 4;
-            this.btnNewValue.Text = "Set New";
+            this.btnNewValue.Text = LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentSetNew);
             this.btnNewValue.Click += new System.EventHandler(this.BtnNewValueClick);
             // 
             // SettingsForm

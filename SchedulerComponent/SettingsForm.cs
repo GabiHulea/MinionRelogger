@@ -23,6 +23,7 @@ using System.Globalization;
 using MetroFramework.Forms;
 using MinionReloggerLib.Configuration;
 using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces.Objects;
 using MinionReloggerLib.Logging;
 
@@ -63,7 +64,9 @@ namespace SchedulerComponent
 
         private void SaveScheduleSettings()
         {
-            Logger.LoggingObject.Log(ELogType.Info, "Saving schedule settings for {0} (minutes: {1}).",
+            Logger.LoggingObject.Log(ELogType.Info,
+                                     LanguageManager.Singleton.GetTranslation(
+                                         ETranslations.SchedulerComponentSaveSettings),
                                      _account.LoginName,
                                      lblTimeInMinutes.Text);
             DateTime currentTime = DateTime.Now;

@@ -22,9 +22,9 @@ using MinionReloggerLib.Enums;
 
 namespace MinionReloggerLib.Helpers.Language.Languages
 {
-    public class English : Language
+    public class Chinese : Language
     {
-        public English()
+        public Chinese()
         {
             // class: BreakObject
             Translations.Add(ETranslations.BreakObjectExpired, "Break has expired for {0}, starting new cycle!");
@@ -222,12 +222,12 @@ namespace MinionReloggerLib.Helpers.Language.Languages
 
         public override string GetLanguageDescription()
         {
-            return "English";
+            return "Chinese";
         }
 
         public override ELanguages GetLanguage()
         {
-            return ELanguages.English;
+            return ELanguages.Chinese;
         }
     }
 }
