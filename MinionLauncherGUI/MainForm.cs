@@ -93,6 +93,7 @@ namespace MinionLauncherGUI
                                         LanguageManager.Singleton.GetTranslation(ETranslations.MainFormChangeColor);
             btnSetLanguage.Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormSetLanguage);
             CleanupFirstTab();
+            UpdateFormWithAccountSettings();
         }
 
         private void FreshStart()
@@ -378,7 +379,6 @@ namespace MinionLauncherGUI
             if (metroComboBox3.SelectedIndex >= 0)
                 LanguageManager.Singleton.SetNewLanguage((ELanguages) metroComboBox3.SelectedIndex);
             PopulateLanguageComboBox();
-            CleanupFirstTab();
             FixNamesForLanguage();
         }
 
