@@ -91,6 +91,8 @@ namespace MinionLauncherGUI
                                         LanguageManager.Singleton.GetTranslation(ETranslations.MainFormChangeTheme);
             metroTileChangeColor.Text = " " +
                                         LanguageManager.Singleton.GetTranslation(ETranslations.MainFormChangeColor);
+            btnSetLanguage.Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormSetLanguage);
+            CleanupFirstTab();
         }
 
         private void FreshStart()
@@ -376,6 +378,8 @@ namespace MinionLauncherGUI
             if (metroComboBox3.SelectedIndex >= 0)
                 LanguageManager.Singleton.SetNewLanguage((ELanguages) metroComboBox3.SelectedIndex);
             PopulateLanguageComboBox();
+            CleanupFirstTab();
+            FixNamesForLanguage();
         }
 
         private void PopulateAccountComponentComboBoxes()
@@ -625,7 +629,7 @@ namespace MinionLauncherGUI
 
         private void CleanupFirstTab()
         {
-            if (_totalAccounts > 0)
+            //if (_totalAccounts > 0)
             {
                 for (int i = 1; i < metroTabControl2.TabPages.Count; i++)
                 {
