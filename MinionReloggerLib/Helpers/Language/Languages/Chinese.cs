@@ -201,7 +201,8 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.MainFormFreshConfig,
                              "Hello, 你必须先通过几步设置，才能开始一个新的设置, .");
             Translations.Add(ETranslations.MainFormWelcome, "欢迎");
-            Translations.Add(ETranslations.MainFormWhichComponents, " 好吧，你必须为自动登陆器配置相关组件，如果你是新手，请开启全部组件，请通过\"移动到左边\" 键去做.");
+            Translations.Add(ETranslations.MainFormWhichComponents,
+                             " 好吧，你必须为自动登陆器配置相关组件，如果你是新手，请开启全部组件，请通过\"移动到左边\" 键去做.");
             Translations.Add(ETranslations.MainFormFirstStep, "第一步");
             Translations.Add(ETranslations.MainFormPleaseSave,
                              "在你配置完成后，请记住保存设置, 若没有，你讲不得不重新设置一次.");
@@ -240,7 +241,6 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             // component: SchedulerComponentHalt,
             Translations.Add(ETranslations.SchedulerComponentHalt, "挂起窗口 {0}, 计划任务设置.");
             Translations.Add(ETranslations.SchedulerComponentKill, "停止窗口 {0}, 计划任务设置.");
-
         }
 
         public override string GetLanguageDescription()

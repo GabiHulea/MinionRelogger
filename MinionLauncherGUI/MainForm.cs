@@ -30,6 +30,7 @@ using MetroFramework.Drawing;
 using MetroFramework.Forms;
 using MinionLauncherGUI.CustomControls;
 using MinionLauncherGUI.Helpers;
+using MinionLauncherGUI.VersionControl;
 using MinionReloggerLib.Configuration;
 using MinionReloggerLib.Core;
 using MinionReloggerLib.CustomEventArgs;
@@ -53,7 +54,7 @@ namespace MinionLauncherGUI
         public MainForm()
         {
             InitializeComponent();
-            VersionControl.VersionChecker.CheckForUpdates(this);
+            VersionChecker.CheckForUpdates(this);
             Logger.Initialize(lstBoxLog);
             ComponentManager.Singleton.LoadComponents();
             ThreadManager.Singleton.Initialize();

@@ -45,11 +45,11 @@ namespace MinionReloggerLib.Threads.Implementation
             new Dictionary<Process, ViewStateObject>();
 
         private static bool _checkAll;
+        private readonly bool _enableViewStateChecks;
         private readonly Thread _instanceThread;
         private uint _buildNumber;
         private uint _buildNumberNeedUpdate;
         private int _delay;
-        private bool _enableViewStateChecks;
         private bool _isRunning;
         private bool _keepAlive;
         private bool _needDelay;
@@ -252,7 +252,7 @@ namespace MinionReloggerLib.Threads.Implementation
                                     if (_enableViewStateChecks)
                                     {
                                         var viewState = (EViewState) GW2MinionLauncher.ViewState((uint) gw2Process.Id);
-                                            //GetViewState(gw2Process);
+                                        //GetViewState(gw2Process);
                                         if (viewState != EViewState.ViewGameplay &&
                                             DeadGW2Windows.All(p => p.Key.Id != gw2Process.Id))
                                         {

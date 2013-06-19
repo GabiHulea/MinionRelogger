@@ -87,8 +87,9 @@ namespace MinionReloggerLib.Core
                 relogComponent.IsEnabled = true;
                 relogComponent.Component.OnEnable();
                 Logger.LoggingObject.Log(ELogType.Info,
-                                      LanguageManager.Singleton.GetTranslation(
-                                          ETranslations.ComponentManagerEnableComponent), relogComponent.Component.GetName());
+                                         LanguageManager.Singleton.GetTranslation(
+                                             ETranslations.ComponentManagerEnableComponent),
+                                         relogComponent.Component.GetName());
             }
         }
 
