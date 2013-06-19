@@ -60,6 +60,8 @@ namespace MinionLauncherGUI
             this.metroTabControl2 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnSetLanguage = new MetroFramework.Controls.MetroButton();
+            this.metroComboBox3 = new MetroFramework.Controls.MetroComboBox();
             this.btnSetFrozenTime = new MetroFramework.Controls.MetroButton();
             this.btnEnableComponent = new MetroFramework.Controls.MetroButton();
             this.btnDisableComponent = new MetroFramework.Controls.MetroButton();
@@ -83,8 +85,8 @@ namespace MinionLauncherGUI
             this.metroTileStopAll = new MetroFramework.Controls.MetroTile();
             this.metroTileChangeTheme = new MetroFramework.Controls.MetroTile();
             this.metroTileChangeColor = new MetroFramework.Controls.MetroTile();
-            this.metroComboBox3 = new MetroFramework.Controls.MetroComboBox();
-            this.btnSetLanguage = new MetroFramework.Controls.MetroButton();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxLogo)).BeginInit();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -149,6 +151,8 @@ namespace MinionLauncherGUI
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.Controls.Add(this.metroLabel1);
+            this.tabPage2.Controls.Add(this.metroToggle1);
             this.tabPage2.Controls.Add(this.btnSetLanguage);
             this.tabPage2.Controls.Add(this.metroComboBox3);
             this.tabPage2.Controls.Add(this.btnSetFrozenTime);
@@ -173,6 +177,25 @@ namespace MinionLauncherGUI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             // 
+            // btnSetLanguage
+            // 
+            this.btnSetLanguage.Location = new System.Drawing.Point(402, 233);
+            this.btnSetLanguage.Name = "btnSetLanguage";
+            this.btnSetLanguage.Size = new System.Drawing.Size(112, 23);
+            this.btnSetLanguage.TabIndex = 21;
+            this.btnSetLanguage.Text = "Set Language";
+            this.btnSetLanguage.Click += new System.EventHandler(this.BtnSetLanguageClick);
+            // 
+            // metroComboBox3
+            // 
+            this.metroComboBox3.FormattingEnabled = true;
+            this.metroComboBox3.ItemHeight = 23;
+            this.metroComboBox3.Location = new System.Drawing.Point(152, 231);
+            this.metroComboBox3.MaxDropDownItems = 15;
+            this.metroComboBox3.Name = "metroComboBox3";
+            this.metroComboBox3.Size = new System.Drawing.Size(234, 29);
+            this.metroComboBox3.TabIndex = 20;
+            // 
             // btnSetFrozenTime
             // 
             this.btnSetFrozenTime.Location = new System.Drawing.Point(402, 161);
@@ -184,7 +207,7 @@ namespace MinionLauncherGUI
             // 
             // btnEnableComponent
             // 
-            this.btnEnableComponent.Location = new System.Drawing.Point(531, 359);
+            this.btnEnableComponent.Location = new System.Drawing.Point(531, 365);
             this.btnEnableComponent.Name = "btnEnableComponent";
             this.btnEnableComponent.Size = new System.Drawing.Size(112, 23);
             this.btnEnableComponent.TabIndex = 18;
@@ -193,7 +216,7 @@ namespace MinionLauncherGUI
             // 
             // btnDisableComponent
             // 
-            this.btnDisableComponent.Location = new System.Drawing.Point(274, 359);
+            this.btnDisableComponent.Location = new System.Drawing.Point(274, 365);
             this.btnDisableComponent.Name = "btnDisableComponent";
             this.btnDisableComponent.Size = new System.Drawing.Size(112, 23);
             this.btnDisableComponent.TabIndex = 17;
@@ -205,7 +228,7 @@ namespace MinionLauncherGUI
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.Drawing.MetroFontSize.Medium;
             this.metroLabel4.FontWeight = MetroFramework.Drawing.MetroFontWeight.Bold;
-            this.metroLabel4.Location = new System.Drawing.Point(535, 301);
+            this.metroLabel4.Location = new System.Drawing.Point(535, 307);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(155, 19);
             this.metroLabel4.TabIndex = 16;
@@ -216,7 +239,7 @@ namespace MinionLauncherGUI
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontSize = MetroFramework.Drawing.MetroFontSize.Medium;
             this.metroLabel3.FontWeight = MetroFramework.Drawing.MetroFontWeight.Bold;
-            this.metroLabel3.Location = new System.Drawing.Point(155, 301);
+            this.metroLabel3.Location = new System.Drawing.Point(155, 307);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(150, 19);
             this.metroLabel3.TabIndex = 15;
@@ -226,7 +249,7 @@ namespace MinionLauncherGUI
             // 
             this.metroComboBox2.FormattingEnabled = true;
             this.metroComboBox2.ItemHeight = 23;
-            this.metroComboBox2.Location = new System.Drawing.Point(531, 322);
+            this.metroComboBox2.Location = new System.Drawing.Point(531, 328);
             this.metroComboBox2.MaxDropDownItems = 15;
             this.metroComboBox2.Name = "metroComboBox2";
             this.metroComboBox2.Size = new System.Drawing.Size(234, 29);
@@ -236,7 +259,7 @@ namespace MinionLauncherGUI
             // 
             this.metroComboBox1.FormattingEnabled = true;
             this.metroComboBox1.ItemHeight = 23;
-            this.metroComboBox1.Location = new System.Drawing.Point(152, 322);
+            this.metroComboBox1.Location = new System.Drawing.Point(152, 328);
             this.metroComboBox1.MaxDropDownItems = 15;
             this.metroComboBox1.Name = "metroComboBox1";
             this.metroComboBox1.Size = new System.Drawing.Size(234, 29);
@@ -397,24 +420,24 @@ namespace MinionLauncherGUI
             this.metroTileChangeColor.UseTileImage = true;
             this.metroTileChangeColor.Click += new System.EventHandler(this.MetroTileChangeColorClick);
             // 
-            // metroComboBox3
+            // metroLabel1
             // 
-            this.metroComboBox3.FormattingEnabled = true;
-            this.metroComboBox3.ItemHeight = 23;
-            this.metroComboBox3.Location = new System.Drawing.Point(152, 231);
-            this.metroComboBox3.MaxDropDownItems = 15;
-            this.metroComboBox3.Name = "metroComboBox3";
-            this.metroComboBox3.Size = new System.Drawing.Size(234, 29);
-            this.metroComboBox3.TabIndex = 20;
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(242, 276);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(162, 19);
+            this.metroLabel1.TabIndex = 23;
+            this.metroLabel1.Text = "Enable Extensive Logging?";
             // 
-            // btnSetLanguage
+            // metroToggle1
             // 
-            this.btnSetLanguage.Location = new System.Drawing.Point(402, 233);
-            this.btnSetLanguage.Name = "btnSetLanguage";
-            this.btnSetLanguage.Size = new System.Drawing.Size(112, 23);
-            this.btnSetLanguage.TabIndex = 21;
-            this.btnSetLanguage.Text = "Set Language";
-            this.btnSetLanguage.Click += new System.EventHandler(this.BtnSetLanguageClick);
+            this.metroToggle1.AutoSize = true;
+            this.metroToggle1.Location = new System.Drawing.Point(414, 278);
+            this.metroToggle1.Name = "metroToggle1";
+            this.metroToggle1.Size = new System.Drawing.Size(80, 17);
+            this.metroToggle1.TabIndex = 22;
+            this.metroToggle1.Text = "Off";
+            this.metroToggle1.CheckedChanged += new System.EventHandler(this.MetroToggle1CheckedChanged);
             // 
             // MainForm
             // 
@@ -478,6 +501,8 @@ namespace MinionLauncherGUI
         private MetroFramework.Controls.MetroButton btnSetFrozenTime;
         private MetroFramework.Controls.MetroButton btnSetLanguage;
         private MetroFramework.Controls.MetroComboBox metroComboBox3;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroToggle metroToggle1;
     }
 }
 

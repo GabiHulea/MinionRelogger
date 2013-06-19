@@ -19,7 +19,9 @@
 ******************************************************************************/
 
 using System.Windows.Forms;
+using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces;
 using MinionReloggerLib.Interfaces.Objects;
 
@@ -27,22 +29,40 @@ namespace BreakComponent
 {
     public class BreakComponent : IRelogComponent, IRelogComponentExtension
     {
-        public IRelogComponent DoWork(Account account, ref EComponentResult result)
+        public IRelogComponent DoWork(Account account, ref ComponentResult result)
         {
             if (account.BreakObject != null && account.BreakObject.Check())
             {
                 if (account.BreakObject.IsReady())
                 {
-                    result = Check(account) ? EComponentResult.Kill : EComponentResult.Halt;
+                    result = Check(account)
+                                 ? new ComponentResult
+                                     {
+                                         Result = EComponentResult.Kill,
+                                         LogMessage =
+                                             LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentKill),
+                                     }
+                                 : new ComponentResult
+                                     {
+                                         Result = EComponentResult.Halt,
+                                         LogMessage =
+                                             LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentHalt),
+                                     };
                 }
                 else
                 {
-                    result = EComponentResult.Continue;
+                    result = new ComponentResult
+                        {
+                            Result = EComponentResult.Continue,
+                        };
                 }
             }
             else
             {
-                result = EComponentResult.Ignore;
+                result = new ComponentResult
+                    {
+                        Result = EComponentResult.Ignore,
+                    };
             }
             if (IsReady(account))
             {

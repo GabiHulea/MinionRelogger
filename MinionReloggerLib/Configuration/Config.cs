@@ -139,7 +139,7 @@ namespace MinionReloggerLib.Configuration
                 try
                 {
                     LoadConfigFromFile();
-                    LanguageManager.Singleton.SetNewLanguage((ELanguages)Singleton.GeneralSettings.CurrentLanguage);
+                    LanguageManager.Singleton.SetNewLanguage((ELanguages) Singleton.GeneralSettings.CurrentLanguage);
                     UpdateComponentList();
                 }
                 catch (ProtoException ex)

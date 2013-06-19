@@ -20,7 +20,9 @@
 
 using System;
 using System.Windows.Forms;
+using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces;
 using MinionReloggerLib.Interfaces.Objects;
 
@@ -28,20 +30,31 @@ namespace SchedulerComponent
 {
     public class SchedulerComponent : IRelogComponent, IRelogComponentExtension
     {
-        public IRelogComponent DoWork(Account account, ref EComponentResult result)
+        public IRelogComponent DoWork(Account account, ref ComponentResult result)
         {
             if (Check(account))
             {
-                result = EComponentResult.Halt;
+                result = new ComponentResult
+                    {
+                        Result = EComponentResult.Halt,
+                        LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentHalt),
+                    };
                 if (IsReady(account))
                 {
                     Update(account);
-                    result = EComponentResult.Kill;
+                    result = new ComponentResult
+                        {
+                            Result = EComponentResult.Kill,
+                            LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentKill),
+                        };
                 }
             }
             else
             {
-                result = EComponentResult.Ignore;
+                result = new ComponentResult
+                    {
+                        Result = EComponentResult.Ignore,
+                    };
             }
             return this;
         }

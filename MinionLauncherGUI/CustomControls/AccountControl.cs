@@ -118,7 +118,10 @@ namespace MinionLauncherGUI.CustomControls
             BtnSettings.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlSettings);
             LblStatus.Theme = styleManager.Theme;
             LblStatus.Style = styleManager.Style;
-            LblStatus.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlDisabled);
+            LblStatus.Text =
+                LanguageManager.Singleton.GetTranslation(account.ShouldBeRunning
+                                                             ? ETranslations.AccountControlEnabled
+                                                             : ETranslations.AccountControlDisabled);
             LblStatus.BackColor = Color.Transparent;
             CmbSettings.Theme = styleManager.Theme;
             CmbSettings.Style = styleManager.Style;

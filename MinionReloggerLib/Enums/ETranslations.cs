@@ -22,6 +22,9 @@ namespace MinionReloggerLib.Enums
 {
     public enum ETranslations
     {
+        /////////////////////////////
+        /// CLASSES               ///
+        /////////////////////////////
         // class: BreakObject
         BreakObjectExpired,
         BreakObjectNew,
@@ -138,6 +141,7 @@ namespace MinionReloggerLib.Enums
         AccountControlManage,
         AccountControlSettings,
         AccountControlDisabled,
+        AccountControlEnabled,
         AccountControlLoginName,
         AccountControlStatus,
 
@@ -188,5 +192,33 @@ namespace MinionReloggerLib.Enums
         MainFormFrozenTimeLong,
         MainFormLoginName,
         MainFormStatus,
+
+        /////////////////////////////
+        /// COMPONENTS            ///
+        /////////////////////////////
+        // component: BasicStartComponent
+        BasicStartComponentStart,
+
+        // component: BasicStopComponent
+        BasicStopComponentStop,
+        BasicStopComponentHalt,
+
+        // component: BreakComponent
+        BreakComponentKill,
+        BreakComponentHalt,
+
+        // component: IPCheckComponent
+        IPCheckComponentHalt,
+        IPCheckComponentKill,
+
+        // component: LaunchDelayComponent
+        LaunchDelayComponentHalt,
+
+        // component: RestartDelayComponent
+        RestartDelayComponentHalt,
+
+        // component: SchedulerComponent
+        SchedulerComponentHalt,
+        SchedulerComponentKill,
     }
 }

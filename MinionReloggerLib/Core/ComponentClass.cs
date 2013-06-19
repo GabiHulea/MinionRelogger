@@ -2,7 +2,7 @@
 
 namespace MinionReloggerLib.Core
 {
-    internal class ComponentClass
+    public class ComponentClass
     {
         internal IRelogComponent Component { get; set; }
         internal bool IsEnabled { get; set; }

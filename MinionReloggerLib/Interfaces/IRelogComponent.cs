@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 using System.Windows.Forms;
+using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Interfaces.Objects;
 
@@ -26,7 +27,7 @@ namespace MinionReloggerLib.Interfaces
 {
     public interface IRelogComponent
     {
-        IRelogComponent DoWork(Account account, ref EComponentResult result);
+        IRelogComponent DoWork(Account account, ref ComponentResult result);
         string GetName();
         void OnEnable();
         void OnDisable();

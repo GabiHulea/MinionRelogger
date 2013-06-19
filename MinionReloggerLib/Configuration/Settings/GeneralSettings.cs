@@ -78,6 +78,9 @@ namespace MinionReloggerLib.Configuration.Settings
         [ProtoMember(12)]
         public int CurrentLanguage { get; private set; }
 
+        [ProtoMember(13)]
+        public bool ExtensiveLogging { get; private set; }
+
         public void SetGW2Path(string newPath)
         {
             Logger.LoggingObject.Log(ELogType.Info,
@@ -152,6 +155,12 @@ namespace MinionReloggerLib.Configuration.Settings
                                      LanguageManager.Singleton.GetTranslation(
                                          ETranslations.GeneralSettingsCheckForIPChanged), newValue);
         }
+
+        public void SetExtensiveLogging(bool newExtensiveLogging)
+        {
+            ExtensiveLogging = newExtensiveLogging;
+        }
+
 
         public void SetLanguage(ELanguages newLanguage)
         {

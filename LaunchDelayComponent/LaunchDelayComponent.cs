@@ -22,7 +22,9 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 using MinionReloggerLib.Configuration;
+using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces;
 using MinionReloggerLib.Interfaces.Objects;
 
@@ -30,19 +32,30 @@ namespace LaunchDelayComponent
 {
     public class LaunchDelayComponent : IRelogComponent, IRelogComponentExtension
     {
-        public IRelogComponent DoWork(Account account, ref EComponentResult result)
+        public IRelogComponent DoWork(Account account, ref ComponentResult result)
         {
             if (Check(account))
             {
-                result = EComponentResult.Continue;
+                result = new ComponentResult
+                    {
+                        Result = EComponentResult.Continue,
+                    };
                 if (IsReady(account))
                 {
-                    result = EComponentResult.Halt;
+                    result = new ComponentResult
+                        {
+                            Result = EComponentResult.Halt,
+                            LogMessage =
+                                LanguageManager.Singleton.GetTranslation(ETranslations.LaunchDelayComponentHalt),
+                        };
                 }
             }
             else
             {
-                result = EComponentResult.Ignore;
+                result = new ComponentResult
+                    {
+                        Result = EComponentResult.Ignore,
+                    };
             }
             return this;
         }

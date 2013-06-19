@@ -80,6 +80,18 @@ namespace MinionReloggerLib.Core
             }
         }
 
+        public void EnableAllComponents()
+        {
+            foreach (ComponentClass relogComponent in _components)
+            {
+                relogComponent.IsEnabled = true;
+                relogComponent.Component.OnEnable();
+                Logger.LoggingObject.Log(ELogType.Info,
+                                      LanguageManager.Singleton.GetTranslation(
+                                          ETranslations.ComponentManagerEnableComponent), relogComponent.Component.GetName());
+            }
+        }
+
         public void EnableComponent(string componentToEnable)
         {
             ComponentClass first = _components.FirstOrDefault(c => c.Component.GetName() == componentToEnable);

@@ -162,6 +162,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.AccountControlStop, "Stop");
             Translations.Add(ETranslations.AccountControlManage, "Manage");
             Translations.Add(ETranslations.AccountControlSettings, "Settings");
+            Translations.Add(ETranslations.AccountControlEnabled, "Enabled");
             Translations.Add(ETranslations.AccountControlDisabled, "Disabled");
             Translations.Add(ETranslations.AccountControlLoginName, "Login Name");
             Translations.Add(ETranslations.AccountControlStatus, "Status");
@@ -218,6 +219,38 @@ namespace MinionReloggerLib.Helpers.Language.Languages
                              "Please enter the desired time after which a GW2 instance is considered frozen/stuck (!minimum: 60, in seconds!).");
             Translations.Add(ETranslations.MainFormLoginName, "Login Name");
             Translations.Add(ETranslations.MainFormStatus, "Status");
+
+            // component: BasicStopComponent
+            Translations.Add(ETranslations.BasicStopComponentStop,
+                             "Stopping instance for {0}, should not be running (disabled).");
+            Translations.Add(ETranslations.BasicStopComponentHalt,
+                             "Halting start for {0}, should not be running (disabled).");
+
+            // component: BreakComponent
+            Translations.Add(ETranslations.BreakComponentKill,
+                             "Stopping instance for {0}, should not be running due to break settings.");
+            Translations.Add(ETranslations.BreakComponentHalt,
+                             "Halting start for {0}, should not be starting due to break settings.");
+
+            // component: IPCheckComponent
+            Translations.Add(ETranslations.IPCheckComponentHalt,
+                             "Halting start for {0}, should not be running. Current IP has not been permitted.");
+            Translations.Add(ETranslations.IPCheckComponentKill,
+                             "Stopping instance for {0}, should not be running. Current IP has not been permitted.");
+
+            // component: LaunchDelayComponent
+            Translations.Add(ETranslations.LaunchDelayComponentHalt,
+                             "Halting start for {0}, should not be running. Launch Delay timer has not expired yet.");
+
+            // component: RestartDelayComponent
+            Translations.Add(ETranslations.RestartDelayComponentHalt,
+                             "Halting start for {0}, should not be running. Restart Delay timer has not expired yet.");
+
+            // component: SchedulerComponent
+            Translations.Add(ETranslations.SchedulerComponentHalt,
+                             "Halting start for {0}, should not be running due to scheduler settings.");
+            Translations.Add(ETranslations.SchedulerComponentKill,
+                             "Stopping instance for {0}, should not be running due to scheduler settings.");
         }
 
         public override string GetLanguageDescription()

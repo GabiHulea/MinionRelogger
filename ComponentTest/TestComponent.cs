@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 using System.Windows.Forms;
+using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Interfaces;
 using MinionReloggerLib.Interfaces.Objects;
@@ -28,7 +29,7 @@ namespace ComponentTest
 {
     public class TestComponent : IRelogComponent
     {
-        public IRelogComponent DoWork(Account account, ref EComponentResult result)
+        public IRelogComponent DoWork(Account account, ref ComponentResult result)
         {
             Logger.LoggingObject.Log("[TestComponent] DoWork");
             return this;

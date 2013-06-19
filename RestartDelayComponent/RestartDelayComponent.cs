@@ -21,7 +21,9 @@
 using System;
 using System.Windows.Forms;
 using MinionReloggerLib.Configuration;
+using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces;
 using MinionReloggerLib.Interfaces.Objects;
 
@@ -29,7 +31,7 @@ namespace RestartDelayComponent
 {
     public class RestartDelayComponent : IRelogComponent, IRelogComponentExtension
     {
-        public IRelogComponent DoWork(Account account, ref EComponentResult result)
+        public IRelogComponent DoWork(Account account, ref ComponentResult result)
         {
             if (!account.RestartDelayActive && Check(account))
             {
@@ -37,7 +39,17 @@ namespace RestartDelayComponent
                 account.SetLastStopTime(DateTime.Now);
             }
             //     result = EComponentResult.Start;
-            result = IsReady(account) ? EComponentResult.Halt : EComponentResult.Ignore;
+            result = IsReady(account)
+                         ? new ComponentResult
+                             {
+                                 Result = EComponentResult.Halt,
+                                 LogMessage =
+                                     LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentHalt),
+                             }
+                         : new ComponentResult
+                             {
+                                 Result = EComponentResult.Ignore,
+                             };
             return this;
         }
 

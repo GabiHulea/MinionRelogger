@@ -20,6 +20,7 @@
 
 using System;
 using System.Windows.Forms;
+using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Interfaces;
 using MinionReloggerLib.Interfaces.Objects;
@@ -28,20 +29,22 @@ namespace BasicStartComponent
 {
     public class BasicStartComponent : IRelogComponent, IRelogComponentExtension
     {
-        public IRelogComponent DoWork(Account account, ref EComponentResult result)
+        public IRelogComponent DoWork(Account account, ref ComponentResult result)
         {
             if (Check(account))
             {
-                // result = EComponentResult.Continue;
-                //  if (IsReady(account))
-                // {
                 Update(account);
-                result = EComponentResult.Start;
-                //  }
+                result = new ComponentResult
+                    {
+                        Result = EComponentResult.Start,
+                    };
             }
             else
             {
-                result = EComponentResult.Ignore;
+                result = new ComponentResult
+                    {
+                        Result = EComponentResult.Ignore,
+                    };
             }
             return this;
         }

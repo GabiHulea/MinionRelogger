@@ -24,7 +24,7 @@ namespace MinionReloggerLib.Imports
 {
     public static class Kernel32
     {
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern void SetDllDirectory(string lpPathName);
     }
 }

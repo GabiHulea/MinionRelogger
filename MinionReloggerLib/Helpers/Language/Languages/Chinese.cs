@@ -159,6 +159,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
                              "保存计划任务设置 {0} (分: {1}).");
             // class: AccountControl
             Translations.Add(ETranslations.AccountControlStart, "开始");
+            Translations.Add(ETranslations.AccountControlEnabled, "打开");
             Translations.Add(ETranslations.AccountControlStop, "停止");
             Translations.Add(ETranslations.AccountControlManage, "管理");
             Translations.Add(ETranslations.AccountControlSettings, "设置");
@@ -168,7 +169,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
 
             // GUI: AccountForm
             Translations.Add(ETranslations.AccountFormLoginName, "账号");
-            Translations.Add(ETranslations.AccountFormPassword, "苗苗");
+            Translations.Add(ETranslations.AccountFormPassword, "密码");
             Translations.Add(ETranslations.AccountFormNoSound, "静音?");
             Translations.Add(ETranslations.AccountFormCancel, "取消");
             Translations.Add(ETranslations.AccountFormDelete, "删除");
@@ -217,6 +218,29 @@ namespace MinionReloggerLib.Helpers.Language.Languages
                              "请输入一个你认为游戏窗口被冻结或者卡主的时间 (!最少: 60, 秒!).");
             Translations.Add(ETranslations.MainFormLoginName, "账号");
             Translations.Add(ETranslations.MainFormStatus, "状态");
+
+            // component: BasicStopComponent
+            Translations.Add(ETranslations.BasicStopComponentStop, "停止窗口 {0}, 应该没有在运行 (关闭).");
+            Translations.Add(ETranslations.BasicStopComponentHalt, "挂起窗口 {0}, 应该没有在运行 （关闭）.");
+
+            // component: BreakComponent
+            Translations.Add(ETranslations.BreakComponentKill, "停止窗口{0}, 由休息设置引起的.");
+            Translations.Add(ETranslations.BreakComponentHalt, "挂起窗口 {0}, 由休息设置引起的.");
+
+            // component: IPCheckComponent
+            Translations.Add(ETranslations.IPCheckComponentHalt, "挂起窗口 {0}, 当前IP没有被允许.");
+            Translations.Add(ETranslations.IPCheckComponentKill, "停止窗口 {0}, 当前IP没有被允许.");
+
+            // component: LaunchDelayComponent
+            Translations.Add(ETranslations.LaunchDelayComponentHalt, "挂起窗口{0}，启动延迟计时器还没到期.");
+
+            // component: RestartDelayComponent
+            Translations.Add(ETranslations.RestartDelayComponentHalt, "挂起窗口{0}, 重启延迟计时器还没到期.");
+
+            // component: SchedulerComponentHalt,
+            Translations.Add(ETranslations.SchedulerComponentHalt, "挂起窗口 {0}, 计划任务设置.");
+            Translations.Add(ETranslations.SchedulerComponentKill, "停止窗口 {0}, 计划任务设置.");
+
         }
 
         public override string GetLanguageDescription()

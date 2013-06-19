@@ -19,6 +19,7 @@
 ******************************************************************************/
 
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using MinionReloggerLib.Enums;
@@ -42,10 +43,12 @@ namespace MinionReloggerLib.Imports
                                                           [MarshalAs(UnmanagedType.LPWStr)] string password,
                                                           bool noSound);
 
-        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl,
+            SetLastError = true)]
         internal static extern bool KillInstance(uint pid);
 
-        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl,
+            SetLastError = true)]
         internal static extern bool AccountName(UInt32 pid, StringBuilder name, int bufSize);
 
         internal static string GetAccountName(uint pid)
@@ -53,7 +56,15 @@ namespace MinionReloggerLib.Imports
             try
             {
                 var buf = new StringBuilder(255);
-                AccountName(pid, buf, buf.Capacity);
+                try
+                {
+                    Process process = Process.GetProcessById((int) pid);
+                    if (!process.HasExited && process.StartTime.Ticks > 5000)
+                        AccountName(pid, buf, buf.Capacity);
+                }
+                catch (Exception ex)
+                {
+                }
                 return buf.ToString();
             }
             catch (Exception ex)
@@ -63,16 +74,20 @@ namespace MinionReloggerLib.Imports
             return "<null>";
         }
 
-        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl,
+            SetLastError = true)]
         internal static extern bool AttachToPid(uint pid);
 
-        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl,
+            SetLastError = true)]
         internal static extern uint BuildNumber(uint pid);
 
-        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl,
+            SetLastError = true)]
         public static extern uint BuildNumberFromApi();
 
-        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl,
+            SetLastError = true)]
         public static extern int ViewState(uint pid);
     }
 }

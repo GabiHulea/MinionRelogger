@@ -30,7 +30,6 @@ using MetroFramework.Drawing;
 using MetroFramework.Forms;
 using MinionLauncherGUI.CustomControls;
 using MinionLauncherGUI.Helpers;
-using MinionLauncherGUI.VersionControl;
 using MinionReloggerLib.Configuration;
 using MinionReloggerLib.Core;
 using MinionReloggerLib.CustomEventArgs;
@@ -54,12 +53,12 @@ namespace MinionLauncherGUI
         public MainForm()
         {
             InitializeComponent();
+            VersionControl.VersionChecker.CheckForUpdates(this);
             Logger.Initialize(lstBoxLog);
             ComponentManager.Singleton.LoadComponents();
             ThreadManager.Singleton.Initialize();
             if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
                 FreshStart();
-            VersionChecker.CheckForUpdates(this);
             FixNamesForLanguage();
         }
 
@@ -112,6 +111,7 @@ namespace MinionLauncherGUI
                 LanguageManager.Singleton.GetTranslation(ETranslations.MainFormTip), MessageBoxButtons.OK);
             BringToFront();
             metroTabControl1.SelectTab(1);
+            ComponentManager.Singleton.EnableAllComponents();
         }
 
         private void MetroTileStartAllClick(object sender, EventArgs e)
@@ -199,6 +199,33 @@ namespace MinionLauncherGUI
                 break;
             }
 
+            foreach (TabPage page in metroTabControl1.TabPages)
+            {
+                foreach (object control in page.Controls)
+                {
+                    if (control as MetroControlBase != null)
+                    {
+                        ((MetroControlBase) control).Theme = metroStyleManager.Theme;
+                        ((MetroControlBase) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroButton != null)
+                    {
+                        ((MetroButton) control).Theme = metroStyleManager.Theme;
+                        ((MetroButton) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroLabel != null)
+                    {
+                        ((MetroLabel) control).Theme = metroStyleManager.Theme;
+                        ((MetroLabel) control).Style = metroStyleManager.Style;
+                    }
+                    else if (control as MetroComboBox != null)
+                    {
+                        ((MetroComboBox) control).Theme = metroStyleManager.Theme;
+                        ((MetroComboBox) control).Style = metroStyleManager.Style;
+                    }
+                }
+            }
+
             foreach (TabPage page in metroTabControl2.TabPages)
             {
                 foreach (object control in page.Controls)
@@ -282,6 +309,12 @@ namespace MinionLauncherGUI
             Config.Singleton.GeneralSettings.SetMinimizeWindows(metroToggleMinimizeGW2.Checked);
         }
 
+
+        private void MetroToggle1CheckedChanged(object sender, EventArgs e)
+        {
+            Config.Singleton.GeneralSettings.SetExtensiveLogging(metroToggle1.Checked);
+        }
+
         private void BtnLoadClick(object sender, EventArgs e)
         {
             LoadConfig(true);
@@ -318,6 +351,7 @@ namespace MinionLauncherGUI
             metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
             metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
             metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
+            metroToggle1.Checked = Config.Singleton.GeneralSettings.ExtensiveLogging;
             UpdateFormWithAccountSettings();
         }
 
@@ -342,6 +376,7 @@ namespace MinionLauncherGUI
             metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
             metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
             metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
+            metroToggle1.Checked = Config.Singleton.GeneralSettings.ExtensiveLogging;
             UpdateFormWithAccountSettings();
         }
 
@@ -586,6 +621,7 @@ namespace MinionLauncherGUI
                 metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
                 metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
                 metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
+                metroToggle1.Checked = Config.Singleton.GeneralSettings.ExtensiveLogging;
                 UpdateFormWithAccountSettings();
                 return true;
             }

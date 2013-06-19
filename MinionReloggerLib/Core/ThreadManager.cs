@@ -33,7 +33,8 @@ namespace MinionReloggerLib.Core
 
         protected ThreadManager()
         {
-            _threads = new List<IRelogThread> {new GW2ManagerThread(), new InstanceThread()};
+            // _threads = new List<IRelogThread> {new GW2ManagerThread(), new InstanceThread()};
+            _threads = new List<IRelogThread> {new InstanceThread()};
         }
 
         public static ThreadManager Singleton

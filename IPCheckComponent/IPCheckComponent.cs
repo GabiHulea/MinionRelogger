@@ -20,7 +20,9 @@
 
 using System.Windows.Forms;
 using MinionReloggerLib.Configuration;
+using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
+using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Helpers.MyIP;
 using MinionReloggerLib.Interfaces;
 using MinionReloggerLib.Interfaces.Objects;
@@ -29,21 +31,36 @@ namespace IPCheckComponent
 {
     public class IPCheckComponent : IRelogComponent, IRelogComponentExtension
     {
-        public IRelogComponent DoWork(Account account, ref EComponentResult result)
+        public IRelogComponent DoWork(Account account, ref ComponentResult result)
         {
             if (Check(account))
             {
-                result = EComponentResult.Continue;
+                result = new ComponentResult
+                    {
+                        Result = EComponentResult.Continue,
+                    };
                 if (IsReady(account))
                 {
-                    result = EComponentResult.Halt;
+                    result = new ComponentResult
+                        {
+                            Result = EComponentResult.Halt,
+                            LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentHalt),
+                        };
                     if (account.Running)
-                        result = EComponentResult.Kill;
+                        result = new ComponentResult
+                            {
+                                Result = EComponentResult.Kill,
+                                LogMessage =
+                                    LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentKill),
+                            };
                 }
             }
             else
             {
-                result = EComponentResult.Ignore;
+                result = new ComponentResult
+                    {
+                        Result = EComponentResult.Ignore,
+                    };
             }
             return this;
         }

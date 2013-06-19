@@ -84,6 +84,46 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                                                  LanguageManager.Singleton.GetTranslation(
                                                      ETranslations.StartWorkerLaunchingInstance),
                                                  account.LoginName, account.BotPath + "GW2MinionLauncherDLL.dll");
+                        string directory = Config.Singleton.GeneralSettings.GW2Path.Replace("GW2.exe", "");
+                        if (Directory.Exists(directory))
+                        {
+                            if (File.Exists(directory + "ArenaNet.log"))
+                            {
+                                File.Delete(directory + "ArenaNet.log");
+                            }
+                            if (File.Exists(directory + "Crash.dmp"))
+                            {
+                                File.Delete(directory + "Crash.dmp");
+                            }
+                        }
+                        if (Directory.Exists(directory))
+                        {
+                            if (File.Exists(directory + "ArenaNet.log"))
+                            {
+                                File.Delete(directory + "ArenaNet.log");
+                            }
+                            if (File.Exists(directory + "Crash.dmp"))
+                            {
+                                File.Delete(directory + "Crash.dmp");
+                            }
+                        }
+                        string mydocuments = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                        if (Directory.Exists(mydocuments))
+                        {
+                            if (Directory.Exists(mydocuments + "\\Guild Wars 2"))
+                            {
+                                if (File.Exists(mydocuments + "\\Guild Wars 2\\" + "ArenaNet.log"))
+                                {
+                                    File.Delete(mydocuments + "\\Guild Wars 2\\" + "ArenaNet.log");
+                                }
+                                const string filesToDelete = @"*Corrupt*.dat";
+                                string[] fileList = Directory.GetFiles(mydocuments + "\\Guild Wars 2", filesToDelete);
+                                foreach (string file in fileList)
+                                {
+                                    File.Delete(file);
+                                }
+                            }
+                        }
                         newPID = GW2MinionLauncher.LaunchAccount(Config.Singleton.GeneralSettings.GW2Path,
                                                                  account.LoginName, account.Password, account.NoSound);
                     }

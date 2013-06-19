@@ -49,18 +49,18 @@ namespace MinionReloggerLib.Interfaces.Objects
 
         public IObject DoWork()
         {
-            if (!Process.HasExited)
+            try
             {
-                try
+                if (Process != null && !Process.HasExited)
                 {
                     bool result = GW2MinionLauncher.KillInstance((uint) Process.Id);
                     Thread.Sleep(3000);
                     if (!result || (Process != null && !Process.HasExited))
                         Process.Kill();
                 }
-                catch
-                {
-                }
+            }
+            catch (Exception)
+            {
             }
             Update();
             return this;
