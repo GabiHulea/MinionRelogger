@@ -78,7 +78,7 @@ namespace BreakComponent
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(212, 68);
+            this.numericUpDown1.Location = new System.Drawing.Point(299, 68);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -90,7 +90,7 @@ namespace BreakComponent
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(212, 94);
+            this.numericUpDown2.Location = new System.Drawing.Point(299, 94);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -102,7 +102,7 @@ namespace BreakComponent
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(212, 120);
+            this.numericUpDown3.Location = new System.Drawing.Point(299, 120);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -114,7 +114,7 @@ namespace BreakComponent
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(212, 146);
+            this.numericUpDown4.Location = new System.Drawing.Point(299, 146);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -131,7 +131,7 @@ namespace BreakComponent
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(78, 19);
             this.metroLabel1.TabIndex = 4;
-            this.metroLabel1.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentPauseEvery);
+            this.metroLabel1.Text = "Pause every";
             // 
             // metroLabel2
             // 
@@ -140,7 +140,7 @@ namespace BreakComponent
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(174, 19);
             this.metroLabel2.TabIndex = 5;
-            this.metroLabel2.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentDelayPrePause);
+            this.metroLabel2.Text = "Random delay pre-pause of";
             // 
             // metroLabel3
             // 
@@ -149,7 +149,7 @@ namespace BreakComponent
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(89, 19);
             this.metroLabel3.TabIndex = 6;
-            this.metroLabel3.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentPause);
+            this.metroLabel3.Text = "Pause time of";
             // 
             // metroLabel4
             // 
@@ -158,43 +158,43 @@ namespace BreakComponent
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(179, 19);
             this.metroLabel4.TabIndex = 7;
-            this.metroLabel4.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentDelayPostPause);
+            this.metroLabel4.Text = "Random delay post-pause of";
             // 
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(301, 68);
+            this.metroLabel5.Location = new System.Drawing.Point(388, 68);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(54, 19);
             this.metroLabel5.TabIndex = 8;
-            this.metroLabel5.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentMinutes);
+            this.metroLabel5.Text = "minutes";
             // 
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(301, 95);
+            this.metroLabel6.Location = new System.Drawing.Point(388, 95);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(54, 19);
             this.metroLabel6.TabIndex = 9;
-            this.metroLabel6.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentMinutes);
+            this.metroLabel6.Text = "minutes";
             // 
             // metroLabel7
             // 
             this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(301, 121);
+            this.metroLabel7.Location = new System.Drawing.Point(388, 121);
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(54, 19);
             this.metroLabel7.TabIndex = 10;
-            this.metroLabel7.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentMinutes);
+            this.metroLabel7.Text = "minutes";
             // 
             // metroLabel8
             // 
             this.metroLabel8.AutoSize = true;
-            this.metroLabel8.Location = new System.Drawing.Point(301, 147);
+            this.metroLabel8.Location = new System.Drawing.Point(388, 147);
             this.metroLabel8.Name = "metroLabel8";
             this.metroLabel8.Size = new System.Drawing.Size(54, 19);
             this.metroLabel8.TabIndex = 11;
-            this.metroLabel8.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentMinutes);
+            this.metroLabel8.Text = "minutes";
             // 
             // metroStyleManager
             // 
@@ -203,11 +203,11 @@ namespace BreakComponent
             // btnOK
             // 
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnOK.Location = new System.Drawing.Point(267, 215);
+            this.btnOK.Location = new System.Drawing.Point(354, 215);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
-            this.btnOK.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentOk);
+            this.btnOK.Text = "OK";
             this.btnOK.Click += new System.EventHandler(this.BtnOkClick);
             // 
             // btnCancel
@@ -216,7 +216,7 @@ namespace BreakComponent
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentCancel);
+            this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
             // 
             // metroLabel9
@@ -226,12 +226,12 @@ namespace BreakComponent
             this.metroLabel9.Name = "metroLabel9";
             this.metroLabel9.Size = new System.Drawing.Size(96, 19);
             this.metroLabel9.TabIndex = 12;
-            this.metroLabel9.Text = LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentEnableBreaks);
+            this.metroLabel9.Text = "Enable Breaks?";
             // 
             // metroToggle1
             // 
             this.metroToggle1.AutoSize = true;
-            this.metroToggle1.Location = new System.Drawing.Point(211, 182);
+            this.metroToggle1.Location = new System.Drawing.Point(298, 182);
             this.metroToggle1.Name = "metroToggle1";
             this.metroToggle1.Size = new System.Drawing.Size(80, 17);
             this.metroToggle1.TabIndex = 13;
@@ -241,7 +241,7 @@ namespace BreakComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 251);
+            this.ClientSize = new System.Drawing.Size(460, 251);
             this.Controls.Add(this.metroToggle1);
             this.Controls.Add(this.metroLabel9);
             this.Controls.Add(this.btnOK);

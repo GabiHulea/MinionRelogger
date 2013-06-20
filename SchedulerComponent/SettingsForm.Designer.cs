@@ -82,7 +82,7 @@ namespace SchedulerComponent
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
-            this.btnOK.Text = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentOk);
+            this.btnOK.Text = "OK";
             this.btnOK.Click += new System.EventHandler(this.BtnOkClick);
             // 
             // btnCancel
@@ -91,13 +91,13 @@ namespace SchedulerComponent
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentCancel);
+            this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker2.Location = new System.Drawing.Point(139, 78);
+            this.dateTimePicker2.Location = new System.Drawing.Point(251, 78);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(94, 20);
             this.dateTimePicker2.TabIndex = 4;
@@ -109,10 +109,8 @@ namespace SchedulerComponent
             this.metroLabel3.Location = new System.Drawing.Point(24, 78);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(72, 19);
-            this.metroLabel3.Style = this.metroStyleManager.Style;
             this.metroLabel3.TabIndex = 5;
-            this.metroLabel3.Text = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentStartTime);
-            this.metroLabel3.Theme = this.metroStyleManager.Theme;
+            this.metroLabel3.Text = "Start Time:";
             // 
             // metroLabel4
             // 
@@ -121,22 +119,20 @@ namespace SchedulerComponent
             this.metroLabel4.Location = new System.Drawing.Point(24, 111);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(72, 19);
-            this.metroLabel4.Style = this.metroStyleManager.Style;
             this.metroLabel4.TabIndex = 6;
-            this.metroLabel4.Text = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentStopTime);
-            this.metroLabel4.Theme = this.metroStyleManager.Theme;
+            this.metroLabel4.Text = "Stop Time:";
             // 
             // dateTimePicker3
             // 
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker3.Location = new System.Drawing.Point(139, 110);
+            this.dateTimePicker3.Location = new System.Drawing.Point(251, 110);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(94, 20);
             this.dateTimePicker3.TabIndex = 7;
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(139, 150);
+            this.numericUpDown1.Location = new System.Drawing.Point(251, 150);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             365,
             0,
@@ -153,10 +149,8 @@ namespace SchedulerComponent
             this.metroLabel5.Location = new System.Drawing.Point(24, 150);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(109, 19);
-            this.metroLabel5.Style = this.metroStyleManager.Style;
             this.metroLabel5.TabIndex = 9;
-            this.metroLabel5.Text = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentDays);
-            this.metroLabel5.Theme = this.metroStyleManager.Theme;
+            this.metroLabel5.Text = "Days (24h cycles):";
             // 
             // metroLabel6
             // 
@@ -166,25 +160,22 @@ namespace SchedulerComponent
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(104, 19);
             this.metroLabel6.TabIndex = 159;
-            this.metroLabel6.Text = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentTimeInMinutes);
-            this.metroLabel6.Theme = this.metroStyleManager.Theme;
+            this.metroLabel6.Text = "Time in minutes:";
             // 
             // lblTimeInMinutes
             // 
             this.lblTimeInMinutes.AutoSize = true;
             this.lblTimeInMinutes.BackColor = System.Drawing.Color.Transparent;
-            this.lblTimeInMinutes.Location = new System.Drawing.Point(139, 183);
+            this.lblTimeInMinutes.Location = new System.Drawing.Point(254, 183);
             this.lblTimeInMinutes.Name = "lblTimeInMinutes";
             this.lblTimeInMinutes.Size = new System.Drawing.Size(16, 19);
-            this.lblTimeInMinutes.Style = this.metroStyleManager.Style;
             this.lblTimeInMinutes.TabIndex = 13679;
             this.lblTimeInMinutes.Text = "0";
-            this.lblTimeInMinutes.Theme = this.metroStyleManager.Theme;
             // 
             // metroToggle1
             // 
             this.metroToggle1.AutoSize = true;
-            this.metroToggle1.Location = new System.Drawing.Point(142, 219);
+            this.metroToggle1.Location = new System.Drawing.Point(254, 219);
             this.metroToggle1.Name = "metroToggle1";
             this.metroToggle1.Size = new System.Drawing.Size(80, 17);
             this.metroToggle1.TabIndex = 13680;
@@ -198,9 +189,7 @@ namespace SchedulerComponent
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(115, 19);
             this.metroLabel1.TabIndex = 13681;
-            this.metroLabel1.Text =
-                LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentEnableScheduler);
-            this.metroLabel1.Theme = this.metroStyleManager.Theme;
+            this.metroLabel1.Text = "Enable Scheduler?";
             // 
             // SettingsForm
             // 

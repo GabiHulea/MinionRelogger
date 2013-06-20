@@ -87,7 +87,10 @@ namespace MinionLauncherGUI
                     }
 
                 }
-                catch (Exception ex) {}
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                }
             }
 
             private static Assembly CurrentDomainAssemblyResolve(object sender, ResolveEventArgs args)

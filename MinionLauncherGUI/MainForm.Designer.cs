@@ -184,26 +184,28 @@ namespace MinionLauncherGUI
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(242, 309);
+            this.metroLabel5.Location = new System.Drawing.Point(223, 309);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(148, 19);
             this.metroLabel5.TabIndex = 25;
             this.metroLabel5.Text = "Use Minion Beta Builds?";
+            this.metroLabel5.Visible = false;
             // 
             // metroToggle2
             // 
             this.metroToggle2.AutoSize = true;
-            this.metroToggle2.Location = new System.Drawing.Point(414, 311);
+            this.metroToggle2.Location = new System.Drawing.Point(405, 311);
             this.metroToggle2.Name = "metroToggle2";
             this.metroToggle2.Size = new System.Drawing.Size(80, 17);
             this.metroToggle2.TabIndex = 24;
             this.metroToggle2.Text = "Off";
+            this.metroToggle2.Visible = false;
             this.metroToggle2.CheckedChanged += new System.EventHandler(this.MetroToggle2CheckedChanged);
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(242, 276);
+            this.metroLabel1.Location = new System.Drawing.Point(223, 276);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(162, 19);
             this.metroLabel1.TabIndex = 23;
@@ -212,7 +214,7 @@ namespace MinionLauncherGUI
             // metroToggle1
             // 
             this.metroToggle1.AutoSize = true;
-            this.metroToggle1.Location = new System.Drawing.Point(414, 278);
+            this.metroToggle1.Location = new System.Drawing.Point(405, 278);
             this.metroToggle1.Name = "metroToggle1";
             this.metroToggle1.Size = new System.Drawing.Size(80, 17);
             this.metroToggle1.TabIndex = 22;
@@ -221,9 +223,9 @@ namespace MinionLauncherGUI
             // 
             // btnSetLanguage
             // 
-            this.btnSetLanguage.Location = new System.Drawing.Point(402, 233);
+            this.btnSetLanguage.Location = new System.Drawing.Point(393, 233);
             this.btnSetLanguage.Name = "btnSetLanguage";
-            this.btnSetLanguage.Size = new System.Drawing.Size(112, 23);
+            this.btnSetLanguage.Size = new System.Drawing.Size(148, 23);
             this.btnSetLanguage.TabIndex = 21;
             this.btnSetLanguage.Text = "Set Language";
             this.btnSetLanguage.Click += new System.EventHandler(this.BtnSetLanguageClick);
@@ -232,7 +234,7 @@ namespace MinionLauncherGUI
             // 
             this.metroComboBox3.FormattingEnabled = true;
             this.metroComboBox3.ItemHeight = 23;
-            this.metroComboBox3.Location = new System.Drawing.Point(152, 231);
+            this.metroComboBox3.Location = new System.Drawing.Point(133, 231);
             this.metroComboBox3.MaxDropDownItems = 15;
             this.metroComboBox3.Name = "metroComboBox3";
             this.metroComboBox3.Size = new System.Drawing.Size(234, 29);
@@ -240,16 +242,16 @@ namespace MinionLauncherGUI
             // 
             // btnSetFrozenTime
             // 
-            this.btnSetFrozenTime.Location = new System.Drawing.Point(402, 161);
+            this.btnSetFrozenTime.Location = new System.Drawing.Point(393, 161);
             this.btnSetFrozenTime.Name = "btnSetFrozenTime";
-            this.btnSetFrozenTime.Size = new System.Drawing.Size(112, 23);
+            this.btnSetFrozenTime.Size = new System.Drawing.Size(148, 23);
             this.btnSetFrozenTime.TabIndex = 19;
             this.btnSetFrozenTime.Text = "Set Frozen Time";
             this.btnSetFrozenTime.Click += new System.EventHandler(this.BtnSetFrozenTimeClick);
             // 
             // btnEnableComponent
             // 
-            this.btnEnableComponent.Location = new System.Drawing.Point(531, 401);
+            this.btnEnableComponent.Location = new System.Drawing.Point(568, 401);
             this.btnEnableComponent.Name = "btnEnableComponent";
             this.btnEnableComponent.Size = new System.Drawing.Size(112, 23);
             this.btnEnableComponent.TabIndex = 18;
@@ -258,7 +260,7 @@ namespace MinionLauncherGUI
             // 
             // btnDisableComponent
             // 
-            this.btnDisableComponent.Location = new System.Drawing.Point(274, 401);
+            this.btnDisableComponent.Location = new System.Drawing.Point(255, 401);
             this.btnDisableComponent.Name = "btnDisableComponent";
             this.btnDisableComponent.Size = new System.Drawing.Size(112, 23);
             this.btnDisableComponent.TabIndex = 17;
@@ -270,7 +272,7 @@ namespace MinionLauncherGUI
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.Drawing.MetroFontSize.Medium;
             this.metroLabel4.FontWeight = MetroFramework.Drawing.MetroFontWeight.Bold;
-            this.metroLabel4.Location = new System.Drawing.Point(535, 343);
+            this.metroLabel4.Location = new System.Drawing.Point(572, 343);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(155, 19);
             this.metroLabel4.TabIndex = 16;
@@ -281,7 +283,7 @@ namespace MinionLauncherGUI
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontSize = MetroFramework.Drawing.MetroFontSize.Medium;
             this.metroLabel3.FontWeight = MetroFramework.Drawing.MetroFontWeight.Bold;
-            this.metroLabel3.Location = new System.Drawing.Point(155, 343);
+            this.metroLabel3.Location = new System.Drawing.Point(136, 343);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(150, 19);
             this.metroLabel3.TabIndex = 15;
@@ -291,7 +293,7 @@ namespace MinionLauncherGUI
             // 
             this.metroComboBox2.FormattingEnabled = true;
             this.metroComboBox2.ItemHeight = 23;
-            this.metroComboBox2.Location = new System.Drawing.Point(531, 364);
+            this.metroComboBox2.Location = new System.Drawing.Point(568, 364);
             this.metroComboBox2.MaxDropDownItems = 15;
             this.metroComboBox2.Name = "metroComboBox2";
             this.metroComboBox2.Size = new System.Drawing.Size(234, 29);
@@ -301,7 +303,7 @@ namespace MinionLauncherGUI
             // 
             this.metroComboBox1.FormattingEnabled = true;
             this.metroComboBox1.ItemHeight = 23;
-            this.metroComboBox1.Location = new System.Drawing.Point(152, 364);
+            this.metroComboBox1.Location = new System.Drawing.Point(133, 364);
             this.metroComboBox1.MaxDropDownItems = 15;
             this.metroComboBox1.Name = "metroComboBox1";
             this.metroComboBox1.Size = new System.Drawing.Size(234, 29);
@@ -309,18 +311,18 @@ namespace MinionLauncherGUI
             // 
             // btnAddAccount
             // 
-            this.btnAddAccount.Location = new System.Drawing.Point(402, 20);
+            this.btnAddAccount.Location = new System.Drawing.Point(393, 20);
             this.btnAddAccount.Name = "btnAddAccount";
-            this.btnAddAccount.Size = new System.Drawing.Size(112, 23);
+            this.btnAddAccount.Size = new System.Drawing.Size(148, 23);
             this.btnAddAccount.TabIndex = 12;
             this.btnAddAccount.Text = "Add Account";
             this.btnAddAccount.Click += new System.EventHandler(this.BtnAddAccountClick);
             // 
             // btnSetPollingDelay
             // 
-            this.btnSetPollingDelay.Location = new System.Drawing.Point(402, 127);
+            this.btnSetPollingDelay.Location = new System.Drawing.Point(393, 127);
             this.btnSetPollingDelay.Name = "btnSetPollingDelay";
-            this.btnSetPollingDelay.Size = new System.Drawing.Size(112, 23);
+            this.btnSetPollingDelay.Size = new System.Drawing.Size(148, 23);
             this.btnSetPollingDelay.TabIndex = 11;
             this.btnSetPollingDelay.Text = "Set Polling Delay";
             this.btnSetPollingDelay.Click += new System.EventHandler(this.BtnSetPollingDelayClick);
@@ -328,9 +330,9 @@ namespace MinionLauncherGUI
             // btnLoad
             // 
             this.btnLoad.Highlight = true;
-            this.btnLoad.Location = new System.Drawing.Point(401, 421);
+            this.btnLoad.Location = new System.Drawing.Point(392, 421);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(112, 23);
+            this.btnLoad.Size = new System.Drawing.Size(148, 23);
             this.btnLoad.TabIndex = 10;
             this.btnLoad.Text = "Load";
             this.btnLoad.Click += new System.EventHandler(this.BtnLoadClick);
@@ -338,9 +340,9 @@ namespace MinionLauncherGUI
             // btnSave
             // 
             this.btnSave.Highlight = true;
-            this.btnSave.Location = new System.Drawing.Point(401, 452);
+            this.btnSave.Location = new System.Drawing.Point(392, 452);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(112, 23);
+            this.btnSave.Size = new System.Drawing.Size(148, 23);
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.BtnSaveClick);
@@ -348,7 +350,7 @@ namespace MinionLauncherGUI
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(242, 198);
+            this.metroLabel2.Location = new System.Drawing.Point(223, 198);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(158, 19);
             this.metroLabel2.TabIndex = 8;
@@ -358,7 +360,7 @@ namespace MinionLauncherGUI
             // 
             this.metroComboBoxGlobalSettingsComponents.FormattingEnabled = true;
             this.metroComboBoxGlobalSettingsComponents.ItemHeight = 23;
-            this.metroComboBoxGlobalSettingsComponents.Location = new System.Drawing.Point(152, 52);
+            this.metroComboBoxGlobalSettingsComponents.Location = new System.Drawing.Point(133, 52);
             this.metroComboBoxGlobalSettingsComponents.MaxDropDownItems = 15;
             this.metroComboBoxGlobalSettingsComponents.Name = "metroComboBoxGlobalSettingsComponents";
             this.metroComboBoxGlobalSettingsComponents.Size = new System.Drawing.Size(234, 29);
@@ -366,9 +368,9 @@ namespace MinionLauncherGUI
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(401, 55);
+            this.btnSettings.Location = new System.Drawing.Point(392, 55);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(112, 23);
+            this.btnSettings.Size = new System.Drawing.Size(148, 23);
             this.btnSettings.TabIndex = 6;
             this.btnSettings.Text = "Open Settings";
             this.btnSettings.Click += new System.EventHandler(this.BtnSettingsClick);
@@ -376,7 +378,7 @@ namespace MinionLauncherGUI
             // metroToggleMinimizeGW2
             // 
             this.metroToggleMinimizeGW2.AutoSize = true;
-            this.metroToggleMinimizeGW2.Location = new System.Drawing.Point(414, 200);
+            this.metroToggleMinimizeGW2.Location = new System.Drawing.Point(405, 200);
             this.metroToggleMinimizeGW2.Name = "metroToggleMinimizeGW2";
             this.metroToggleMinimizeGW2.Size = new System.Drawing.Size(80, 17);
             this.metroToggleMinimizeGW2.TabIndex = 7;
@@ -385,9 +387,9 @@ namespace MinionLauncherGUI
             // 
             // btnSetExePath
             // 
-            this.btnSetExePath.Location = new System.Drawing.Point(401, 92);
+            this.btnSetExePath.Location = new System.Drawing.Point(392, 92);
             this.btnSetExePath.Name = "btnSetExePath";
-            this.btnSetExePath.Size = new System.Drawing.Size(112, 23);
+            this.btnSetExePath.Size = new System.Drawing.Size(148, 23);
             this.btnSetExePath.TabIndex = 6;
             this.btnSetExePath.Text = "Set GW2 EXE Path";
             this.btnSetExePath.Click += new System.EventHandler(this.BtnSetExePathClick);

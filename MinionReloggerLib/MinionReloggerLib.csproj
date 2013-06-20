@@ -87,6 +87,9 @@
     <Compile Include="Helpers\Language\Languages\Chinese.cs" />
     <Compile Include="Helpers\Language\Languages\English.cs" />
     <Compile Include="Helpers\Language\Language.cs" />
+    <Compile Include="Helpers\Language\Languages\French.cs" />
+    <Compile Include="Helpers\Language\Languages\German.cs" />
+    <Compile Include="Helpers\Language\Languages\Turkish.cs" />
     <Compile Include="Helpers\Memory\Memory.cs" />
     <Compile Include="Helpers\Memory\Pointers.cs" />
     <Compile Include="Helpers\Memory\VersionChecker.cs" />
