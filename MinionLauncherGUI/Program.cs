@@ -25,6 +25,8 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.IO;
 
 namespace MinionLauncherGUI
 {
@@ -59,15 +61,31 @@ namespace MinionLauncherGUI
             ///     The main entry point for the application.
             /// </summary>
             [STAThread]
-            private static void Main()
-            {
+            static void Main(string[] args)
                 try
                 {
                     AppDomain.CurrentDomain.AssemblyResolve += CurrentDomainAssemblyResolve;
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     var context = new MyApplicationContext();
-                    Application.Run(context);
+                    if (args.Length > 0)
+                    {
+                        Application.Run(context);
+                    }
+                    else
+                    {
+                        Process currentproc = Process.GetCurrentProcess();
+                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                        if (File.Exists("Updater.exe"))
+                        {
+                            startInfo.FileName = "Updater.exe";
+                            startInfo.Arguments = currentproc.Id.ToString();
+                            Process startedProc = Process.Start(startInfo);
+                            startedProc.WaitForExit();
+                        }
+                        Application.Run(context);
+                    }
+
                 }
                 catch (Exception ex) {}
             }
