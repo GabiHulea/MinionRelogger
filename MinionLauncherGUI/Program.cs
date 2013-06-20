@@ -69,7 +69,10 @@ namespace MinionLauncherGUI
                     var context = new MyApplicationContext();
                     Application.Run(context);
                 }
-                catch (Exception ex) {}
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                }
             }
 
             private static Assembly CurrentDomainAssemblyResolve(object sender, ResolveEventArgs args)

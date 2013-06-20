@@ -26,5 +26,7 @@ namespace MinionReloggerLib.Enums
         English = Default,
         Chinese = 1,
         German = 2,
+        French = 3,
+        Turkish = 4,
     }
 }
