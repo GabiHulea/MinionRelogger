@@ -62,6 +62,7 @@ namespace MinionLauncherGUI
             /// </summary>
             [STAThread]
             static void Main(string[] args)
+            {
                 try
                 {
                     AppDomain.CurrentDomain.AssemblyResolve += CurrentDomainAssemblyResolve;
