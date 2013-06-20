@@ -70,14 +70,11 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                 {
                     try
                     {
-                        //if (account.BotPath != AppDomain.CurrentDomain.BaseDirectory &&
-                        //    Directory.Exists(account.BotPath) &&
-                        //    File.Exists(account.BotPath + "GW2MinionLauncherDLL.dll"))
-                        //    Kernel32.SetDllDirectory(account.BotPath);
                         Logger.LoggingObject.Log(ELogType.Verbose,
                                                  LanguageManager.Singleton.GetTranslation(
                                                      ETranslations.StartWorkerLaunchingInstance),
-                                                 account.LoginName, account.BotPath + "GW2MinionLauncherDLL.dll");
+                                                 account.LoginName,
+                                                 account.BotPath + "\\MinionFiles\\GW2MinionLauncherDLL.dll");
                         string directory = Config.Singleton.GeneralSettings.GW2Path.Replace("GW2.exe", "");
                         if (Directory.Exists(directory))
                         {
@@ -158,10 +155,6 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                                                  LanguageManager.Singleton.GetTranslation(
                                                      ETranslations.StartWorkerAttachingTo),
                                                  account.LoginName, account.BotPath + "\\GW2MinionLauncherDLL.dll");
-                        //if (account.BotPath != AppDomain.CurrentDomain.BaseDirectory &&
-                        //    Directory.Exists(account.BotPath) &&
-                        //    File.Exists(account + "\\GW2MinionLauncherDLL.dll"))
-                        //    Kernel32.SetDllDirectory(account.BotPath);
                         attached = GW2MinionLauncher.AttachToPid((uint) p.Id, Config.Singleton.GeneralSettings.UseBeta);
                     }
                     catch (Exception ex)

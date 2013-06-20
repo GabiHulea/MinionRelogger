@@ -314,15 +314,15 @@ namespace MinionReloggerLib.Threads.Implementation
                         Account wanted =
                             Config.Singleton.AccountSettings.FirstOrDefault(
                                 a => firstOrDefault != null && a.PID == firstOrDefault.Id);
-                        //if (firstOrDefault != null)
-                        //{
-                        //    if (wanted != null)
-                        //    {
-                        //        wanted.SetLastCrash(DateTime.Now);
-                        //        wanted.SetLastStopTime(DateTime.Now);
-                        //    }
-                        //    firstOrDefault.Kill();
-                        //}
+                        if (firstOrDefault != null)
+                        {
+                            if (wanted != null)
+                            {
+                                wanted.SetLastCrash(DateTime.Now);
+                                wanted.SetLastStopTime(DateTime.Now);
+                            }
+                            firstOrDefault.Kill();
+                        }
                     }
                     catch (Exception) {}
                 }
