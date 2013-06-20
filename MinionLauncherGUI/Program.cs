@@ -33,59 +33,19 @@ namespace MinionLauncherGUI
         private class MyApplicationContext : ApplicationContext
         {
             private readonly MainForm _mainForm;
-            private readonly FileStream _userData;
-
             private int _formCount;
-            private Rectangle _mainFormPosition;
 
             private MyApplicationContext()
             {
                 _formCount = 0;
-                Application.ApplicationExit += OnApplicationExit;
-
-                try
-                {
-                    _userData = new FileStream(
-                        AppDomain.CurrentDomain.BaseDirectory + "\\MinionFiles\\" + "appdata.txt", FileMode.OpenOrCreate);
-                }
-                catch (IOException e)
-                {
-                    MessageBox.Show("An error occurred while attempting to show the application." +
-                                    "The error is:" + e);
-                    ExitThread();
-                }
-
+             
                 _mainForm = new MainForm();
                 _mainForm.Closed += OnFormClosed;
-                _mainForm.Closing += OnFormClosing;
                 _formCount++;
-
-                if (ReadFormDataFromFile())
-                {
-                    _mainForm.StartPosition = FormStartPosition.Manual;
-                    _mainForm.Bounds = _mainFormPosition;
-                }
-
+                
                 _mainForm.Show();
             }
-
-            private void OnApplicationExit(object sender, EventArgs e)
-            {
-                WriteFormDataToFile();
-
-                try
-                {
-                    _userData.Close();
-                }
-                catch {}
-            }
-
-            private void OnFormClosing(object sender, CancelEventArgs e)
-            {
-                if (sender is MainForm)
-                    _mainFormPosition = ((Form) sender).Bounds;
-            }
-
+            
             private void OnFormClosed(object sender, EventArgs e)
             {
                 _formCount--;
@@ -94,73 +54,7 @@ namespace MinionLauncherGUI
                     ExitThread();
                 }
             }
-
-            private bool WriteFormDataToFile()
-            {
-                var encoding = new UTF8Encoding();
-
-                var rectConv = new RectangleConverter();
-                String mainFormPos = rectConv.ConvertToString(_mainFormPosition);
-
-                byte[] dataToWrite = encoding.GetBytes("~" + mainFormPos);
-
-                try
-                {
-                    _userData.Seek(0, SeekOrigin.Begin);
-                    _userData.Write(dataToWrite, 0, dataToWrite.Length);
-                    _userData.Flush();
-
-                    _userData.SetLength(dataToWrite.Length);
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-
-            private bool ReadFormDataFromFile()
-            {
-                var encoding = new UTF8Encoding();
-                String data;
-
-                if (_userData.Length != 0)
-                {
-                    var dataToRead = new Byte[_userData.Length];
-
-                    try
-                    {
-                        _userData.Seek(0, SeekOrigin.Begin);
-                        _userData.Read(dataToRead, 0, dataToRead.Length);
-                    }
-                    catch (IOException e)
-                    {
-                        String errorInfo = e.ToString();
-                        return false;
-                    }
-
-                    data = encoding.GetString(dataToRead);
-
-                    try
-                    {
-                        var rectConv = new RectangleConverter();
-                        String mainFormPos = data.Substring(1, data.IndexOf("~", 1) - 1);
-
-                        _mainFormPosition = (Rectangle) rectConv.ConvertFromString(mainFormPos);
-
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
+            
             /// <summary>
             ///     The main entry point for the application.
             /// </summary>
