@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -62,18 +62,13 @@ namespace MinionReloggerLib.Interfaces.Objects
                     if (!result || (Process != null && !Process.HasExited))
                         Process.Kill();
                 }
-                catch
-                {
-                }
+                catch {}
             }
             Update();
             return this;
         }
 
-        public bool IsReady()
-        {
-            return (DateTime.Now - Time).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime;
-        }
+        public bool IsReady() { return (DateTime.Now - Time).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime; }
 
         public void Update()
         {
@@ -85,9 +80,6 @@ namespace MinionReloggerLib.Interfaces.Objects
                                      Account.LoginName, Config.Singleton.GeneralSettings.FrozenTime);
         }
 
-        public bool IsViewState(EViewState toCompare)
-        {
-            return ViewState == toCompare;
-        }
+        public bool IsViewState(EViewState toCompare) { return ViewState == toCompare; }
     }
 }

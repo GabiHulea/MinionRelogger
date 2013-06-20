@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -33,7 +33,8 @@ namespace MinionReloggerLib.Imports
             CallingConvention = CallingConvention.Cdecl)]
         internal static extern uint LaunchAccount([MarshalAs(UnmanagedType.LPWStr)] string exePath,
                                                   [MarshalAs(UnmanagedType.LPWStr)] string account,
-                                                  [MarshalAs(UnmanagedType.LPWStr)] string password, bool noSound);
+                                                  [MarshalAs(UnmanagedType.LPWStr)] string password, bool noSound,
+                                                  bool useBeta);
 
         [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, SetLastError = true,
             CallingConvention = CallingConvention.Cdecl)]
@@ -41,7 +42,7 @@ namespace MinionReloggerLib.Imports
                                                           [MarshalAs(UnmanagedType.LPWStr)] string exePath,
                                                           [MarshalAs(UnmanagedType.LPWStr)] string account,
                                                           [MarshalAs(UnmanagedType.LPWStr)] string password,
-                                                          bool noSound);
+                                                          bool noSound, bool useBeta);
 
         [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl,
             SetLastError = true)]
@@ -62,9 +63,7 @@ namespace MinionReloggerLib.Imports
                     if (!process.HasExited && process.StartTime.Ticks > 5000)
                         AccountName(pid, buf, buf.Capacity);
                 }
-                catch (Exception ex)
-                {
-                }
+                catch (Exception ex) {}
                 return buf.ToString();
             }
             catch (Exception ex)
@@ -76,7 +75,7 @@ namespace MinionReloggerLib.Imports
 
         [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl,
             SetLastError = true)]
-        internal static extern bool AttachToPid(uint pid);
+        internal static extern bool AttachToPid(uint pid, bool useBeta);
 
         [DllImport("GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl,
             SetLastError = true)]

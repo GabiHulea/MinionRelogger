@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -41,10 +41,7 @@ namespace LaunchDelayComponent
             UpdateLabelText();
         }
 
-        private void BtnCancelClick(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void BtnCancelClick(object sender, EventArgs e) { Close(); }
 
         private void BtnOkClick(object sender, EventArgs e)
         {
@@ -52,10 +49,7 @@ namespace LaunchDelayComponent
             Close();
         }
 
-        private void BtnNewValueClick(object sender, EventArgs e)
-        {
-            SetLaunchDelay(false, Config.Singleton.GeneralSettings.LaunchDelay);
-        }
+        private void BtnNewValueClick(object sender, EventArgs e) { SetLaunchDelay(false, Config.Singleton.GeneralSettings.LaunchDelay); }
 
         private void UpdateLabelText()
         {

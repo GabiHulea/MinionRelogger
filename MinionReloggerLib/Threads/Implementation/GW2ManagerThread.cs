@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -44,20 +44,11 @@ namespace MinionReloggerLib.Threads.Implementation
             _keepAlive = false;
         }
 
-        public Thread GetThread()
-        {
-            return _gw2ManagerThread;
-        }
+        public Thread GetThread() { return _gw2ManagerThread; }
 
-        public string GetName()
-        {
-            return "GW2ManagerThread";
-        }
+        public string GetName() { return "GW2ManagerThread"; }
 
-        public bool IsRunning()
-        {
-            return _gw2ManagerThread.IsAlive && _isRunning;
-        }
+        public bool IsRunning() { return _gw2ManagerThread.IsAlive && _isRunning; }
 
         public void Delay(int delay)
         {
@@ -65,10 +56,7 @@ namespace MinionReloggerLib.Threads.Implementation
             _needDelay = true;
         }
 
-        public void Stop()
-        {
-            _isRunning = false;
-        }
+        public void Stop() { _isRunning = false; }
 
         public void Start()
         {
@@ -93,9 +81,7 @@ namespace MinionReloggerLib.Threads.Implementation
                             Thread.Sleep(_delay);
                         }
                     }
-                    catch (Exception)
-                    {
-                    }
+                    catch (Exception) {}
                     Thread.Sleep(Config.Singleton.GeneralSettings.PollingDelay*1000);
                 }
                 Thread.Sleep(10000);

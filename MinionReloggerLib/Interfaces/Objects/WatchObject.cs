@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -59,17 +59,12 @@ namespace MinionReloggerLib.Interfaces.Objects
                         Process.Kill();
                 }
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception) {}
             Update();
             return this;
         }
 
-        public bool IsReady()
-        {
-            return (DateTime.Now - Time).TotalSeconds > 90;
-        }
+        public bool IsReady() { return (DateTime.Now - Time).TotalSeconds > 90; }
 
         public void Update()
         {

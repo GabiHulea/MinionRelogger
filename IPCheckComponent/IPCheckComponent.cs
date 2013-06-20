@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -65,53 +65,26 @@ namespace IPCheckComponent
             return this;
         }
 
-        public string GetName()
-        {
-            return "IPCheckComponent";
-        }
+        public string GetName() { return "IPCheckComponent"; }
 
-        public void OnEnable()
-        {
-        }
+        public void OnEnable() { }
 
-        public void OnDisable()
-        {
-        }
+        public void OnDisable() { }
 
-        public void OnLoad()
-        {
-        }
+        public void OnLoad() { }
 
-        public void OnUnload()
-        {
-        }
+        public void OnUnload() { }
 
-        public Form ShowSettingsForm(Account account = null)
-        {
-            return new SettingsForm();
-        }
+        public Form ShowSettingsForm(Account account = null) { return new SettingsForm(); }
 
-        public ESettingsType GetSettingType()
-        {
-            return ESettingsType.Global;
-        }
+        public ESettingsType GetSettingType() { return ESettingsType.Global; }
 
-        public bool Check(Account account)
-        {
-            return Config.Singleton.GeneralSettings.CheckForIP;
-        }
+        public bool Check(Account account) { return Config.Singleton.GeneralSettings.CheckForIP; }
 
-        public bool IsReady(Account account)
-        {
-            return !GetMyIP.ListContainsMyIPAddress(Config.Singleton.GeneralSettings.AllowedIPAddresses);
-        }
+        public bool IsReady(Account account) { return !GetMyIP.ListContainsMyIPAddress(Config.Singleton.GeneralSettings.AllowedIPAddresses); }
 
-        public void Update(Account account)
-        {
-        }
+        public void Update(Account account) { }
 
-        public void PostWork(Account account)
-        {
-        }
+        public void PostWork(Account account) { }
     }
 }

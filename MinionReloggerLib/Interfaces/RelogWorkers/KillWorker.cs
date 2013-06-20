@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -31,10 +31,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
     {
         private bool _done;
 
-        public bool Check(Account account)
-        {
-            return account.Running && account.PID != uint.MaxValue && account.PID != 0;
-        }
+        public bool Check(Account account) { return account.Running && account.PID != uint.MaxValue && account.PID != 0; }
 
         public IRelogWorker DoWork(Account account)
         {
@@ -44,9 +41,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                 {
                     _done = GW2MinionLauncher.KillInstance(account.PID);
                 }
-                catch
-                {
-                }
+                catch {}
             }
             return this;
         }
@@ -59,9 +54,6 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
             account.SetLastStopTime(DateTime.Now);
         }
 
-        public bool PostWork(Account account)
-        {
-            return _done;
-        }
+        public bool PostWork(Account account) { return _done; }
     }
 }

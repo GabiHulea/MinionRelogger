@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -39,10 +39,7 @@ namespace MinionReloggerLib.Logging
     {
         public static ListBoxLog LoggingObject;
 
-        public static void Initialize(ListBox listBox)
-        {
-            LoggingObject = new ListBoxLog(listBox);
-        }
+        public static void Initialize(ListBox listBox) { LoggingObject = new ListBoxLog(listBox); }
 
         public sealed class ListBoxLog : IDisposable
         {
@@ -57,14 +54,10 @@ namespace MinionReloggerLib.Logging
             private bool _paused;
 
             public ListBoxLog(ListBox listBox)
-                : this(listBox, DefaultMessageFormat, DefaultMaxLinesInListbox)
-            {
-            }
+                : this(listBox, DefaultMessageFormat, DefaultMaxLinesInListbox) { }
 
             public ListBoxLog(ListBox listBox, string messageFormat)
-                : this(listBox, messageFormat, DefaultMaxLinesInListbox)
-            {
-            }
+                : this(listBox, messageFormat, DefaultMaxLinesInListbox) { }
 
             public ListBoxLog(ListBox listBox, string messageFormat, int maxLinesInListbox)
             {
@@ -106,15 +99,9 @@ namespace MinionReloggerLib.Logging
                 }
             }
 
-            private void OnHandleCreated(object sender, EventArgs e)
-            {
-                _canAdd = true;
-            }
+            private void OnHandleCreated(object sender, EventArgs e) { _canAdd = true; }
 
-            private void OnHandleDestroyed(object sender, EventArgs e)
-            {
-                _canAdd = false;
-            }
+            private void OnHandleDestroyed(object sender, EventArgs e) { _canAdd = false; }
 
             private void DrawItemHandler(object sender, DrawItemEventArgs e)
             {
@@ -168,10 +155,7 @@ namespace MinionReloggerLib.Logging
                 }
             }
 
-            private void CopyMenuOnClickHandler(object sender, EventArgs e)
-            {
-                CopyToClipboard();
-            }
+            private void CopyMenuOnClickHandler(object sender, EventArgs e) { CopyToClipboard(); }
 
             private void CopyMenuPopupHandler(object sender, EventArgs e)
             {
@@ -252,25 +236,13 @@ namespace MinionReloggerLib.Logging
                 }
             }
 
-            public void Log(string message)
-            {
-                Log(ELogType.Debug, message);
-            }
+            public void Log(string message) { Log(ELogType.Debug, message); }
 
-            public void Log(string format, params object[] args)
-            {
-                Log(ELogType.Debug, (format == null) ? null : string.Format(format, args));
-            }
+            public void Log(string format, params object[] args) { Log(ELogType.Debug, (format == null) ? null : string.Format(format, args)); }
 
-            public void Log(ELogType type, string format, params object[] args)
-            {
-                Log(type, (format == null) ? null : string.Format(format, args));
-            }
+            public void Log(ELogType type, string format, params object[] args) { Log(type, (format == null) ? null : string.Format(format, args)); }
 
-            public void Log(ELogType type, string message)
-            {
-                WriteEvent(new LogEventArgs(type, message));
-            }
+            public void Log(ELogType type, string message) { WriteEvent(new LogEventArgs(type, message)); }
 
             ~ListBoxLog()
             {

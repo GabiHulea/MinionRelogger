@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -53,10 +53,7 @@ namespace MinionReloggerLib.Configuration
             set { _instance = value; }
         }
 
-        public bool AccountExists(Account account)
-        {
-            return AccountSettings.Any(s => account.LoginName == s.LoginName);
-        }
+        public bool AccountExists(Account account) { return AccountSettings.Any(s => account.LoginName == s.LoginName); }
 
         public void DeleteAccount(Account account)
         {
@@ -77,10 +74,7 @@ namespace MinionReloggerLib.Configuration
             AccountSettings.Add(account);
         }
 
-        public void EraseAccountList()
-        {
-            AccountSettings.Clear();
-        }
+        public void EraseAccountList() { AccountSettings.Clear(); }
 
         public static void SaveSettingsToFile()
         {

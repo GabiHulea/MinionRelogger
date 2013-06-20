@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -48,15 +48,9 @@ namespace MinionReloggerLib.Helpers.Language
             set { _instance = value; }
         }
 
-        public Dictionary<ELanguages, Language> GetLanguages()
-        {
-            return _languages;
-        }
+        public Dictionary<ELanguages, Language> GetLanguages() { return _languages; }
 
-        public string GetTranslation(ETranslations key)
-        {
-            return _languages[_currentLanguage].GetTranslation(key);
-        }
+        public string GetTranslation(ETranslations key) { return _languages[_currentLanguage].GetTranslation(key); }
 
         public void SetNewLanguage(ELanguages newLanguage)
         {
@@ -64,9 +58,6 @@ namespace MinionReloggerLib.Helpers.Language
             Config.Singleton.GeneralSettings.SetLanguage(_currentLanguage);
         }
 
-        public ELanguages GetCurrentLanguage()
-        {
-            return _currentLanguage;
-        }
+        public ELanguages GetCurrentLanguage() { return _currentLanguage; }
     }
 }

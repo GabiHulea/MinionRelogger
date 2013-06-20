@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -44,10 +44,7 @@ namespace IPCheckComponent
             metroToggle1.Checked = Config.Singleton.GeneralSettings.CheckForIP;
         }
 
-        private void BtnCancelClick(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void BtnCancelClick(object sender, EventArgs e) { Close(); }
 
         private void BtnOkClick(object sender, EventArgs e)
         {

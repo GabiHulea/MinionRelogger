@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -77,20 +77,11 @@ namespace MinionReloggerLib.Interfaces.Objects
         [ProtoMember(6)]
         public int BreakDurationDelay { get; set; }
 
-        public bool Check()
-        {
-            return BreakEnabled && (DateTime.Now - TimeActualStartBreak).TotalSeconds > 0;
-        }
+        public bool Check() { return BreakEnabled && (DateTime.Now - TimeActualStartBreak).TotalSeconds > 0; }
 
-        public IObject DoWork()
-        {
-            return this;
-        }
+        public IObject DoWork() { return this; }
 
-        public bool IsReady()
-        {
-            return BreakEnabled && (DateTime.Now - TimeActualStopBreak).TotalSeconds <= 0;
-        }
+        public bool IsReady() { return BreakEnabled && (DateTime.Now - TimeActualStopBreak).TotalSeconds <= 0; }
 
         public void Update()
         {

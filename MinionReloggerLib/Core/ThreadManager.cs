@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -51,15 +51,9 @@ namespace MinionReloggerLib.Core
             }
         }
 
-        internal List<IRelogThread> GetThreads()
-        {
-            return _threads;
-        }
+        internal List<IRelogThread> GetThreads() { return _threads; }
 
-        internal void AddThread(IRelogThread threadToAdd)
-        {
-            _threads.Add(threadToAdd);
-        }
+        internal void AddThread(IRelogThread threadToAdd) { _threads.Add(threadToAdd); }
 
         public void EnableThread(string threadToEnable)
         {

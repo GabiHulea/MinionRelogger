@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -37,10 +37,7 @@ namespace MinionReloggerLib.Core
 
         private readonly List<ComponentClass> _components;
 
-        protected ComponentManager()
-        {
-            _components = new List<ComponentClass>();
-        }
+        protected ComponentManager() { _components = new List<ComponentClass>(); }
 
         public static ComponentManager Singleton
         {
@@ -48,10 +45,7 @@ namespace MinionReloggerLib.Core
             set { _instance = value; }
         }
 
-        internal List<ComponentClass> GetComponents()
-        {
-            return _components;
-        }
+        internal List<ComponentClass> GetComponents() { return _components; }
 
         internal void AddComponent(IRelogComponent componentToAdd)
         {
@@ -131,10 +125,7 @@ namespace MinionReloggerLib.Core
             return first != null && first.Component != null;
         }
 
-        public void OpenSettingsForm(IRelogComponent componentToCall, Account account = null)
-        {
-            componentToCall.ShowSettingsForm(account).ShowDialog();
-        }
+        public void OpenSettingsForm(IRelogComponent componentToCall, Account account = null) { componentToCall.ShowSettingsForm(account).ShowDialog(); }
 
         public void OpenSettingsForm(string nameofComponentToCall, Account account = null)
         {
@@ -145,10 +136,7 @@ namespace MinionReloggerLib.Core
             }
         }
 
-        public List<string> GetComponentNames()
-        {
-            return _components.Select(componentClass => componentClass.Component.GetName()).ToList();
-        }
+        public List<string> GetComponentNames() { return _components.Select(componentClass => componentClass.Component.GetName()).ToList(); }
 
         public List<string> GetComponentNamesForEnabled()
         {

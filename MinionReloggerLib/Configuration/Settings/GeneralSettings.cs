@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -81,6 +81,9 @@ namespace MinionReloggerLib.Configuration.Settings
         [ProtoMember(13)]
         public bool ExtensiveLogging { get; private set; }
 
+        [ProtoMember(14)]
+        public bool UseBeta { get; private set; }
+
         public void SetGW2Path(string newPath)
         {
             Logger.LoggingObject.Log(ELogType.Info,
@@ -156,35 +159,19 @@ namespace MinionReloggerLib.Configuration.Settings
                                          ETranslations.GeneralSettingsCheckForIPChanged), newValue);
         }
 
-        public void SetExtensiveLogging(bool newExtensiveLogging)
-        {
-            ExtensiveLogging = newExtensiveLogging;
-        }
+        public void SetExtensiveLogging(bool newExtensiveLogging) { ExtensiveLogging = newExtensiveLogging; }
 
 
-        public void SetLanguage(ELanguages newLanguage)
-        {
-            CurrentLanguage = (int) newLanguage;
-        }
+        public void SetUseBeta(bool newUseBeta) { UseBeta = newUseBeta; }
 
-        public bool AlreadyContainsIP(IPAddress newAddress)
-        {
-            return (AllowedIPAddresses.Any(ip => ip.Equals(newAddress)));
-        }
+        public void SetLanguage(ELanguages newLanguage) { CurrentLanguage = (int) newLanguage; }
 
-        public void EmptyIPList()
-        {
-            AllowedIPAddresses.Clear();
-        }
+        public bool AlreadyContainsIP(IPAddress newAddress) { return (AllowedIPAddresses.Any(ip => ip.Equals(newAddress))); }
 
-        public void SetStyle(string newStyle)
-        {
-            StyleSetting = newStyle;
-        }
+        public void EmptyIPList() { AllowedIPAddresses.Clear(); }
 
-        public void SetTheme(string newTheme)
-        {
-            ThemeSetting = newTheme;
-        }
+        public void SetStyle(string newStyle) { StyleSetting = newStyle; }
+
+        public void SetTheme(string newTheme) { ThemeSetting = newTheme; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -37,10 +37,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
         private Process[] _gw2Processes;
         private uint _newPID;
 
-        public bool Check(Account account)
-        {
-            return CheckIfProcessAlreadyExists(_gw2Processes, account, _attached, ref _newPID);
-        }
+        public bool Check(Account account) { return CheckIfProcessAlreadyExists(_gw2Processes, account, _attached, ref _newPID); }
 
         public IRelogWorker DoWork(Account account)
         {
@@ -63,10 +60,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
             account.SetLastStartTime(DateTime.Now);
         }
 
-        public bool PostWork(Account account)
-        {
-            return _newPID < uint.MaxValue;
-        }
+        public bool PostWork(Account account) { return _newPID < uint.MaxValue; }
 
         private uint CreateNewProcess(bool attached, Account account, ref uint newPID)
         {
@@ -76,10 +70,10 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                 {
                     try
                     {
-                        if (account.BotPath != AppDomain.CurrentDomain.BaseDirectory &&
-                            Directory.Exists(account.BotPath) &&
-                            File.Exists(account.BotPath + "GW2MinionLauncherDLL.dll"))
-                            Kernel32.SetDllDirectory(account.BotPath);
+                        //if (account.BotPath != AppDomain.CurrentDomain.BaseDirectory &&
+                        //    Directory.Exists(account.BotPath) &&
+                        //    File.Exists(account.BotPath + "GW2MinionLauncherDLL.dll"))
+                        //    Kernel32.SetDllDirectory(account.BotPath);
                         Logger.LoggingObject.Log(ELogType.Verbose,
                                                  LanguageManager.Singleton.GetTranslation(
                                                      ETranslations.StartWorkerLaunchingInstance),
@@ -125,7 +119,8 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                             }
                         }
                         newPID = GW2MinionLauncher.LaunchAccount(Config.Singleton.GeneralSettings.GW2Path,
-                                                                 account.LoginName, account.Password, account.NoSound);
+                                                                 account.LoginName, account.Password, account.NoSound,
+                                                                 Config.Singleton.GeneralSettings.UseBeta);
                     }
                     catch (Exception ex)
                     {
@@ -163,11 +158,11 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                                                  LanguageManager.Singleton.GetTranslation(
                                                      ETranslations.StartWorkerAttachingTo),
                                                  account.LoginName, account.BotPath + "\\GW2MinionLauncherDLL.dll");
-                        if (account.BotPath != AppDomain.CurrentDomain.BaseDirectory &&
-                            Directory.Exists(account.BotPath) &&
-                            File.Exists(account + "\\GW2MinionLauncherDLL.dll"))
-                            Kernel32.SetDllDirectory(account.BotPath);
-                        attached = GW2MinionLauncher.AttachToPid((uint) p.Id);
+                        //if (account.BotPath != AppDomain.CurrentDomain.BaseDirectory &&
+                        //    Directory.Exists(account.BotPath) &&
+                        //    File.Exists(account + "\\GW2MinionLauncherDLL.dll"))
+                        //    Kernel32.SetDllDirectory(account.BotPath);
+                        attached = GW2MinionLauncher.AttachToPid((uint) p.Id, Config.Singleton.GeneralSettings.UseBeta);
                     }
                     catch (Exception ex)
                     {

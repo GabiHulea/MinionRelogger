@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -253,14 +253,8 @@ namespace MinionReloggerLib.Helpers.Language.Languages
                              "Stopping instance for {0}, should not be running due to scheduler settings.");
         }
 
-        public override string GetLanguageDescription()
-        {
-            return "English";
-        }
+        public override string GetLanguageDescription() { return "English"; }
 
-        public override ELanguages GetLanguage()
-        {
-            return ELanguages.English;
-        }
+        public override ELanguages GetLanguage() { return ELanguages.English; }
     }
 }

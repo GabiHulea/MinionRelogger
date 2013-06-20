@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -44,10 +44,7 @@ namespace MinionReloggerLib.Helpers.MyIP
             }
         }
 
-        public static bool IsMyAddress(IPAddress toCheck)
-        {
-            return toCheck.Equals(GetMyCurrentIPAddress());
-        }
+        public static bool IsMyAddress(IPAddress toCheck) { return toCheck.Equals(GetMyCurrentIPAddress()); }
 
         public static bool ListContainsMyIPAddress(List<IPAddress> listOfAddresses)
         {

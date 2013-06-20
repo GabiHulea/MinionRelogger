@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -243,14 +243,8 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.SchedulerComponentKill, "停止窗口 {0}, 计划任务设置.");
         }
 
-        public override string GetLanguageDescription()
-        {
-            return "中文";
-        }
+        public override string GetLanguageDescription() { return "中文"; }
 
-        public override ELanguages GetLanguage()
-        {
-            return ELanguages.Chinese;
-        }
+        public override ELanguages GetLanguage() { return ELanguages.Chinese; }
     }
 }

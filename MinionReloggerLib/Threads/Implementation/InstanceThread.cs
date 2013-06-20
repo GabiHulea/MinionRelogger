@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -75,20 +75,11 @@ namespace MinionReloggerLib.Threads.Implementation
             }
         }
 
-        public Thread GetThread()
-        {
-            return _instanceThread;
-        }
+        public Thread GetThread() { return _instanceThread; }
 
-        public string GetName()
-        {
-            return "InstanceThread";
-        }
+        public string GetName() { return "InstanceThread"; }
 
-        public bool IsRunning()
-        {
-            return _instanceThread.IsAlive && _isRunning;
-        }
+        public bool IsRunning() { return _instanceThread.IsAlive && _isRunning; }
 
         public void Delay(int delay)
         {
@@ -96,10 +87,7 @@ namespace MinionReloggerLib.Threads.Implementation
             _needDelay = true;
         }
 
-        public void Stop()
-        {
-            _isRunning = false;
-        }
+        public void Stop() { _isRunning = false; }
 
         public void Start()
         {
@@ -301,9 +289,7 @@ namespace MinionReloggerLib.Threads.Implementation
                         }
                         _checkAll = !_checkAll;
                     }
-                    catch (Exception)
-                    {
-                    }
+                    catch (Exception) {}
                     Thread.Sleep(Config.Singleton.GeneralSettings.PollingDelay*1000);
                 }
                 Thread.Sleep(10000);
@@ -338,9 +324,7 @@ namespace MinionReloggerLib.Threads.Implementation
                         //    firstOrDefault.Kill();
                         //}
                     }
-                    catch (Exception)
-                    {
-                    }
+                    catch (Exception) {}
                 }
             }
             return true;
@@ -360,9 +344,7 @@ namespace MinionReloggerLib.Threads.Implementation
                     }
                 }
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception) {}
             return toReturn;
         }
 
@@ -450,9 +432,7 @@ namespace MinionReloggerLib.Threads.Implementation
                         {
                             wanted.Value.DoWork();
                         }
-                        catch
-                        {
-                        }
+                        catch {}
                     }
                 }
             }
@@ -514,9 +494,7 @@ namespace MinionReloggerLib.Threads.Implementation
                         User32.ShowWindowAsync(hwnd, User32.SW_SHOWMINIMIZED);
                     }
                 }
-                catch
-                {
-                }
+                catch {}
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -75,9 +75,7 @@ namespace MinionLauncherGUI.VersionControl
                         }
                     }
                 }
-                catch (Exception)
-                {
-                }
+                catch (Exception) {}
                 finally
                 {
                     if (reader != null) reader.Close();
@@ -99,9 +97,7 @@ namespace MinionLauncherGUI.VersionControl
                     }
                 }
             }
-            catch
-            {
-            }
+            catch {}
             finally
             {
                 if (reader != null) reader.Close();

@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -41,34 +41,16 @@ namespace ComponentTest
             return "TestComponent (external DLL test)";
         }
 
-        public void OnEnable()
-        {
-            Logger.LoggingObject.Log("[TestComponent] OnEnable");
-        }
+        public void OnEnable() { Logger.LoggingObject.Log("[TestComponent] OnEnable"); }
 
-        public void OnDisable()
-        {
-            Logger.LoggingObject.Log("[TestComponent] OnDisable");
-        }
+        public void OnDisable() { Logger.LoggingObject.Log("[TestComponent] OnDisable"); }
 
-        public void OnLoad()
-        {
-            Logger.LoggingObject.Log("[TestComponent] OnLoad");
-        }
+        public void OnLoad() { Logger.LoggingObject.Log("[TestComponent] OnLoad"); }
 
-        public void OnUnload()
-        {
-            Logger.LoggingObject.Log("[TestComponent] OnUnload");
-        }
+        public void OnUnload() { Logger.LoggingObject.Log("[TestComponent] OnUnload"); }
 
-        public Form ShowSettingsForm(Account account = null)
-        {
-            return new Form();
-        }
+        public Form ShowSettingsForm(Account account = null) { return new Form(); }
 
-        public ESettingsType GetSettingType()
-        {
-            return ESettingsType.None;
-        }
+        public ESettingsType GetSettingType() { return ESettingsType.None; }
     }
 }

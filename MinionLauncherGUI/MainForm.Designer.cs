@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -60,6 +60,10 @@ namespace MinionLauncherGUI
             this.metroTabControl2 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroToggle2 = new MetroFramework.Controls.MetroToggle();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
             this.btnSetLanguage = new MetroFramework.Controls.MetroButton();
             this.metroComboBox3 = new MetroFramework.Controls.MetroComboBox();
             this.btnSetFrozenTime = new MetroFramework.Controls.MetroButton();
@@ -85,8 +89,6 @@ namespace MinionLauncherGUI
             this.metroTileStopAll = new MetroFramework.Controls.MetroTile();
             this.metroTileChangeTheme = new MetroFramework.Controls.MetroTile();
             this.metroTileChangeColor = new MetroFramework.Controls.MetroTile();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxLogo)).BeginInit();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -151,6 +153,8 @@ namespace MinionLauncherGUI
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.Controls.Add(this.metroLabel5);
+            this.tabPage2.Controls.Add(this.metroToggle2);
             this.tabPage2.Controls.Add(this.metroLabel1);
             this.tabPage2.Controls.Add(this.metroToggle1);
             this.tabPage2.Controls.Add(this.btnSetLanguage);
@@ -176,6 +180,44 @@ namespace MinionLauncherGUI
             this.tabPage2.Size = new System.Drawing.Size(933, 491);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(242, 309);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(148, 19);
+            this.metroLabel5.TabIndex = 25;
+            this.metroLabel5.Text = "Use Minion Beta Builds?";
+            // 
+            // metroToggle2
+            // 
+            this.metroToggle2.AutoSize = true;
+            this.metroToggle2.Location = new System.Drawing.Point(414, 311);
+            this.metroToggle2.Name = "metroToggle2";
+            this.metroToggle2.Size = new System.Drawing.Size(80, 17);
+            this.metroToggle2.TabIndex = 24;
+            this.metroToggle2.Text = "Off";
+            this.metroToggle2.CheckedChanged += new System.EventHandler(this.MetroToggle2CheckedChanged);
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(242, 276);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(162, 19);
+            this.metroLabel1.TabIndex = 23;
+            this.metroLabel1.Text = "Enable Extensive Logging?";
+            // 
+            // metroToggle1
+            // 
+            this.metroToggle1.AutoSize = true;
+            this.metroToggle1.Location = new System.Drawing.Point(414, 278);
+            this.metroToggle1.Name = "metroToggle1";
+            this.metroToggle1.Size = new System.Drawing.Size(80, 17);
+            this.metroToggle1.TabIndex = 22;
+            this.metroToggle1.Text = "Off";
+            this.metroToggle1.CheckedChanged += new System.EventHandler(this.MetroToggle1CheckedChanged);
             // 
             // btnSetLanguage
             // 
@@ -207,7 +249,7 @@ namespace MinionLauncherGUI
             // 
             // btnEnableComponent
             // 
-            this.btnEnableComponent.Location = new System.Drawing.Point(531, 365);
+            this.btnEnableComponent.Location = new System.Drawing.Point(531, 401);
             this.btnEnableComponent.Name = "btnEnableComponent";
             this.btnEnableComponent.Size = new System.Drawing.Size(112, 23);
             this.btnEnableComponent.TabIndex = 18;
@@ -216,7 +258,7 @@ namespace MinionLauncherGUI
             // 
             // btnDisableComponent
             // 
-            this.btnDisableComponent.Location = new System.Drawing.Point(274, 365);
+            this.btnDisableComponent.Location = new System.Drawing.Point(274, 401);
             this.btnDisableComponent.Name = "btnDisableComponent";
             this.btnDisableComponent.Size = new System.Drawing.Size(112, 23);
             this.btnDisableComponent.TabIndex = 17;
@@ -228,7 +270,7 @@ namespace MinionLauncherGUI
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.Drawing.MetroFontSize.Medium;
             this.metroLabel4.FontWeight = MetroFramework.Drawing.MetroFontWeight.Bold;
-            this.metroLabel4.Location = new System.Drawing.Point(535, 307);
+            this.metroLabel4.Location = new System.Drawing.Point(535, 343);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(155, 19);
             this.metroLabel4.TabIndex = 16;
@@ -239,7 +281,7 @@ namespace MinionLauncherGUI
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontSize = MetroFramework.Drawing.MetroFontSize.Medium;
             this.metroLabel3.FontWeight = MetroFramework.Drawing.MetroFontWeight.Bold;
-            this.metroLabel3.Location = new System.Drawing.Point(155, 307);
+            this.metroLabel3.Location = new System.Drawing.Point(155, 343);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(150, 19);
             this.metroLabel3.TabIndex = 15;
@@ -249,7 +291,7 @@ namespace MinionLauncherGUI
             // 
             this.metroComboBox2.FormattingEnabled = true;
             this.metroComboBox2.ItemHeight = 23;
-            this.metroComboBox2.Location = new System.Drawing.Point(531, 328);
+            this.metroComboBox2.Location = new System.Drawing.Point(531, 364);
             this.metroComboBox2.MaxDropDownItems = 15;
             this.metroComboBox2.Name = "metroComboBox2";
             this.metroComboBox2.Size = new System.Drawing.Size(234, 29);
@@ -259,7 +301,7 @@ namespace MinionLauncherGUI
             // 
             this.metroComboBox1.FormattingEnabled = true;
             this.metroComboBox1.ItemHeight = 23;
-            this.metroComboBox1.Location = new System.Drawing.Point(152, 328);
+            this.metroComboBox1.Location = new System.Drawing.Point(152, 364);
             this.metroComboBox1.MaxDropDownItems = 15;
             this.metroComboBox1.Name = "metroComboBox1";
             this.metroComboBox1.Size = new System.Drawing.Size(234, 29);
@@ -420,25 +462,6 @@ namespace MinionLauncherGUI
             this.metroTileChangeColor.UseTileImage = true;
             this.metroTileChangeColor.Click += new System.EventHandler(this.MetroTileChangeColorClick);
             // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(242, 276);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(162, 19);
-            this.metroLabel1.TabIndex = 23;
-            this.metroLabel1.Text = "Enable Extensive Logging?";
-            // 
-            // metroToggle1
-            // 
-            this.metroToggle1.AutoSize = true;
-            this.metroToggle1.Location = new System.Drawing.Point(414, 278);
-            this.metroToggle1.Name = "metroToggle1";
-            this.metroToggle1.Size = new System.Drawing.Size(80, 17);
-            this.metroToggle1.TabIndex = 22;
-            this.metroToggle1.Text = "Off";
-            this.metroToggle1.CheckedChanged += new System.EventHandler(this.MetroToggle1CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,6 +526,8 @@ namespace MinionLauncherGUI
         private MetroFramework.Controls.MetroComboBox metroComboBox3;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroToggle metroToggle1;
+        private MetroFramework.Controls.MetroLabel metroLabel5;
+        private MetroFramework.Controls.MetroToggle metroToggle2;
     }
 }
 

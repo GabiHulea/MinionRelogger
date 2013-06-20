@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -58,54 +58,26 @@ namespace BasicStopComponent
             return this;
         }
 
-        public string GetName()
-        {
-            return "BasicStopComponent";
-        }
+        public string GetName() { return "BasicStopComponent"; }
 
-        public void OnEnable()
-        {
-        }
+        public void OnEnable() { }
 
-        public void OnDisable()
-        {
-        }
+        public void OnDisable() { }
 
-        public void OnLoad()
-        {
-        }
+        public void OnLoad() { }
 
-        public void OnUnload()
-        {
-        }
+        public void OnUnload() { }
 
-        public Form ShowSettingsForm(Account account = null)
-        {
-            return new Form();
-        }
+        public Form ShowSettingsForm(Account account = null) { return new Form(); }
 
-        public ESettingsType GetSettingType()
-        {
-            return ESettingsType.None;
-        }
+        public ESettingsType GetSettingType() { return ESettingsType.None; }
 
-        public bool Check(Account account)
-        {
-            return !account.ShouldBeRunning;
-        }
+        public bool Check(Account account) { return !account.ShouldBeRunning; }
 
-        public bool IsReady(Account account)
-        {
-            return account.Running;
-        }
+        public bool IsReady(Account account) { return account.Running; }
 
-        public void Update(Account account)
-        {
-            account.Update();
-        }
+        public void Update(Account account) { account.Update(); }
 
-        public void PostWork(Account account)
-        {
-        }
+        public void PostWork(Account account) { }
     }
 }

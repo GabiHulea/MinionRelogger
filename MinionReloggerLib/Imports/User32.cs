@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -58,9 +58,7 @@ namespace MinionReloggerLib.Imports
                     return true;
                 }
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception) {}
             result = "<null>";
             return false;
         }

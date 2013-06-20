@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -305,36 +305,20 @@ namespace MinionLauncherGUI
                         metroComboBoxGlobalSettingsComponents.SelectedIndex]);
         }
 
-        private void MetroToggleMinimizeGW2CheckedChanged(object sender, EventArgs e)
-        {
-            Config.Singleton.GeneralSettings.SetMinimizeWindows(metroToggleMinimizeGW2.Checked);
-        }
+        private void MetroToggleMinimizeGW2CheckedChanged(object sender, EventArgs e) { Config.Singleton.GeneralSettings.SetMinimizeWindows(metroToggleMinimizeGW2.Checked); }
 
 
-        private void MetroToggle1CheckedChanged(object sender, EventArgs e)
-        {
-            Config.Singleton.GeneralSettings.SetExtensiveLogging(metroToggle1.Checked);
-        }
+        private void MetroToggle1CheckedChanged(object sender, EventArgs e) { Config.Singleton.GeneralSettings.SetExtensiveLogging(metroToggle1.Checked); }
 
-        private void BtnLoadClick(object sender, EventArgs e)
-        {
-            LoadConfig(true);
-        }
+        private void MetroToggle2CheckedChanged(object sender, EventArgs e) { Config.Singleton.GeneralSettings.SetUseBeta(metroToggle2.Checked); }
 
-        private void BtnSaveClick(object sender, EventArgs e)
-        {
-            Config.SaveSettingsToFile();
-        }
+        private void BtnLoadClick(object sender, EventArgs e) { LoadConfig(true); }
 
-        private void BtnSetExePathClick(object sender, EventArgs e)
-        {
-            SetGW2Path(Config.Singleton.GeneralSettings.GW2Path);
-        }
+        private void BtnSaveClick(object sender, EventArgs e) { Config.SaveSettingsToFile(); }
 
-        private void BtnSetPollingDelayClick(object sender, EventArgs e)
-        {
-            SetPollingDelay(false, Config.Singleton.GeneralSettings.PollingDelay);
-        }
+        private void BtnSetExePathClick(object sender, EventArgs e) { SetGW2Path(Config.Singleton.GeneralSettings.GW2Path); }
+
+        private void BtnSetPollingDelayClick(object sender, EventArgs e) { SetPollingDelay(false, Config.Singleton.GeneralSettings.PollingDelay); }
 
         private void NewControlOnSettingsClick(object sender, ReloggerEventArgs reloggereventargs)
         {
@@ -353,6 +337,7 @@ namespace MinionLauncherGUI
             metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
             metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
             metroToggle1.Checked = Config.Singleton.GeneralSettings.ExtensiveLogging;
+            metroToggle2.Checked = Config.Singleton.GeneralSettings.UseBeta;
             UpdateFormWithAccountSettings();
         }
 
@@ -378,13 +363,11 @@ namespace MinionLauncherGUI
             metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
             metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
             metroToggle1.Checked = Config.Singleton.GeneralSettings.ExtensiveLogging;
+            metroToggle2.Checked = Config.Singleton.GeneralSettings.UseBeta;
             UpdateFormWithAccountSettings();
         }
 
-        private void BtnSetFrozenTimeClick(object sender, EventArgs e)
-        {
-            SetFrozenTime(false, Config.Singleton.GeneralSettings.FrozenTime);
-        }
+        private void BtnSetFrozenTimeClick(object sender, EventArgs e) { SetFrozenTime(false, Config.Singleton.GeneralSettings.FrozenTime); }
 
         private void BtnDisableComponentClick(object sender, EventArgs e)
         {
@@ -623,6 +606,7 @@ namespace MinionLauncherGUI
                 metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
                 metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
                 metroToggle1.Checked = Config.Singleton.GeneralSettings.ExtensiveLogging;
+                metroToggle2.Checked = Config.Singleton.GeneralSettings.UseBeta;
                 UpdateFormWithAccountSettings();
                 return true;
             }

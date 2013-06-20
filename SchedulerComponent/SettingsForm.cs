@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -50,10 +50,7 @@ namespace SchedulerComponent
             Close();
         }
 
-        private void BtnCancelClick(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void BtnCancelClick(object sender, EventArgs e) { Close(); }
 
         private void BindEvents()
         {
@@ -119,14 +116,8 @@ namespace SchedulerComponent
             return final;
         }
 
-        private void SetTotalValue()
-        {
-            lblTimeInMinutes.Text = GetDuration().TotalMinutes.ToString(CultureInfo.InvariantCulture);
-        }
+        private void SetTotalValue() { lblTimeInMinutes.Text = GetDuration().TotalMinutes.ToString(CultureInfo.InvariantCulture); }
 
-        private void OnValueChanged(object sender, EventArgs eventArgs)
-        {
-            SetTotalValue();
-        }
+        private void OnValueChanged(object sender, EventArgs eventArgs) { SetTotalValue(); }
     }
 }

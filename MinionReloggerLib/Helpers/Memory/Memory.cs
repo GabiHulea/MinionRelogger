@@ -1,6 +1,6 @@
 ﻿/*****************************************************************************
 *                                                                            *
-*  MinionReloggerLib 0.x Alpha -- https://github.com/Vipeax/MinionRelogger   *
+*  MinionReloggerLib 0.x Beta  -- https://github.com/Vipeax/MinionRelogger   *
 *  Copyright (C) 2013, Robert van den Boorn                                  *
 *                                                                            *
 *  This program is free software: you can redistribute it and/or modify      *
@@ -85,9 +85,7 @@ namespace MinionReloggerLib.Helpers.Memory
                 {
                     return ProcessObject.MainModule;
                 }
-                catch
-                {
-                }
+                catch {}
                 return null;
             }
         }
@@ -461,25 +459,13 @@ namespace MinionReloggerLib.Helpers.Memory
 
         #region AllocateMemory
 
-        public static uint AllocateMemory(int nSize, uint dwAddress, uint dwAllocationType, uint dwProtect)
-        {
-            return VirtualAllocEx(ProcessHandle, dwAddress, nSize, dwAllocationType, dwProtect);
-        }
+        public static uint AllocateMemory(int nSize, uint dwAddress, uint dwAllocationType, uint dwProtect) { return VirtualAllocEx(ProcessHandle, dwAddress, nSize, dwAllocationType, dwProtect); }
 
-        public static uint AllocateMemory(int nSize, uint dwAllocationType, uint dwProtect)
-        {
-            return AllocateMemory(nSize, 0, dwAllocationType, dwProtect);
-        }
+        public static uint AllocateMemory(int nSize, uint dwAllocationType, uint dwProtect) { return AllocateMemory(nSize, 0, dwAllocationType, dwProtect); }
 
-        public static uint AllocateMemory(int nSize)
-        {
-            return AllocateMemory(nSize, MemoryAllocType.MEM_COMMIT, MemoryProtectType.PAGE_EXECUTE_READWRITE);
-        }
+        public static uint AllocateMemory(int nSize) { return AllocateMemory(nSize, MemoryAllocType.MEM_COMMIT, MemoryProtectType.PAGE_EXECUTE_READWRITE); }
 
-        public static uint AllocateMemory()
-        {
-            return AllocateMemory(DEFAULT_MEMORY_SIZE);
-        }
+        public static uint AllocateMemory() { return AllocateMemory(DEFAULT_MEMORY_SIZE); }
 
         #endregion
 
@@ -493,10 +479,7 @@ namespace MinionReloggerLib.Helpers.Memory
             return VirtualFreeEx(ProcessHandle, dwAddress, nSize, dwFreeType);
         }
 
-        public static bool FreeMemory(uint dwAddress)
-        {
-            return FreeMemory(dwAddress, 0, MemoryFreeType.MEM_RELEASE);
-        }
+        public static bool FreeMemory(uint dwAddress) { return FreeMemory(dwAddress, 0, MemoryFreeType.MEM_RELEASE); }
 
         #endregion
 
