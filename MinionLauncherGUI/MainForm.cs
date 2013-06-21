@@ -72,7 +72,7 @@ namespace MinionLauncherGUI
             btnDisableComponent.Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormMoveToRight);
             metroLabel4.Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormDisabledComponents);
             metroLabel3.Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormEnabledComponents);
-            btnAddAccount.Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormAddAccount);
+            metroTileAddAccount.Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormAddAccount);
             btnSetPollingDelay.Text =
                 LanguageManager.Singleton.GetTranslation(ETranslations.MainFormSetPollingDelay);
             btnLoad.Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormLoad);
@@ -93,6 +93,25 @@ namespace MinionLauncherGUI
             PopulateGlobalSettings();
             FillComponentManagementComboBoxes();
             PopulateLanguageComboBox();
+            FixVisibility();
+        }
+
+        private void FixVisibility()
+        {
+            metroComboBox1.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            metroComboBox2.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            metroComboBoxGlobalSettingsComponents.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnSettings.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnSetPollingDelay.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnSetFrozenTime.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            metroToggle1.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            // metroToggle2.Visible = Config.Singleton.GeneralSettings.UseExpertMode;  <== Disabled beta crap
+            metroLabel3.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            metroLabel4.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            // metroLabel5.Visible = Config.Singleton.GeneralSettings.UseExpertMode;  <== Disabled beta crap
+            metroLabel1.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnEnableComponent.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnDisableComponent.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
         }
 
         private void FreshStart()
@@ -297,6 +316,19 @@ namespace MinionLauncherGUI
         }
 
 
+
+        private void MetroTileAddAccountClick(object sender, EventArgs e)
+        {
+            new AccountForm(EAccountManagementType.Add).ShowDialog();
+            CleanupFirstTab();
+            metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
+            metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
+            metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
+            metroToggle1.Checked = Config.Singleton.GeneralSettings.ExtensiveLogging;
+            metroToggle2.Checked = Config.Singleton.GeneralSettings.UseBeta; 
+            UpdateFormWithAccountSettings();
+        }
+
         private void BtnSettingsClick(object sender, EventArgs e)
         {
             if (metroComboBoxGlobalSettingsComponents.SelectedIndex != -1)
@@ -329,18 +361,32 @@ namespace MinionLauncherGUI
                     reloggereventargs.Account);
         }
 
-        private void BtnAddAccountClick(object sender, EventArgs e)
+        private void MetroTileUnlockExpertClick(object sender, EventArgs e)
         {
-            new AccountForm(EAccountManagementType.Add).ShowDialog();
+            Config.Singleton.GeneralSettings.SetUseExpertMode(!Config.Singleton.GeneralSettings.UseExpertMode);
             CleanupFirstTab();
             metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
             metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
             metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
             metroToggle1.Checked = Config.Singleton.GeneralSettings.ExtensiveLogging;
             metroToggle2.Checked = Config.Singleton.GeneralSettings.UseBeta;
+            metroComboBox1.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            metroComboBox2.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            metroComboBoxGlobalSettingsComponents.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnSettings.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnSetPollingDelay.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnSetFrozenTime.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            metroToggle1.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            //metroToggle2.Visible = Config.Singleton.GeneralSettings.UseExpertMode; <== Disabled beta crap
+            metroLabel3.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            metroLabel4.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            //metroLabel5.Visible = Config.Singleton.GeneralSettings.UseExpertMode;   <== Disabled beta crap
+            metroLabel1.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnEnableComponent.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            btnDisableComponent.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
             UpdateFormWithAccountSettings();
         }
-
+        
         private void NewControlOnKillClick(object sender, ReloggerEventArgs reloggereventargs)
         {
             reloggereventargs.Account.SetShouldBeRunning(false);

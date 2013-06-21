@@ -133,18 +133,6 @@
     <None Include="log.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\robot.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\halt.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\paint.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\theme.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\minionbig.png" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +141,24 @@
       <Name>MinionReloggerLib</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\theme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\expert.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
