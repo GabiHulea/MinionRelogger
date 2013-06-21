@@ -84,6 +84,9 @@ namespace MinionReloggerLib.Configuration.Settings
         [ProtoMember(14)]
         public bool UseBeta { get; private set; }
 
+        [ProtoMember(15)]
+        public bool UseExpertMode { get; private set; }
+
         public void SetGW2Path(string newPath)
         {
             Logger.LoggingObject.Log(ELogType.Info,
@@ -163,6 +166,8 @@ namespace MinionReloggerLib.Configuration.Settings
 
 
         public void SetUseBeta(bool newUseBeta) { UseBeta = newUseBeta; }
+
+        public void SetUseExpertMode(bool newUseExpertMode) { UseExpertMode = newUseExpertMode; }
 
         public void SetLanguage(ELanguages newLanguage) { CurrentLanguage = (int) newLanguage; }
 

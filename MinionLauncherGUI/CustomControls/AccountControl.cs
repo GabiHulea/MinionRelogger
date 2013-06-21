@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MetroFramework.Components;
 using MetroFramework.Controls;
 using MetroFramework.Drawing;
+using MinionReloggerLib.Configuration;
 using MinionReloggerLib.CustomEventArgs;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Language;
@@ -142,6 +143,8 @@ namespace MinionLauncherGUI.CustomControls
             LblStatus.Location = new Point(490, heightPosition);
             CmbSettings.Location = new Point(563, heightPosition - 3);
             BtnSettings.Location = new Point(817, heightPosition);
+            BtnSettings.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
+            CmbSettings.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
         }
 
         internal event ReloggerHandler StartClick;

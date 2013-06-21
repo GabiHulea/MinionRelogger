@@ -73,7 +73,6 @@ namespace MinionLauncherGUI
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroComboBox2 = new MetroFramework.Controls.MetroComboBox();
             this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
-            this.btnAddAccount = new MetroFramework.Controls.MetroButton();
             this.btnSetPollingDelay = new MetroFramework.Controls.MetroButton();
             this.btnLoad = new MetroFramework.Controls.MetroButton();
             this.btnSave = new MetroFramework.Controls.MetroButton();
@@ -82,13 +81,15 @@ namespace MinionLauncherGUI
             this.btnSettings = new MetroFramework.Controls.MetroButton();
             this.metroToggleMinimizeGW2 = new MetroFramework.Controls.MetroToggle();
             this.btnSetExePath = new MetroFramework.Controls.MetroButton();
+            this.metroTileChangeColor = new MetroFramework.Controls.MetroTile();
+            this.metroTileChangeTheme = new MetroFramework.Controls.MetroTile();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lstBoxLog = new System.Windows.Forms.ListBox();
             this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.metroTileStartAll = new MetroFramework.Controls.MetroTile();
             this.metroTileStopAll = new MetroFramework.Controls.MetroTile();
-            this.metroTileChangeTheme = new MetroFramework.Controls.MetroTile();
-            this.metroTileChangeColor = new MetroFramework.Controls.MetroTile();
+            this.metroTileStartAll = new MetroFramework.Controls.MetroTile();
+            this.metroTileAddAccount = new MetroFramework.Controls.MetroTile();
+            this.metroTileUnlockExpert = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxLogo)).BeginInit();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -166,7 +167,6 @@ namespace MinionLauncherGUI
             this.tabPage2.Controls.Add(this.metroLabel3);
             this.tabPage2.Controls.Add(this.metroComboBox2);
             this.tabPage2.Controls.Add(this.metroComboBox1);
-            this.tabPage2.Controls.Add(this.btnAddAccount);
             this.tabPage2.Controls.Add(this.btnSetPollingDelay);
             this.tabPage2.Controls.Add(this.btnLoad);
             this.tabPage2.Controls.Add(this.btnSave);
@@ -175,6 +175,8 @@ namespace MinionLauncherGUI
             this.tabPage2.Controls.Add(this.btnSettings);
             this.tabPage2.Controls.Add(this.metroToggleMinimizeGW2);
             this.tabPage2.Controls.Add(this.btnSetExePath);
+            this.tabPage2.Controls.Add(this.metroTileChangeColor);
+            this.tabPage2.Controls.Add(this.metroTileChangeTheme);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(933, 491);
@@ -194,9 +196,10 @@ namespace MinionLauncherGUI
             // metroToggle2
             // 
             this.metroToggle2.AutoSize = true;
-            this.metroToggle2.Location = new System.Drawing.Point(405, 311);
+            this.metroToggle2.DisplayStatus = false;
+            this.metroToggle2.Location = new System.Drawing.Point(442, 311);
             this.metroToggle2.Name = "metroToggle2";
-            this.metroToggle2.Size = new System.Drawing.Size(80, 17);
+            this.metroToggle2.Size = new System.Drawing.Size(50, 17);
             this.metroToggle2.TabIndex = 24;
             this.metroToggle2.Text = "Off";
             this.metroToggle2.Visible = false;
@@ -210,15 +213,18 @@ namespace MinionLauncherGUI
             this.metroLabel1.Size = new System.Drawing.Size(162, 19);
             this.metroLabel1.TabIndex = 23;
             this.metroLabel1.Text = "Enable Extensive Logging?";
+            this.metroLabel1.Visible = false;
             // 
             // metroToggle1
             // 
             this.metroToggle1.AutoSize = true;
-            this.metroToggle1.Location = new System.Drawing.Point(405, 278);
+            this.metroToggle1.DisplayStatus = false;
+            this.metroToggle1.Location = new System.Drawing.Point(442, 278);
             this.metroToggle1.Name = "metroToggle1";
-            this.metroToggle1.Size = new System.Drawing.Size(80, 17);
+            this.metroToggle1.Size = new System.Drawing.Size(50, 17);
             this.metroToggle1.TabIndex = 22;
             this.metroToggle1.Text = "Off";
+            this.metroToggle1.Visible = false;
             this.metroToggle1.CheckedChanged += new System.EventHandler(this.MetroToggle1CheckedChanged);
             // 
             // btnSetLanguage
@@ -247,6 +253,7 @@ namespace MinionLauncherGUI
             this.btnSetFrozenTime.Size = new System.Drawing.Size(148, 23);
             this.btnSetFrozenTime.TabIndex = 19;
             this.btnSetFrozenTime.Text = "Set Frozen Time";
+            this.btnSetFrozenTime.Visible = false;
             this.btnSetFrozenTime.Click += new System.EventHandler(this.BtnSetFrozenTimeClick);
             // 
             // btnEnableComponent
@@ -256,6 +263,7 @@ namespace MinionLauncherGUI
             this.btnEnableComponent.Size = new System.Drawing.Size(112, 23);
             this.btnEnableComponent.TabIndex = 18;
             this.btnEnableComponent.Text = "Move To Left";
+            this.btnEnableComponent.Visible = false;
             this.btnEnableComponent.Click += new System.EventHandler(this.BtnEnableComponentClick);
             // 
             // btnDisableComponent
@@ -265,6 +273,7 @@ namespace MinionLauncherGUI
             this.btnDisableComponent.Size = new System.Drawing.Size(112, 23);
             this.btnDisableComponent.TabIndex = 17;
             this.btnDisableComponent.Text = "Move To Right";
+            this.btnDisableComponent.Visible = false;
             this.btnDisableComponent.Click += new System.EventHandler(this.BtnDisableComponentClick);
             // 
             // metroLabel4
@@ -277,6 +286,7 @@ namespace MinionLauncherGUI
             this.metroLabel4.Size = new System.Drawing.Size(155, 19);
             this.metroLabel4.TabIndex = 16;
             this.metroLabel4.Text = "Disabled Components";
+            this.metroLabel4.Visible = false;
             // 
             // metroLabel3
             // 
@@ -288,6 +298,7 @@ namespace MinionLauncherGUI
             this.metroLabel3.Size = new System.Drawing.Size(150, 19);
             this.metroLabel3.TabIndex = 15;
             this.metroLabel3.Text = "Enabled Components";
+            this.metroLabel3.Visible = false;
             // 
             // metroComboBox2
             // 
@@ -298,6 +309,7 @@ namespace MinionLauncherGUI
             this.metroComboBox2.Name = "metroComboBox2";
             this.metroComboBox2.Size = new System.Drawing.Size(234, 29);
             this.metroComboBox2.TabIndex = 14;
+            this.metroComboBox2.Visible = false;
             // 
             // metroComboBox1
             // 
@@ -308,15 +320,7 @@ namespace MinionLauncherGUI
             this.metroComboBox1.Name = "metroComboBox1";
             this.metroComboBox1.Size = new System.Drawing.Size(234, 29);
             this.metroComboBox1.TabIndex = 13;
-            // 
-            // btnAddAccount
-            // 
-            this.btnAddAccount.Location = new System.Drawing.Point(393, 20);
-            this.btnAddAccount.Name = "btnAddAccount";
-            this.btnAddAccount.Size = new System.Drawing.Size(148, 23);
-            this.btnAddAccount.TabIndex = 12;
-            this.btnAddAccount.Text = "Add Account";
-            this.btnAddAccount.Click += new System.EventHandler(this.BtnAddAccountClick);
+            this.metroComboBox1.Visible = false;
             // 
             // btnSetPollingDelay
             // 
@@ -325,6 +329,7 @@ namespace MinionLauncherGUI
             this.btnSetPollingDelay.Size = new System.Drawing.Size(148, 23);
             this.btnSetPollingDelay.TabIndex = 11;
             this.btnSetPollingDelay.Text = "Set Polling Delay";
+            this.btnSetPollingDelay.Visible = false;
             this.btnSetPollingDelay.Click += new System.EventHandler(this.BtnSetPollingDelayClick);
             // 
             // btnLoad
@@ -365,6 +370,7 @@ namespace MinionLauncherGUI
             this.metroComboBoxGlobalSettingsComponents.Name = "metroComboBoxGlobalSettingsComponents";
             this.metroComboBoxGlobalSettingsComponents.Size = new System.Drawing.Size(234, 29);
             this.metroComboBoxGlobalSettingsComponents.TabIndex = 6;
+            this.metroComboBoxGlobalSettingsComponents.Visible = false;
             // 
             // btnSettings
             // 
@@ -373,14 +379,16 @@ namespace MinionLauncherGUI
             this.btnSettings.Size = new System.Drawing.Size(148, 23);
             this.btnSettings.TabIndex = 6;
             this.btnSettings.Text = "Open Settings";
+            this.btnSettings.Visible = false;
             this.btnSettings.Click += new System.EventHandler(this.BtnSettingsClick);
             // 
             // metroToggleMinimizeGW2
             // 
             this.metroToggleMinimizeGW2.AutoSize = true;
-            this.metroToggleMinimizeGW2.Location = new System.Drawing.Point(405, 200);
+            this.metroToggleMinimizeGW2.DisplayStatus = false;
+            this.metroToggleMinimizeGW2.Location = new System.Drawing.Point(442, 200);
             this.metroToggleMinimizeGW2.Name = "metroToggleMinimizeGW2";
-            this.metroToggleMinimizeGW2.Size = new System.Drawing.Size(80, 17);
+            this.metroToggleMinimizeGW2.Size = new System.Drawing.Size(50, 17);
             this.metroToggleMinimizeGW2.TabIndex = 7;
             this.metroToggleMinimizeGW2.Text = "Off";
             this.metroToggleMinimizeGW2.CheckedChanged += new System.EventHandler(this.MetroToggleMinimizeGW2CheckedChanged);
@@ -393,6 +401,30 @@ namespace MinionLauncherGUI
             this.btnSetExePath.TabIndex = 6;
             this.btnSetExePath.Text = "Set GW2 EXE Path";
             this.btnSetExePath.Click += new System.EventHandler(this.BtnSetExePathClick);
+            // 
+            // metroTileChangeColor
+            // 
+            this.metroTileChangeColor.Location = new System.Drawing.Point(787, 20);
+            this.metroTileChangeColor.Name = "metroTileChangeColor";
+            this.metroTileChangeColor.Size = new System.Drawing.Size(110, 103);
+            this.metroTileChangeColor.TabIndex = 5;
+            this.metroTileChangeColor.Text = " Change Color";
+            this.metroTileChangeColor.TileImage = global::MinionLauncherGUI.Properties.Resources.paint;
+            this.metroTileChangeColor.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.metroTileChangeColor.UseTileImage = true;
+            this.metroTileChangeColor.Click += new System.EventHandler(this.MetroTileChangeColorClick);
+            // 
+            // metroTileChangeTheme
+            // 
+            this.metroTileChangeTheme.Location = new System.Drawing.Point(660, 20);
+            this.metroTileChangeTheme.Name = "metroTileChangeTheme";
+            this.metroTileChangeTheme.Size = new System.Drawing.Size(110, 103);
+            this.metroTileChangeTheme.TabIndex = 4;
+            this.metroTileChangeTheme.Text = " Change Theme";
+            this.metroTileChangeTheme.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTileChangeTheme.TileImage")));
+            this.metroTileChangeTheme.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.metroTileChangeTheme.UseTileImage = true;
+            this.metroTileChangeTheme.Click += new System.EventHandler(this.MetroTileChangeThemeClick);
             // 
             // tabPage3
             // 
@@ -416,18 +448,6 @@ namespace MinionLauncherGUI
             // 
             this.metroStyleManager.Owner = this;
             // 
-            // metroTileStartAll
-            // 
-            this.metroTileStartAll.Location = new System.Drawing.Point(436, 20);
-            this.metroTileStartAll.Name = "metroTileStartAll";
-            this.metroTileStartAll.Size = new System.Drawing.Size(110, 103);
-            this.metroTileStartAll.TabIndex = 2;
-            this.metroTileStartAll.Text = " Start All";
-            this.metroTileStartAll.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTileStartAll.TileImage")));
-            this.metroTileStartAll.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.metroTileStartAll.UseTileImage = true;
-            this.metroTileStartAll.Click += new System.EventHandler(this.MetroTileStartAllClick);
-            // 
             // metroTileStopAll
             // 
             this.metroTileStopAll.Location = new System.Drawing.Point(561, 20);
@@ -435,42 +455,54 @@ namespace MinionLauncherGUI
             this.metroTileStopAll.Size = new System.Drawing.Size(110, 103);
             this.metroTileStopAll.TabIndex = 3;
             this.metroTileStopAll.Text = " Stop All";
-            this.metroTileStopAll.TileImage = global::MinionLauncherGUI.Properties.Resources.halt;
+            this.metroTileStopAll.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTileStopAll.TileImage")));
             this.metroTileStopAll.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.metroTileStopAll.UseTileImage = true;
             this.metroTileStopAll.Click += new System.EventHandler(this.MetroTileStopAllClick);
             // 
-            // metroTileChangeTheme
+            // metroTileStartAll
             // 
-            this.metroTileChangeTheme.Location = new System.Drawing.Point(686, 20);
-            this.metroTileChangeTheme.Name = "metroTileChangeTheme";
-            this.metroTileChangeTheme.Size = new System.Drawing.Size(110, 103);
-            this.metroTileChangeTheme.TabIndex = 4;
-            this.metroTileChangeTheme.Text = " Change Theme";
-            this.metroTileChangeTheme.TileImage = global::MinionLauncherGUI.Properties.Resources.theme;
-            this.metroTileChangeTheme.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.metroTileChangeTheme.UseTileImage = true;
-            this.metroTileChangeTheme.Click += new System.EventHandler(this.MetroTileChangeThemeClick);
+            this.metroTileStartAll.Location = new System.Drawing.Point(436, 20);
+            this.metroTileStartAll.Name = "metroTileStartAll";
+            this.metroTileStartAll.Size = new System.Drawing.Size(110, 103);
+            this.metroTileStartAll.TabIndex = 2;
+            this.metroTileStartAll.Text = " Start All";
+            this.metroTileStartAll.TileImage = global::MinionLauncherGUI.Properties.Resources.play;
+            this.metroTileStartAll.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.metroTileStartAll.UseTileImage = true;
+            this.metroTileStartAll.Click += new System.EventHandler(this.MetroTileStartAllClick);
             // 
-            // metroTileChangeColor
+            // metroTileAddAccount
             // 
-            this.metroTileChangeColor.Location = new System.Drawing.Point(813, 20);
-            this.metroTileChangeColor.Name = "metroTileChangeColor";
-            this.metroTileChangeColor.Size = new System.Drawing.Size(110, 103);
-            this.metroTileChangeColor.TabIndex = 5;
-            this.metroTileChangeColor.Text = " Change Color";
-            this.metroTileChangeColor.TileImage = global::MinionLauncherGUI.Properties.Resources.paint;
-            this.metroTileChangeColor.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.metroTileChangeColor.UseTileImage = true;
-            this.metroTileChangeColor.Click += new System.EventHandler(this.MetroTileChangeColorClick);
+            this.metroTileAddAccount.Location = new System.Drawing.Point(687, 20);
+            this.metroTileAddAccount.Name = "metroTileAddAccount";
+            this.metroTileAddAccount.Size = new System.Drawing.Size(110, 103);
+            this.metroTileAddAccount.TabIndex = 4;
+            this.metroTileAddAccount.Text = "Add Account";
+            this.metroTileAddAccount.TileImage = global::MinionLauncherGUI.Properties.Resources.plus;
+            this.metroTileAddAccount.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.metroTileAddAccount.UseTileImage = true;
+            this.metroTileAddAccount.Click += new System.EventHandler(this.MetroTileAddAccountClick);
+            // 
+            // metroTileUnlockExpert
+            // 
+            this.metroTileUnlockExpert.Location = new System.Drawing.Point(814, 20);
+            this.metroTileUnlockExpert.Name = "metroTileUnlockExpert";
+            this.metroTileUnlockExpert.Size = new System.Drawing.Size(110, 103);
+            this.metroTileUnlockExpert.TabIndex = 5;
+            this.metroTileUnlockExpert.Text = "Expert Mode";
+            this.metroTileUnlockExpert.TileImage = global::MinionLauncherGUI.Properties.Resources.expert;
+            this.metroTileUnlockExpert.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.metroTileUnlockExpert.UseTileImage = true;
+            this.metroTileUnlockExpert.Click += new System.EventHandler(this.MetroTileUnlockExpertClick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 652);
-            this.Controls.Add(this.metroTileChangeColor);
-            this.Controls.Add(this.metroTileChangeTheme);
+            this.Controls.Add(this.metroTileUnlockExpert);
+            this.Controls.Add(this.metroTileAddAccount);
             this.Controls.Add(this.metroTileStopAll);
             this.Controls.Add(this.metroTileStartAll);
             this.Controls.Add(this.pctBoxLogo);
@@ -501,7 +533,6 @@ namespace MinionLauncherGUI
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ListBox lstBoxLog;
-        private MetroFramework.Controls.MetroTile metroTileStartAll;
         private MetroFramework.Controls.MetroTile metroTileStopAll;
         private MetroFramework.Controls.MetroTile metroTileChangeTheme;
         private MetroFramework.Controls.MetroTile metroTileChangeColor;
@@ -516,7 +547,6 @@ namespace MinionLauncherGUI
         private MetroFramework.Controls.MetroButton btnSetPollingDelay;
         private MetroFramework.Controls.MetroTabControl metroTabControl2;
         private MetroFramework.Controls.MetroTabPage metroTabPage1;
-        private MetroFramework.Controls.MetroButton btnAddAccount;
         private MetroFramework.Controls.MetroComboBox metroComboBox1;
         private MetroFramework.Controls.MetroButton btnEnableComponent;
         private MetroFramework.Controls.MetroButton btnDisableComponent;
@@ -530,6 +560,9 @@ namespace MinionLauncherGUI
         private MetroFramework.Controls.MetroToggle metroToggle1;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroToggle metroToggle2;
+        private MetroFramework.Controls.MetroTile metroTileStartAll;
+        private MetroFramework.Controls.MetroTile metroTileAddAccount;
+        private MetroFramework.Controls.MetroTile metroTileUnlockExpert;
     }
 }
 

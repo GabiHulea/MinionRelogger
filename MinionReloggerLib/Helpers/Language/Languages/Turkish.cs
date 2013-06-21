@@ -256,7 +256,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
                              " {0} için aksayan başlatma, çalıştırılamıyor. Zamanlayıcı ayarlarından dolayı çalışmıyor olmalı");
         }
 
-        public override string GetLanguageDescription() { return "Turkish"; }
+        public override string GetLanguageDescription() { return "Türkçe"; }
 
         public override ELanguages GetLanguage() { return ELanguages.Turkish; }
     }
