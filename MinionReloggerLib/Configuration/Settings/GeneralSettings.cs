@@ -41,7 +41,7 @@ namespace MinionReloggerLib.Configuration.Settings
         {
             GW2Path = "";
             PollingDelay = 3;
-            LaunchDelay = 20;
+            LaunchDelay = 60;
             RestartDelay = 300;
             FrozenTime = 300;
             StyleSetting = "Blue";
