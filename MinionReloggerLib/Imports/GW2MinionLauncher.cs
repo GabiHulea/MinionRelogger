@@ -65,7 +65,7 @@ namespace MinionReloggerLib.Imports
                     if (!process.HasExited && process.StartTime.Ticks > 5000)
                         AccountName(pid, buf, buf.Capacity);
                 }
-                catch (Exception ex) {}
+                catch (Exception ) {}
                 return buf.ToString();
             }
             catch (Exception ex)

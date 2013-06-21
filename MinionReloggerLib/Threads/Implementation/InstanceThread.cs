@@ -48,7 +48,7 @@ namespace MinionReloggerLib.Threads.Implementation
         private readonly bool _enableViewStateChecks;
         private readonly Thread _instanceThread;
         private uint _buildNumber;
-        private uint _buildNumberNeedUpdate;
+        //private uint _buildNumberNeedUpdate;
         private int _delay;
         private bool _isRunning;
         private bool _keepAlive;

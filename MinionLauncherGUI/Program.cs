@@ -26,7 +26,6 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.IO;
 
 namespace MinionLauncherGUI
 {
@@ -127,7 +126,7 @@ namespace MinionLauncherGUI
                     }
                     return MyAssembly;
                 }
-                catch (Exception exc)
+                catch (Exception )
                 {
                     return null;
                 }
