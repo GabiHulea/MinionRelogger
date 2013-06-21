@@ -14,7 +14,7 @@ namespace MinionLauncherGUI.CustomControls
     internal class AccountControl
     {
         private readonly Account _account;
-        private readonly MetroStyleManager _formStyleManager;
+        //private readonly MetroStyleManager _formStyleManager;
 
         internal MetroButton BtnKill = new MetroButton();
         internal MetroButton BtnManage = new MetroButton();
