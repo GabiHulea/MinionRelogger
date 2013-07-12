@@ -26,7 +26,8 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
-
+using System.Net;
+using System.Threading;
 namespace MinionLauncherGUI
 {
     internal static class Program
@@ -62,27 +63,57 @@ namespace MinionLauncherGUI
             [STAThread]
             static void Main(string[] args)
             {
+                Version LocalVersion, RemoteVersion;
+                string remoteUri = "http://patcher.gw2.mmominion.com/Updater/";
+                string fileName = "Updater.exe";
                 try
                 {
                     AppDomain.CurrentDomain.AssemblyResolve += CurrentDomainAssemblyResolve;
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    var context = new MyApplicationContext();
+  
                     if (args.Length > 0)
                     {
+                        var context = new MyApplicationContext();
                         Application.Run(context);
                     }
                     else
                     {
+
+                        WebClient myWebClient = new WebClient();
+                        myWebClient.Proxy = null;
+                        myWebClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                        if (File.Exists(fileName))
+                        {
+                            FileVersionInfo fv;
+                            fv = FileVersionInfo.GetVersionInfo(fileName);
+                            LocalVersion = new Version(fv.FileVersion.Replace(',', '.'));
+                            string updaterVersion = myWebClient.DownloadString(remoteUri + "UpdaterVer.txt");
+                            RemoteVersion = new Version(updaterVersion);
+                            if (LocalVersion < RemoteVersion)
+                            {
+                                File.SetAttributes(fileName, FileAttributes.Normal);
+                                File.Delete(fileName);
+                                myWebClient.DownloadFile(remoteUri + fileName, fileName);
+                            }
+                        }
+                        else
+                        {
+                            //we dont have the damn file anyway so get it!
+                            myWebClient.DownloadFile(remoteUri + fileName, fileName);
+
+                        }
+                        Thread.Sleep(1000);
+                        //now run the damn file to update the noobs
                         Process currentproc = Process.GetCurrentProcess();
                         ProcessStartInfo startInfo = new ProcessStartInfo();
-                        if (File.Exists("Updater.exe"))
-                        {
-                            startInfo.FileName = "Updater.exe";
-                            startInfo.Arguments = currentproc.Id.ToString();
-                            Process startedProc = Process.Start(startInfo);
-                            startedProc.WaitForExit();
-                        }
+
+                        startInfo.FileName = fileName;
+                        startInfo.Arguments = currentproc.Id.ToString();
+                        Process startedProc = Process.Start(startInfo);
+                        startedProc.WaitForExit();
+                        Thread.Sleep(1000);
+                        var context = new MyApplicationContext();
                         Application.Run(context);
                     }
 

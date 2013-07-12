@@ -39,7 +39,8 @@ using MinionReloggerLib.Helpers.Input;
 using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces.Objects;
 using MinionReloggerLib.Logging;
-
+using System.Net;
+using MinionReloggerLib.Imports;
 namespace MinionLauncherGUI
 {
     public delegate void ReloggerHandler(object sender, ReloggerEventArgs reloggerEventArgs);
@@ -54,13 +55,32 @@ namespace MinionLauncherGUI
         public MainForm()
         {
             InitializeComponent();
-            VersionChecker.CheckForUpdates(this);
-            Logger.Initialize(lstBoxLog);
-            ComponentManager.Singleton.LoadComponents();
-            ThreadManager.Singleton.Initialize();
-            if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
-                FreshStart();
-            FixNamesForLanguage();
+            //VersionChecker.CheckForUpdates(this);
+
+
+            string remoteUri = "http://patcher.gw2.mmominion.com/Gw2MinionFiles/";
+            string fileName = "GameVersion.txt";
+            WebClient myWebClient = new WebClient();
+            myWebClient.Proxy = null;
+            myWebClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+            uint minionVersion = Convert.ToUInt32(myWebClient.DownloadString(remoteUri + fileName));
+            uint apiVer = GW2MinionLauncher.BuildNumberFromApi();
+            if (minionVersion != apiVer)
+            {
+                MessageBox.Show("Minion version does not match game version!\nPlease wait for an update.");
+                this.Close();
+                Application.Exit();
+            }
+            else
+            {
+                Logger.Initialize(lstBoxLog);
+                ComponentManager.Singleton.LoadComponents();
+                ThreadManager.Singleton.Initialize();
+                if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
+                    FreshStart();
+                FixNamesForLanguage();
+            }
+
         }
 
         private void FixNamesForLanguage()
