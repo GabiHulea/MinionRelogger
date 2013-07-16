@@ -37,7 +37,10 @@ namespace MinionReloggerLib.Core
 
         private readonly List<ComponentClass> _components;
 
-        protected ComponentManager() { _components = new List<ComponentClass>(); }
+        protected ComponentManager()
+        {
+            _components = new List<ComponentClass>();
+        }
 
         public static ComponentManager Singleton
         {
@@ -45,18 +48,21 @@ namespace MinionReloggerLib.Core
             set { _instance = value; }
         }
 
-        internal List<ComponentClass> GetComponents() { return _components; }
+        internal List<ComponentClass> GetComponents()
+        {
+            return _components;
+        }
 
         internal void AddComponent(IRelogComponent componentToAdd)
         {
             _components.Add(new ComponentClass
-                {
-                    Component = componentToAdd,
-                    IsEnabled = false,
-                });
+            {
+                Component = componentToAdd,
+                IsEnabled = false,
+            });
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.ComponentManagerAddedComponent), componentToAdd.GetName());
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.ComponentManagerAddedComponent), componentToAdd.GetName());
         }
 
         internal void AddComponent(IRelogComponent componentToAdd, int index)
@@ -64,13 +70,13 @@ namespace MinionReloggerLib.Core
             if (index > _components.Count - 1 && index <= _components.Count)
             {
                 _components.Insert(index, new ComponentClass
-                    {
-                        Component = componentToAdd,
-                        IsEnabled = false,
-                    });
+                {
+                    Component = componentToAdd,
+                    IsEnabled = false,
+                });
                 Logger.LoggingObject.Log(ELogType.Info,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.ComponentManagerAddedComponent), componentToAdd.GetName());
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.ComponentManagerAddedComponent), componentToAdd.GetName());
             }
         }
 
@@ -81,9 +87,9 @@ namespace MinionReloggerLib.Core
                 relogComponent.IsEnabled = true;
                 relogComponent.Component.OnEnable();
                 Logger.LoggingObject.Log(ELogType.Info,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.ComponentManagerEnableComponent),
-                                         relogComponent.Component.GetName());
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.ComponentManagerEnableComponent),
+                    relogComponent.Component.GetName());
             }
         }
 
@@ -95,8 +101,8 @@ namespace MinionReloggerLib.Core
                 first.IsEnabled = true;
                 first.Component.OnEnable();
                 Logger.LoggingObject.Log(ELogType.Info,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.ComponentManagerEnableComponent), componentToEnable);
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.ComponentManagerEnableComponent), componentToEnable);
             }
         }
 
@@ -108,8 +114,8 @@ namespace MinionReloggerLib.Core
                 first.IsEnabled = false;
                 first.Component.OnDisable();
                 Logger.LoggingObject.Log(ELogType.Info,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.ComponentManagerDisableComponent), componentToDisable);
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.ComponentManagerDisableComponent), componentToDisable);
             }
         }
 
@@ -125,7 +131,10 @@ namespace MinionReloggerLib.Core
             return first != null && first.Component != null;
         }
 
-        public void OpenSettingsForm(IRelogComponent componentToCall, Account account = null) { componentToCall.ShowSettingsForm(account).ShowDialog(); }
+        public void OpenSettingsForm(IRelogComponent componentToCall, Account account = null)
+        {
+            componentToCall.ShowSettingsForm(account).ShowDialog();
+        }
 
         public void OpenSettingsForm(string nameofComponentToCall, Account account = null)
         {
@@ -136,70 +145,73 @@ namespace MinionReloggerLib.Core
             }
         }
 
-        public List<string> GetComponentNames() { return _components.Select(componentClass => componentClass.Component.GetName()).ToList(); }
+        public List<string> GetComponentNames()
+        {
+            return _components.Select(componentClass => componentClass.Component.GetName()).ToList();
+        }
 
         public List<string> GetComponentNamesForEnabled()
         {
             return
                 _components.Where(component => component.IsEnabled)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public List<string> GetComponentNamesForDisabled()
         {
             return
                 _components.Where(component => !component.IsEnabled)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public List<string> GetEnabledGlobalSettingsComponentNames()
         {
             return
                 _components.Where(c => c.IsEnabled && c.Component.GetSettingType() == ESettingsType.Global)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public List<string> GetEnabledAccountSettingsComponentNames()
         {
             return
                 _components.Where(c => c.IsEnabled && c.Component.GetSettingType() == ESettingsType.AccountSpecific)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public List<string> GetEnabledNoSettingsComponentNames()
         {
             return
                 _components.Where(c => c.IsEnabled && c.Component.GetSettingType() == ESettingsType.None)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public List<string> GetDisabledGlobalSettingsComponentNames()
         {
             return
                 _components.Where(c => !c.IsEnabled && c.Component.GetSettingType() == ESettingsType.Global)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public List<string> GetDisabledAccountSettingsComponentNames()
         {
             return
                 _components.Where(c => !c.IsEnabled && c.Component.GetSettingType() == ESettingsType.AccountSpecific)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public List<string> GetDisabledNoSettingsComponentNames()
         {
             return
                 _components.Where(c => !c.IsEnabled && c.Component.GetSettingType() == ESettingsType.None)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
 
@@ -207,24 +219,24 @@ namespace MinionReloggerLib.Core
         {
             return
                 _components.Where(c => c.Component.GetSettingType() == ESettingsType.Global)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public List<string> GetAccountSettingsComponentNames()
         {
             return
                 _components.Where(c => c.Component.GetSettingType() == ESettingsType.AccountSpecific)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public List<string> GetNoSettingsComponentNames()
         {
             return
                 _components.Where(c => c.Component.GetSettingType() == ESettingsType.None)
-                           .Select(componentClass => componentClass.Component.GetName())
-                           .ToList();
+                    .Select(componentClass => componentClass.Component.GetName())
+                    .ToList();
         }
 
         public void LoadComponents()

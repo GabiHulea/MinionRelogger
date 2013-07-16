@@ -37,7 +37,10 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
         private Process[] _gw2Processes;
         private uint _newPID;
 
-        public bool Check(Account account) { return CheckIfProcessAlreadyExists(_gw2Processes, account, _attached, ref _newPID); }
+        public bool Check(Account account)
+        {
+            return CheckIfProcessAlreadyExists(_gw2Processes, account, _attached, ref _newPID);
+        }
 
         public IRelogWorker DoWork(Account account)
         {
@@ -45,8 +48,8 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
             _newPID = uint.MaxValue;
             _gw2Processes = Process.GetProcessesByName("gw2");
             Logger.LoggingObject.Log(ELogType.Debug,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.StartWorkerScanningForExisting));
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.StartWorkerScanningForExisting));
             _attached = Check(account);
             _newPID = CreateNewProcess(_attached, account, ref _newPID);
             Update(account);
@@ -60,7 +63,10 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
             account.SetLastStartTime(DateTime.Now);
         }
 
-        public bool PostWork(Account account) { return _newPID < uint.MaxValue; }
+        public bool PostWork(Account account)
+        {
+            return _newPID < uint.MaxValue;
+        }
 
         private uint CreateNewProcess(bool attached, Account account, ref uint newPID)
         {
@@ -71,10 +77,10 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                     try
                     {
                         Logger.LoggingObject.Log(ELogType.Verbose,
-                                                 LanguageManager.Singleton.GetTranslation(
-                                                     ETranslations.StartWorkerLaunchingInstance),
-                                                 account.LoginName,
-                                                 account.BotPath + "\\MinionFiles\\GW2MinionLauncherDLL.dll");
+                            LanguageManager.Singleton.GetTranslation(
+                                ETranslations.StartWorkerLaunchingInstance),
+                            account.LoginName,
+                            account.BotPath + "\\MinionFiles\\GW2MinionLauncherDLL.dll");
                         string directory = Config.Singleton.GeneralSettings.GW2Path.Replace("GW2.exe", "");
                         if (Directory.Exists(directory))
                         {
@@ -115,9 +121,16 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                                 }
                             }
                         }
-                        newPID = GW2MinionLauncher.LaunchAccount(Config.Singleton.GeneralSettings.GW2Path,
-                                                                 account.LoginName, account.Password, account.NoSound,
-                                                                 Config.Singleton.GeneralSettings.UseBeta);
+                        string pwd = account.Password;
+                        if (!pwd.Contains(@""""))
+                            pwd = @"""" + pwd + @"""";
+                        if (account.AttachBot)
+                            newPID = GW2MinionLauncher.LaunchAccount(Config.Singleton.GeneralSettings.GW2Path,
+                                account.LoginName, pwd, account.NoSound,
+                                Config.Singleton.GeneralSettings.UseBeta);
+                        else
+                            newPID = GW2MinionLauncher.LaunchGW(Config.Singleton.GeneralSettings.GW2Path,
+                                account.LoginName, pwd, false, account.NoSound);
                     }
                     catch (Exception ex)
                     {
@@ -139,22 +152,22 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
         }
 
         private bool CheckIfProcessAlreadyExists(IEnumerable<Process> gw2Processes, Account account, bool attached,
-                                                 ref uint newPID)
+            ref uint newPID)
         {
             foreach (Process p in gw2Processes)
             {
                 if (GW2MinionLauncher.GetAccountName((uint) p.Id) == account.LoginName)
                 {
                     Logger.LoggingObject.Log(ELogType.Verbose,
-                                             LanguageManager.Singleton.GetTranslation(
-                                                 ETranslations.StartWorkerFoundWantedProcess),
-                                             account.LoginName);
+                        LanguageManager.Singleton.GetTranslation(
+                            ETranslations.StartWorkerFoundWantedProcess),
+                        account.LoginName);
                     try
                     {
                         Logger.LoggingObject.Log(ELogType.Verbose,
-                                                 LanguageManager.Singleton.GetTranslation(
-                                                     ETranslations.StartWorkerAttachingTo),
-                                                 account.LoginName, account.BotPath + "\\GW2MinionLauncherDLL.dll");
+                            LanguageManager.Singleton.GetTranslation(
+                                ETranslations.StartWorkerAttachingTo),
+                            account.LoginName, account.BotPath + "\\GW2MinionLauncherDLL.dll");
                         attached = GW2MinionLauncher.AttachToPid((uint) p.Id, Config.Singleton.GeneralSettings.UseBeta);
                     }
                     catch (Exception ex)

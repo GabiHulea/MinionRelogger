@@ -27,9 +27,15 @@ namespace MinionReloggerLib.Helpers.Language
     {
         protected Dictionary<ETranslations, string> Translations;
 
-        protected Language() { Translations = new Dictionary<ETranslations, string>(); }
+        protected Language()
+        {
+            Translations = new Dictionary<ETranslations, string>();
+        }
 
-        public string GetTranslation(ETranslations key) { return Translations[key]; }
+        public string GetTranslation(ETranslations key)
+        {
+            return Translations[key];
+        }
 
         public abstract string GetLanguageDescription();
 

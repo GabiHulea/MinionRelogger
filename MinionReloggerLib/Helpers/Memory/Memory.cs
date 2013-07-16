@@ -42,11 +42,11 @@ namespace MinionReloggerLib.Helpers.Memory
 
         [DllImport("kernel32.dll", SetLastError = true), SuppressUnmanagedCodeSecurity]
         internal static extern bool ReadProcessMemory(IntPtr hProcess, uint lpBaseAddress, [Out] byte[] lpBuffer,
-                                                      int dwSize, out int lpNumberOfBytesRead);
+            int dwSize, out int lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll", SetLastError = true), SuppressUnmanagedCodeSecurity]
         internal static extern bool WriteProcessMemory(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, uint nSize,
-                                                       out int lpNumberOfBytesWritten);
+            out int lpNumberOfBytesWritten);
 
         [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
         internal static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, int dwProcessId);
@@ -56,7 +56,7 @@ namespace MinionReloggerLib.Helpers.Memory
 
         [DllImport("kernel32", EntryPoint = "VirtualAllocEx")]
         public static extern uint VirtualAllocEx(IntPtr hProcess, uint dwAddress, int nSize, uint dwAllocationType,
-                                                 uint dwProtect);
+            uint dwProtect);
 
         [DllImport("kernel32", EntryPoint = "VirtualFreeEx")]
         public static extern bool VirtualFreeEx(IntPtr hProcess, uint dwAddress, int nSize, uint dwFreeType);
@@ -85,7 +85,9 @@ namespace MinionReloggerLib.Helpers.Memory
                 {
                     return ProcessObject.MainModule;
                 }
-                catch {}
+                catch
+                {
+                }
                 return null;
             }
         }
@@ -138,7 +140,7 @@ namespace MinionReloggerLib.Helpers.Memory
             }
 
             throw new Exception(string.Format("Could not write the specified bytes! {0:X8} [{1}]", address,
-                                              Marshal.GetLastWin32Error()));
+                Marshal.GetLastWin32Error()));
         }
 
         public static void Write<T>(uint address, T value)
@@ -459,13 +461,25 @@ namespace MinionReloggerLib.Helpers.Memory
 
         #region AllocateMemory
 
-        public static uint AllocateMemory(int nSize, uint dwAddress, uint dwAllocationType, uint dwProtect) { return VirtualAllocEx(ProcessHandle, dwAddress, nSize, dwAllocationType, dwProtect); }
+        public static uint AllocateMemory(int nSize, uint dwAddress, uint dwAllocationType, uint dwProtect)
+        {
+            return VirtualAllocEx(ProcessHandle, dwAddress, nSize, dwAllocationType, dwProtect);
+        }
 
-        public static uint AllocateMemory(int nSize, uint dwAllocationType, uint dwProtect) { return AllocateMemory(nSize, 0, dwAllocationType, dwProtect); }
+        public static uint AllocateMemory(int nSize, uint dwAllocationType, uint dwProtect)
+        {
+            return AllocateMemory(nSize, 0, dwAllocationType, dwProtect);
+        }
 
-        public static uint AllocateMemory(int nSize) { return AllocateMemory(nSize, MemoryAllocType.MEM_COMMIT, MemoryProtectType.PAGE_EXECUTE_READWRITE); }
+        public static uint AllocateMemory(int nSize)
+        {
+            return AllocateMemory(nSize, MemoryAllocType.MEM_COMMIT, MemoryProtectType.PAGE_EXECUTE_READWRITE);
+        }
 
-        public static uint AllocateMemory() { return AllocateMemory(DEFAULT_MEMORY_SIZE); }
+        public static uint AllocateMemory()
+        {
+            return AllocateMemory(DEFAULT_MEMORY_SIZE);
+        }
 
         #endregion
 
@@ -479,7 +493,10 @@ namespace MinionReloggerLib.Helpers.Memory
             return VirtualFreeEx(ProcessHandle, dwAddress, nSize, dwFreeType);
         }
 
-        public static bool FreeMemory(uint dwAddress) { return FreeMemory(dwAddress, 0, MemoryFreeType.MEM_RELEASE); }
+        public static bool FreeMemory(uint dwAddress)
+        {
+            return FreeMemory(dwAddress, 0, MemoryFreeType.MEM_RELEASE);
+        }
 
         #endregion
 

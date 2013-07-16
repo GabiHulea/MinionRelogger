@@ -27,7 +27,7 @@ namespace MinionReloggerLib.CustomEventArgs
     public class ReloggerEventArgs : EventArgs
     {
         public ReloggerEventArgs(Object control, Account account = null,
-                                 ERelogEventArgsType type = ERelogEventArgsType.OnUnknown)
+            ERelogEventArgsType type = ERelogEventArgsType.OnUnknown)
         {
             Control = control;
             Account = account;

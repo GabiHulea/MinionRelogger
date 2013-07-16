@@ -101,8 +101,8 @@ namespace MinionReloggerLib.Helpers.Input
         }
 
         private static void SetTextValues(string title, string promptText, string value, Form form, Label label,
-                                          TextBox textBox,
-                                          Button buttonOk, Button buttonCancel)
+            TextBox textBox,
+            Button buttonOk, Button buttonCancel)
         {
             form.Text = title;
             label.Text = promptText;
@@ -114,7 +114,7 @@ namespace MinionReloggerLib.Helpers.Input
         }
 
         private static Form CreateControls(out Label label, out TextBox textBox, out Button buttonOk,
-                                           out Button buttonCancel)
+            out Button buttonCancel)
         {
             var form = new Form();
             label = new Label();

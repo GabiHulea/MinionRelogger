@@ -35,43 +35,60 @@ namespace SchedulerComponent
             if (Check(account))
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Halt,
-                        LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentHalt),
-                    };
+                {
+                    Result = EComponentResult.Halt,
+                    LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentHalt),
+                };
                 if (IsReady(account))
                 {
                     Update(account);
                     result = new ComponentResult
-                        {
-                            Result = EComponentResult.Kill,
-                            LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentKill),
-                        };
+                    {
+                        Result = EComponentResult.Kill,
+                        LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.SchedulerComponentKill),
+                    };
                 }
             }
             else
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Ignore,
-                    };
+                {
+                    Result = EComponentResult.Ignore,
+                };
             }
             return this;
         }
 
-        public string GetName() { return "SchedulerComponent"; }
+        public string GetName()
+        {
+            return "SchedulerComponent";
+        }
 
-        public void OnEnable() { }
+        public void OnEnable()
+        {
+        }
 
-        public void OnDisable() { }
+        public void OnDisable()
+        {
+        }
 
-        public void OnLoad() { }
+        public void OnLoad()
+        {
+        }
 
-        public void OnUnload() { }
+        public void OnUnload()
+        {
+        }
 
-        public Form ShowSettingsForm(Account account = null) { return new SettingsForm(account); }
+        public Form ShowSettingsForm(Account account = null)
+        {
+            return new SettingsForm(account);
+        }
 
-        public ESettingsType GetSettingType() { return ESettingsType.AccountSpecific; }
+        public ESettingsType GetSettingType()
+        {
+            return ESettingsType.AccountSpecific;
+        }
 
         public bool Check(Account account)
         {
@@ -84,10 +101,18 @@ namespace SchedulerComponent
             return false;
         }
 
-        public bool IsReady(Account account) { return account.Running; }
+        public bool IsReady(Account account)
+        {
+            return account.Running;
+        }
 
-        public void Update(Account account) { account.Update(); }
+        public void Update(Account account)
+        {
+            account.Update();
+        }
 
-        public void PostWork(Account account) { }
+        public void PostWork(Account account)
+        {
+        }
     }
 }

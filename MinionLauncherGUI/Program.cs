@@ -19,15 +19,14 @@
 ******************************************************************************/
 
 using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.IO;
-using System.Reflection;
-using System.Text;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
+using System.Net.Cache;
+using System.Reflection;
 using System.Threading;
+using System.Windows.Forms;
+
 namespace MinionLauncherGUI
 {
     internal static class Program
@@ -40,14 +39,14 @@ namespace MinionLauncherGUI
             private MyApplicationContext()
             {
                 _formCount = 0;
-             
+
                 _mainForm = new MainForm();
                 _mainForm.Closed += OnFormClosed;
                 _formCount++;
-                
+
                 _mainForm.Show();
             }
-            
+
             private void OnFormClosed(object sender, EventArgs e)
             {
                 _formCount--;
@@ -56,12 +55,12 @@ namespace MinionLauncherGUI
                     ExitThread();
                 }
             }
-            
+
             /// <summary>
             ///     The main entry point for the application.
             /// </summary>
             [STAThread]
-            static void Main(string[] args)
+            private static void Main(string[] args)
             {
                 Version LocalVersion, RemoteVersion;
                 string remoteUri = "http://patcher.gw2.mmominion.com/Updater/";
@@ -71,7 +70,7 @@ namespace MinionLauncherGUI
                     AppDomain.CurrentDomain.AssemblyResolve += CurrentDomainAssemblyResolve;
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-  
+
                     if (args.Length > 0)
                     {
                         var context = new MyApplicationContext();
@@ -79,10 +78,9 @@ namespace MinionLauncherGUI
                     }
                     else
                     {
-
-                        WebClient myWebClient = new WebClient();
+                        var myWebClient = new WebClient();
                         myWebClient.Proxy = null;
-                        myWebClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                        myWebClient.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
                         if (File.Exists(fileName))
                         {
                             FileVersionInfo fv;
@@ -101,12 +99,11 @@ namespace MinionLauncherGUI
                         {
                             //we dont have the damn file anyway so get it!
                             myWebClient.DownloadFile(remoteUri + fileName, fileName);
-
                         }
                         Thread.Sleep(1000);
                         //now run the damn file to update the noobs
                         Process currentproc = Process.GetCurrentProcess();
-                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                        var startInfo = new ProcessStartInfo();
 
                         startInfo.FileName = fileName;
                         startInfo.Arguments = currentproc.Id.ToString();
@@ -116,7 +113,6 @@ namespace MinionLauncherGUI
                         var context = new MyApplicationContext();
                         Application.Run(context);
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -145,7 +141,7 @@ namespace MinionLauncherGUI
                     else
                     {
                         strTempAssmbPath = Path.Combine(RMSAssemblyFolder,
-                                                        args.Name.Substring(0, args.Name.IndexOf(",")) + ".dll");
+                            args.Name.Substring(0, args.Name.IndexOf(",")) + ".dll");
 
                         if (!string.IsNullOrEmpty(strTempAssmbPath))
                         {
@@ -157,7 +153,7 @@ namespace MinionLauncherGUI
                     }
                     return MyAssembly;
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     return null;
                 }

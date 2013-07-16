@@ -58,7 +58,9 @@ namespace MinionReloggerLib.Imports
                     return true;
                 }
             }
-            catch (Exception) {}
+            catch (Exception)
+            {
+            }
             result = "<null>";
             return false;
         }

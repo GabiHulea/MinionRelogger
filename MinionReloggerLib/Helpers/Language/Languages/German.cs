@@ -32,52 +32,54 @@ namespace MinionReloggerLib.Helpers.Language.Languages
 
             // class ComponentManager
             Translations.Add(ETranslations.ComponentManagerAddedComponent,
-                             "Eine Komponente mit dem Namen {0} wurde zur Liste hinzugefügt.");
+                "Eine Komponente mit dem Namen {0} wurde zur Liste hinzugefügt.");
             Translations.Add(ETranslations.ComponentManagerDisableComponent,
-                             " Eine Komponente mit dem Namen {0} wurde deaktiviert.");
+                " Eine Komponente mit dem Namen {0} wurde deaktiviert.");
             Translations.Add(ETranslations.ComponentManagerEnableComponent,
-                             " Eine Komponente mit dem Namen {0} wurde aktiviert.");
+                " Eine Komponente mit dem Namen {0} wurde aktiviert.");
 
             // class: Config
             Translations.Add(ETranslations.ConfigNewAccount, "Neues Accountobject hinzugefügt.");
-            Translations.Add(ETranslations.ConfigErrorDuringEncryption, "Ein Fehler ist bei der Verschlüsselung aufgetreten!");
+            Translations.Add(ETranslations.ConfigErrorDuringEncryption,
+                "Ein Fehler ist bei der Verschlüsselung aufgetreten!");
             Translations.Add(ETranslations.ConfigOldSaveFileDeleted,
-                             "Alte Speicherdatei gelöscht, es musste sich um eine alte version gehandelt haben!");
+                "Alte Speicherdatei gelöscht, es musste sich um eine alte version gehandelt haben!");
             Translations.Add(ETranslations.ConfigCouldntFindValidSaveFile,
-                             "Keine gültigen Speicherdatei gefunden. Bitte erstelle eine neue Speicherdatei.");
+                "Keine gültigen Speicherdatei gefunden. Bitte erstelle eine neue Speicherdatei.");
             Translations.Add(ETranslations.ConfigDumpIntegers,
-                             "Abfrageverzögerung: {0}, Startverzögerung: {1}, Neustartverzögerung: {2}, Einfrierzeit: {3}.");
+                "Abfrageverzögerung: {0}, Startverzögerung: {1}, Neustartverzögerung: {2}, Einfrierzeit: {3}.");
 
             // class: DataProtector
-            Translations.Add(ETranslations.DataProtectorErrorOccured, " Ein Fehler ist bei der Verschlüsselung aufgetreten!");
+            Translations.Add(ETranslations.DataProtectorErrorOccured,
+                " Ein Fehler ist bei der Verschlüsselung aufgetreten!");
             Translations.Add(ETranslations.DataProtectorDeletedSaveFile,
-                             " Alte Speicherdatei gelöscht, es musste sich um eine alte Version gehandelt haben!");
+                " Alte Speicherdatei gelöscht, es musste sich um eine alte Version gehandelt haben!");
 
             // class: General Settings
             Translations.Add(ETranslations.GeneralSettingsGW2PathChanged, "GW2 Pfad zu: [{0}] Geändert.");
             Translations.Add(ETranslations.GeneralSettingsPollingDelayChanged,
-                             " Abfrageverzögerung geändert: [{0}].");
+                " Abfrageverzögerung geändert: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsFrozenTimeChanged,
-                             "Einfrierzeit geändert: [{0}].");
+                "Einfrierzeit geändert: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsLaunchDelayChanged, " Startverzögerung geändert: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsRestartDelayChanged,
-                             " Neustartverzögerung geändert: [{0}].");
+                " Neustartverzögerung geändert: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsColorChanged, "Farbwechsel: {0}.");
             Translations.Add(ETranslations.GeneralSettingsThemeChanged, "Themenwechsel: {0}.");
             Translations.Add(ETranslations.GeneralSettingsMinimizeWindowsChanged,
-                             "Fensterminimieren geändert: {0}.");
+                "Fensterminimieren geändert: {0}.");
             Translations.Add(ETranslations.GeneralSettingsCheckForIPChanged,
-                             "IP Check geändert: {0}.");
+                "IP Check geändert: {0}.");
             Translations.Add(ETranslations.GeneralSettingsAddedIP,
-                             "IP {0} zur Liste erlaubter IPs hinzugefügt.");
+                "IP {0} zur Liste erlaubter IPs hinzugefügt.");
             Translations.Add(ETranslations.GeneralSettingsDeletedIP,
-                             "IP {0} von der Liste erlaubter gelöscht.");
+                "IP {0} von der Liste erlaubter gelöscht.");
 
             // class: GW2ManagerThread
             Translations.Add(ETranslations.GW2ManagerThreadStoppedResponding,
-                             "GW2 Instanz, {0}, reagiert nicht mehr.");
+                "GW2 Instanz, {0}, reagiert nicht mehr.");
             Translations.Add(ETranslations.GW2ManagerThreadStartedRespondingAgain,
-                             " GW2 Instanz, {0}, reagiert wieder.");
+                " GW2 Instanz, {0}, reagiert wieder.");
 
             // class: InputBox
             Translations.Add(ETranslations.InputBoxOk, "OK");
@@ -90,22 +92,23 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.StartWorkerLaunchingInstance, "Starte Instanz für {0} mit {1}.");
             Translations.Add(ETranslations.StartWorkerScanningForExisting, "Scanne nach existierenden GW2 Instanzen.");
             Translations.Add(ETranslations.StartWorkerFoundWantedProcess,
-                             "Prozess für {0} gefunden, brauch nicht gestartet werden.");
+                "Prozess für {0} gefunden, brauch nicht gestartet werden.");
             Translations.Add(ETranslations.StartWorkerAttachingTo, "Verbinde zu {0} mit {1}.");
 
             // class: ViewStateObject
             Translations.Add(ETranslations.ViewStateObjectClientStuckSomewhere,
-                             "Die GW2 Instanz {0}, ist nicht im Spiel seit {1} Sekunden, plane Neustart.");
+                "Die GW2 Instanz {0}, ist nicht im Spiel seit {1} Sekunden, plane Neustart.");
 
             // class: WatchObject
             Translations.Add(ETranslations.WatchObjectNotRespondingFor,
-                             " Die GW2 Instanz {0}, antwortet seit 90sec nicht mehr, plane Neustart");
+                " Die GW2 Instanz {0}, antwortet seit 90sec nicht mehr, plane Neustart");
 
             // component: BreakComponent
             Translations.Add(ETranslations.BreakComponentPauseEvery, "Pausiere jede "); // ... minutes 
             Translations.Add(ETranslations.BreakComponentDelayPrePause, "Zufällige Pause vor der Pause"); // ... minutes
             Translations.Add(ETranslations.BreakComponentPause, "Pausezeit von"); // ... minutes
-            Translations.Add(ETranslations.BreakComponentDelayPostPause, "Zufällige Pause nach der Pause"); // ... minutes
+            Translations.Add(ETranslations.BreakComponentDelayPostPause, "Zufällige Pause nach der Pause");
+                // ... minutes
             Translations.Add(ETranslations.BreakComponentEnableBreaks, "Pausen Aktivieren?");
             Translations.Add(ETranslations.BreakComponentMinutes, "Minuten");
             Translations.Add(ETranslations.BreakComponentOk, "OK");
@@ -118,12 +121,12 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.IPCheckComponentEnableIPChecks, "IP Checks aktivieren?");
             Translations.Add(ETranslations.IPCheckComponentIPToAdd, "IP zum hinzufügen");
             Translations.Add(ETranslations.IPCheckComponentEnterIP,
-                             "IP zum Hinzufügen eingeben (Im Format: 127.0.0.1).");
+                "IP zum Hinzufügen eingeben (Im Format: 127.0.0.1).");
             Translations.Add(ETranslations.IPCheckComponentAddingNewIPRange,
-                             "Füge neue IP-Range hinzu, das letzte Paar der IP-Range wird übersprungen, 192.168.1.1 wird 192.168.1.0-255.");
+                "Füge neue IP-Range hinzu, das letzte Paar der IP-Range wird übersprungen, 192.168.1.1 wird 192.168.1.0-255.");
             Translations.Add(ETranslations.IPCheckComponentIPRangeToAdd, "IP-Range zum Hinzufügen");
             Translations.Add(ETranslations.IPCheckComponentEnterIPRange,
-                             "Bitte die gewünschte IP-Range zum hinzufügen eingeben (Im Format: 192.168.1.0).");
+                "Bitte die gewünschte IP-Range zum hinzufügen eingeben (Im Format: 192.168.1.0).");
             Translations.Add(ETranslations.IPCheckComponentOk, "OK");
             Translations.Add(ETranslations.IPCheckComponentCancel, "Abbrechen");
 
@@ -135,7 +138,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.LaunchDelayComponentCancel, "Abbrechen");
             Translations.Add(ETranslations.LaunchDelayComponentLaunchDelay, "Startverzögerung");
             Translations.Add(ETranslations.LaunchDelayComponentEntireDesiredDelay,
-                             "Bitte die gewünschte Verzögerung zwischen den GW2-Starts eingeben (! Minimum: 20, in Sekunden!).");
+                "Bitte die gewünschte Verzögerung zwischen den GW2-Starts eingeben (! Minimum: 20, in Sekunden!).");
 
             // component: RestartDelayComponent
             Translations.Add(ETranslations.RestartDelayComponentCurrentValue, "Aktueller Wert:");
@@ -145,7 +148,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.RestartDelayComponentCancel, "Abbrechen");
             Translations.Add(ETranslations.RestartDelayComponentRestartDelay, "Neustartverzögerung");
             Translations.Add(ETranslations.RestartDelayComponentEntireDesiredDelay,
-                             "Bitte die gewünschte Neustartverzögerung eingeben (Um das maximale Key-Limit zu umgehen) (! in Sekunden!).");
+                "Bitte die gewünschte Neustartverzögerung eingeben (Um das maximale Key-Limit zu umgehen) (! in Sekunden!).");
 
             // component: SchedulerComponent
             Translations.Add(ETranslations.SchedulerComponentStartTime, "Startzeit:");
@@ -156,7 +159,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.SchedulerComponentOk, "OK");
             Translations.Add(ETranslations.SchedulerComponentCancel, "Abbrechen");
             Translations.Add(ETranslations.SchedulerComponentSaveSettings,
-                             "Speichere Zeitplan-einstellung für {0} (Minuten: {1}).");
+                "Speichere Zeitplan-einstellung für {0} (Minuten: {1}).");
             // class: AccountControl
             Translations.Add(ETranslations.AccountControlStart, "Start");
             Translations.Add(ETranslations.AccountControlStop, "Stopp");
@@ -199,13 +202,13 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.MainFormSettings, "Einstellungen");
             Translations.Add(ETranslations.MainFormLog, "Log");
             Translations.Add(ETranslations.MainFormFreshConfig,
-                             " Hallo, da du mit einer frischen Konfiguration beginnen, müssen einige Einstellungen zuerst vorgenommen werden.");
+                " Hallo, da du mit einer frischen Konfiguration beginnen, müssen einige Einstellungen zuerst vorgenommen werden.");
             Translations.Add(ETranslations.MainFormWelcome, "Hallo!");
             Translations.Add(ETranslations.MainFormWhichComponents,
-                             "Ok, jetzt musst du die Komponenten, welche der Relogger benutzen soll, festlegen. Als Anfänger, einfach alle Komponenten hinzufügen indem du auf „Nach links verschieben“ drückst..");
+                "Ok, jetzt musst du die Komponenten, welche der Relogger benutzen soll, festlegen. Als Anfänger, einfach alle Komponenten hinzufügen indem du auf „Nach links verschieben“ drückst..");
             Translations.Add(ETranslations.MainFormFirstStep, "Erster Schritt");
             Translations.Add(ETranslations.MainFormPleaseSave,
-                             "Wenn du fertig bist unbedingt SPEICHERN drücken!");
+                "Wenn du fertig bist unbedingt SPEICHERN drücken!");
             Translations.Add(ETranslations.MainFormTip, "Tipp!");
             Translations.Add(ETranslations.MainFormEnabled, "Aktiviert");
             Translations.Add(ETranslations.MainFormDisabled, "Deaktiviert");
@@ -213,44 +216,44 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.MainFormLocateGW2Long, "Bitte deine gw2.exe suchen und auswählen.");
             Translations.Add(ETranslations.MainFormPollingDelayShort, "Abfrageverzögerung");
             Translations.Add(ETranslations.MainFormPollingDelayLong,
-                             "Bitte die gewünschte Abfrageverzögerung festlegen (!Minimum: 3, in Sekunden!).");
+                "Bitte die gewünschte Abfrageverzögerung festlegen (!Minimum: 3, in Sekunden!).");
             Translations.Add(ETranslations.MainFormFrozenTimeShort, "Einfrierzeit");
             Translations.Add(ETranslations.MainFormFrozenTimeLong,
-                             "Bitte die gewünschte Zeit angeben, nach der eine GW2 Instanz als eingefroren gelten soll (!Minimum: 60, in Sekunden!).");
+                "Bitte die gewünschte Zeit angeben, nach der eine GW2 Instanz als eingefroren gelten soll (!Minimum: 60, in Sekunden!).");
             Translations.Add(ETranslations.MainFormLoginName, "Login Name");
             Translations.Add(ETranslations.MainFormStatus, "Status");
 
             // component: BasicStopComponent
             Translations.Add(ETranslations.BasicStopComponentStop,
-                             "Stoppe Instanz {0}, sollte nicht laufen (deaktiviert).");
+                "Stoppe Instanz {0}, sollte nicht laufen (deaktiviert).");
             Translations.Add(ETranslations.BasicStopComponentHalt,
-                             "Pausiere Start für {0}, sollte nicht laufen (deaktiviert).");
+                "Pausiere Start für {0}, sollte nicht laufen (deaktiviert).");
 
             // component: BreakComponent
             Translations.Add(ETranslations.BreakComponentKill,
-                             "Stoppe Instanz {0}, sollte laut Pause-einstellungen nicht laufen.");
+                "Stoppe Instanz {0}, sollte laut Pause-einstellungen nicht laufen.");
             Translations.Add(ETranslations.BreakComponentHalt,
-                             "Pausiere start für {0}, sollte laut Pause-einstellungen nicht starten.");
+                "Pausiere start für {0}, sollte laut Pause-einstellungen nicht starten.");
 
             // component: IPCheckComponent
             Translations.Add(ETranslations.IPCheckComponentHalt,
-                             "Pausiere Start für {0}, sollte nicht laufen. Aktuelle IP ist nicht erlaubt.");
+                "Pausiere Start für {0}, sollte nicht laufen. Aktuelle IP ist nicht erlaubt.");
             Translations.Add(ETranslations.IPCheckComponentKill,
-                             "Stoppe Instanz {0}, sollten nicht laufen. AKtuelle IP ist nicht erlaubt.");
+                "Stoppe Instanz {0}, sollten nicht laufen. AKtuelle IP ist nicht erlaubt.");
 
             // component: LaunchDelayComponent
             Translations.Add(ETranslations.LaunchDelayComponentHalt,
-                             "Pausiere Start für {0}. Startverzögerung ist noch nicht abgelaufen.");
+                "Pausiere Start für {0}. Startverzögerung ist noch nicht abgelaufen.");
 
             // component: RestartDelayComponent
             Translations.Add(ETranslations.RestartDelayComponentHalt,
-                             "Pausiere Start für {0}. Neustartverzögerung ist noch nicht abgelaufen.");
+                "Pausiere Start für {0}. Neustartverzögerung ist noch nicht abgelaufen.");
 
             // component: SchedulerComponent
             Translations.Add(ETranslations.SchedulerComponentHalt,
-                             "Pausiere Start für {0}, sollte laut Zeitplaner nicht laufen.");
+                "Pausiere Start für {0}, sollte laut Zeitplaner nicht laufen.");
             Translations.Add(ETranslations.SchedulerComponentKill,
-                             "Stoppe Instanz für {0}, sollte laut Zeitplaner nicht laufen.");
+                "Stoppe Instanz für {0}, sollte laut Zeitplaner nicht laufen.");
         }
 
         public override string GetLanguageDescription()

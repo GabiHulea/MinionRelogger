@@ -51,9 +51,15 @@ namespace MinionReloggerLib.Core
             }
         }
 
-        internal List<IRelogThread> GetThreads() { return _threads; }
+        internal List<IRelogThread> GetThreads()
+        {
+            return _threads;
+        }
 
-        internal void AddThread(IRelogThread threadToAdd) { _threads.Add(threadToAdd); }
+        internal void AddThread(IRelogThread threadToAdd)
+        {
+            _threads.Add(threadToAdd);
+        }
 
         public void EnableThread(string threadToEnable)
         {

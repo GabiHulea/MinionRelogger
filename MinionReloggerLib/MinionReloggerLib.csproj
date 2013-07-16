@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\IniFile.cs" />
     <Compile Include="Configuration\Settings\GeneralSettings.cs" />
     <Compile Include="Core\ComponentClass.cs" />
     <Compile Include="Core\ComponentManager.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Helpers\Memory\VersionChecker.cs" />
     <Compile Include="Helpers\MyIP\GetMyIP.cs" />
     <Compile Include="Helpers\MyIP\HTTPGet.cs" />
+    <Compile Include="Helpers\VersionControl\VersionControl.cs" />
     <Compile Include="Imports\GW2MinionLauncher.cs" />
     <Compile Include="Imports\Kernel32.cs" />
     <Compile Include="Imports\User32.cs" />

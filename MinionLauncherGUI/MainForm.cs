@@ -30,7 +30,6 @@ using MetroFramework.Drawing;
 using MetroFramework.Forms;
 using MinionLauncherGUI.CustomControls;
 using MinionLauncherGUI.Helpers;
-using MinionLauncherGUI.VersionControl;
 using MinionReloggerLib.Configuration;
 using MinionReloggerLib.Core;
 using MinionReloggerLib.CustomEventArgs;
@@ -39,8 +38,7 @@ using MinionReloggerLib.Helpers.Input;
 using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces.Objects;
 using MinionReloggerLib.Logging;
-using System.Net;
-using MinionReloggerLib.Imports;
+
 namespace MinionLauncherGUI
 {
     public delegate void ReloggerHandler(object sender, ReloggerEventArgs reloggerEventArgs);
@@ -52,35 +50,58 @@ namespace MinionLauncherGUI
         private int _newSet;
         private int _totalAccounts;
 
+
         public MainForm()
         {
             InitializeComponent();
-            //VersionChecker.CheckForUpdates(this);
-
-
-            string remoteUri = "http://patcher.gw2.mmominion.com/Gw2MinionFiles/";
-            string fileName = "GameVersion.txt";
-            WebClient myWebClient = new WebClient();
-            myWebClient.Proxy = null;
-            myWebClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-            uint minionVersion = Convert.ToUInt32(myWebClient.DownloadString(remoteUri + fileName));
-            uint apiVer = GW2MinionLauncher.BuildNumberFromApi();
-            if (minionVersion != apiVer)
+            try
             {
-                MessageBox.Show("Minion version does not match game version!\nPlease wait for an update.");
-                this.Close();
+                if (!MinionReloggerLib.Helpers.VersionControl.VersionControl.CheckVersionBot())
+                {
+                    MessageBox.Show("Minion version does not match game version!\nPlease wait for an update.");
+                }
+                else
+                {
+                    Logger.Initialize(lstBoxLog);
+                    ComponentManager.Singleton.LoadComponents();
+                    ThreadManager.Singleton.Initialize();
+                    if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
+                        FreshStart();
+                    FixNamesForLanguage();
+
+                    if (File.Exists(".\\MinionFiles\\RunningAccounts.ini"))
+                    {
+                        IniFile ini = new IniFile(".\\MinionFiles\\RunningAccounts.ini");
+                        bool value;
+                        string str = ini.IniReadValue("RunningAccounts", "Active");
+                        if (bool.TryParse(str, out value))
+                        {
+                            if (value)
+                            {
+                                str = ini.IniReadValue("RunningAccounts", "Accounts");
+                                string[] strSplitted = str.Split(';');
+                                foreach (var accName in strSplitted)
+                                {
+                                    foreach (
+                                        var account in
+                                            Config.Singleton.AccountSettings.Where(
+                                                account => account.LoginName == accName))
+                                    {
+                                        account.SetShouldBeRunning(true);
+                                    }
+                                }
+                            }
+                        }
+                        ini.IniWriteValue("RunningAccounts", "Active", "False");
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("ERROR");
+                Close();
                 Application.Exit();
             }
-            else
-            {
-                Logger.Initialize(lstBoxLog);
-                ComponentManager.Singleton.LoadComponents();
-                ThreadManager.Singleton.Initialize();
-                if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
-                    FreshStart();
-                FixNamesForLanguage();
-            }
-
         }
 
         private void FixNamesForLanguage()
@@ -167,9 +188,9 @@ namespace MinionLauncherGUI
                         page.Controls.Cast<object>()
                             .Where(
                                 control =>
-                                control as MetroLabel != null &&
-                                ((MetroLabel) control).Text ==
-                                LanguageManager.Singleton.GetTranslation(ETranslations.MainFormDisabled)))
+                                    control as MetroLabel != null &&
+                                    ((MetroLabel) control).Text ==
+                                    LanguageManager.Singleton.GetTranslation(ETranslations.MainFormDisabled)))
                 {
                     ((MetroLabel) control).Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormEnabled);
                 }
@@ -188,9 +209,9 @@ namespace MinionLauncherGUI
                             page.Controls.Cast<object>()
                                 .Where(
                                     control =>
-                                    control as MetroLabel != null &&
-                                    ((MetroLabel) control).Text ==
-                                    LanguageManager.Singleton.GetTranslation(ETranslations.MainFormEnabled)))
+                                        control as MetroLabel != null &&
+                                        ((MetroLabel) control).Text ==
+                                        LanguageManager.Singleton.GetTranslation(ETranslations.MainFormEnabled)))
                     {
                         ((MetroLabel) control).Text =
                             LanguageManager.Singleton.GetTranslation(ETranslations.MainFormDisabled);
@@ -336,7 +357,6 @@ namespace MinionLauncherGUI
         }
 
 
-
         private void MetroTileAddAccountClick(object sender, EventArgs e)
         {
             new AccountForm(EAccountManagementType.Add).ShowDialog();
@@ -345,7 +365,7 @@ namespace MinionLauncherGUI
             metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
             metroToggleMinimizeGW2.Checked = Config.Singleton.GeneralSettings.MinimizeWindows;
             metroToggle1.Checked = Config.Singleton.GeneralSettings.ExtensiveLogging;
-            metroToggle2.Checked = Config.Singleton.GeneralSettings.UseBeta; 
+            metroToggle2.Checked = Config.Singleton.GeneralSettings.UseBeta;
             UpdateFormWithAccountSettings();
         }
 
@@ -357,20 +377,41 @@ namespace MinionLauncherGUI
                         metroComboBoxGlobalSettingsComponents.SelectedIndex]);
         }
 
-        private void MetroToggleMinimizeGW2CheckedChanged(object sender, EventArgs e) { Config.Singleton.GeneralSettings.SetMinimizeWindows(metroToggleMinimizeGW2.Checked); }
+        private void MetroToggleMinimizeGW2CheckedChanged(object sender, EventArgs e)
+        {
+            Config.Singleton.GeneralSettings.SetMinimizeWindows(metroToggleMinimizeGW2.Checked);
+        }
 
 
-        private void MetroToggle1CheckedChanged(object sender, EventArgs e) { Config.Singleton.GeneralSettings.SetExtensiveLogging(metroToggle1.Checked); }
+        private void MetroToggle1CheckedChanged(object sender, EventArgs e)
+        {
+            Config.Singleton.GeneralSettings.SetExtensiveLogging(metroToggle1.Checked);
+        }
 
-        private void MetroToggle2CheckedChanged(object sender, EventArgs e) { Config.Singleton.GeneralSettings.SetUseBeta(metroToggle2.Checked); }
+        private void MetroToggle2CheckedChanged(object sender, EventArgs e)
+        {
+            Config.Singleton.GeneralSettings.SetUseBeta(metroToggle2.Checked);
+        }
 
-        private void BtnLoadClick(object sender, EventArgs e) { LoadConfig(true); }
+        private void BtnLoadClick(object sender, EventArgs e)
+        {
+            LoadConfig(true);
+        }
 
-        private void BtnSaveClick(object sender, EventArgs e) { Config.SaveSettingsToFile(); }
+        private void BtnSaveClick(object sender, EventArgs e)
+        {
+            Config.SaveSettingsToFile();
+        }
 
-        private void BtnSetExePathClick(object sender, EventArgs e) { SetGW2Path(Config.Singleton.GeneralSettings.GW2Path); }
+        private void BtnSetExePathClick(object sender, EventArgs e)
+        {
+            SetGW2Path(Config.Singleton.GeneralSettings.GW2Path);
+        }
 
-        private void BtnSetPollingDelayClick(object sender, EventArgs e) { SetPollingDelay(false, Config.Singleton.GeneralSettings.PollingDelay); }
+        private void BtnSetPollingDelayClick(object sender, EventArgs e)
+        {
+            SetPollingDelay(false, Config.Singleton.GeneralSettings.PollingDelay);
+        }
 
         private void NewControlOnSettingsClick(object sender, ReloggerEventArgs reloggereventargs)
         {
@@ -406,7 +447,7 @@ namespace MinionLauncherGUI
             btnDisableComponent.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
             UpdateFormWithAccountSettings();
         }
-        
+
         private void NewControlOnKillClick(object sender, ReloggerEventArgs reloggereventargs)
         {
             reloggereventargs.Account.SetShouldBeRunning(false);
@@ -433,7 +474,10 @@ namespace MinionLauncherGUI
             UpdateFormWithAccountSettings();
         }
 
-        private void BtnSetFrozenTimeClick(object sender, EventArgs e) { SetFrozenTime(false, Config.Singleton.GeneralSettings.FrozenTime); }
+        private void BtnSetFrozenTimeClick(object sender, EventArgs e)
+        {
+            SetFrozenTime(false, Config.Singleton.GeneralSettings.FrozenTime);
+        }
 
         private void BtnDisableComponentClick(object sender, EventArgs e)
         {
@@ -551,24 +595,24 @@ namespace MinionLauncherGUI
         private void CycleTabsForRenderer()
         {
             metroTabPage1.Controls.Add(new MetroLabel
-                {
-                    FontWeight = MetroFontWeight.Bold,
-                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormLoginName),
-                    Theme = metroStyleManager.Theme,
-                    Style = metroStyleManager.Style,
-                    Location = new Point(3, 10),
-                    BackColor = Color.Transparent,
-                });
+            {
+                FontWeight = MetroFontWeight.Bold,
+                Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormLoginName),
+                Theme = metroStyleManager.Theme,
+                Style = metroStyleManager.Style,
+                Location = new Point(3, 10),
+                BackColor = Color.Transparent,
+            });
 
             metroTabPage1.Controls.Add(new MetroLabel
-                {
-                    FontWeight = MetroFontWeight.Bold,
-                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormStatus),
-                    Theme = metroStyleManager.Theme,
-                    Style = metroStyleManager.Style,
-                    Location = new Point(490, 10),
-                    BackColor = Color.Transparent,
-                });
+            {
+                FontWeight = MetroFontWeight.Bold,
+                Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormStatus),
+                Theme = metroStyleManager.Theme,
+                Style = metroStyleManager.Style,
+                Location = new Point(490, 10),
+                BackColor = Color.Transparent,
+            });
 
             metroTabControl1.SelectTab(0);
             metroTabControl1.SelectTab(1);
@@ -613,7 +657,7 @@ namespace MinionLauncherGUI
             openFileDialog.Multiselect = false;
 
             MessageBox.Show(LanguageManager.Singleton.GetTranslation(ETranslations.MainFormLocateGW2Long),
-                            LanguageManager.Singleton.GetTranslation(ETranslations.MainFormLocateGW2Short));
+                LanguageManager.Singleton.GetTranslation(ETranslations.MainFormLocateGW2Short));
             while (
                 openFileDialog.ShowDialog() !=
                 DialogResult.OK || !File.Exists(openFileDialog.FileName)) ;
@@ -683,8 +727,8 @@ namespace MinionLauncherGUI
         {
             _newSet++;
             var newControl = new AccountControl(metroTabControl2,
-                                                AccountControls.Count,
-                                                _totalAccounts, _newSet, metroStyleManager, account);
+                AccountControls.Count,
+                _totalAccounts, _newSet, metroStyleManager, account);
             newControl.StartClick += NewControlOnStartClick;
             newControl.KillClick += NewControlOnKillClick;
             newControl.ManageClick += NewControlOnManageClick;
@@ -723,24 +767,24 @@ namespace MinionLauncherGUI
                 }
                 metroTabPage1.Controls.Clear();
                 metroTabPage1.Controls.Add(new MetroLabel
-                    {
-                        FontWeight = MetroFontWeight.Bold,
-                        Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormLoginName),
-                        Theme = metroStyleManager.Theme,
-                        Style = metroStyleManager.Style,
-                        Location = new Point(3, 10),
-                        BackColor = Color.Transparent,
-                    });
+                {
+                    FontWeight = MetroFontWeight.Bold,
+                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormLoginName),
+                    Theme = metroStyleManager.Theme,
+                    Style = metroStyleManager.Style,
+                    Location = new Point(3, 10),
+                    BackColor = Color.Transparent,
+                });
 
                 metroTabPage1.Controls.Add(new MetroLabel
-                    {
-                        FontWeight = MetroFontWeight.Bold,
-                        Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormStatus),
-                        Theme = metroStyleManager.Theme,
-                        Style = metroStyleManager.Style,
-                        Location = new Point(490, 10),
-                        BackColor = Color.Transparent,
-                    });
+                {
+                    FontWeight = MetroFontWeight.Bold,
+                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.MainFormStatus),
+                    Theme = metroStyleManager.Theme,
+                    Style = metroStyleManager.Style,
+                    Location = new Point(490, 10),
+                    BackColor = Color.Transparent,
+                });
                 _newSet = 0;
                 _totalAccounts = 0;
                 AccountControls.Clear();

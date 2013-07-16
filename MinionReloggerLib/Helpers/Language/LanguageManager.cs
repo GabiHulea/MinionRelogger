@@ -35,13 +35,13 @@ namespace MinionReloggerLib.Helpers.Language
         protected LanguageManager()
         {
             _languages = new Dictionary<ELanguages, Language>
-                {
-                    {ELanguages.English, new English()},
-                    {ELanguages.Chinese, new Chinese()},
-                    {ELanguages.German,  new German()},
-                    {ELanguages.French, new French()},
-                    {ELanguages.Turkish, new Turkish()},
-                };
+            {
+                {ELanguages.English, new English()},
+                {ELanguages.Chinese, new Chinese()},
+                {ELanguages.German, new German()},
+                {ELanguages.French, new French()},
+                {ELanguages.Turkish, new Turkish()},
+            };
             _currentLanguage = ELanguages.Default;
         }
 
@@ -51,9 +51,15 @@ namespace MinionReloggerLib.Helpers.Language
             set { _instance = value; }
         }
 
-        public Dictionary<ELanguages, Language> GetLanguages() { return _languages; }
+        public Dictionary<ELanguages, Language> GetLanguages()
+        {
+            return _languages;
+        }
 
-        public string GetTranslation(ETranslations key) { return _languages[_currentLanguage].GetTranslation(key); }
+        public string GetTranslation(ETranslations key)
+        {
+            return _languages[_currentLanguage].GetTranslation(key);
+        }
 
         public void SetNewLanguage(ELanguages newLanguage)
         {
@@ -61,6 +67,9 @@ namespace MinionReloggerLib.Helpers.Language
             Config.Singleton.GeneralSettings.SetLanguage(_currentLanguage);
         }
 
-        public ELanguages GetCurrentLanguage() { return _currentLanguage; }
+        public ELanguages GetCurrentLanguage()
+        {
+            return _currentLanguage;
+        }
     }
 }

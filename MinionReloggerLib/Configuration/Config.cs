@@ -53,7 +53,10 @@ namespace MinionReloggerLib.Configuration
             set { _instance = value; }
         }
 
-        public bool AccountExists(Account account) { return AccountSettings.Any(s => account.LoginName == s.LoginName); }
+        public bool AccountExists(Account account)
+        {
+            return AccountSettings.Any(s => account.LoginName == s.LoginName);
+        }
 
         public void DeleteAccount(Account account)
         {
@@ -68,13 +71,16 @@ namespace MinionReloggerLib.Configuration
         public void AddAccount(Account account)
         {
             Logger.LoggingObject.Log(ELogType.Debug,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.ConfigNewAccount));
+                LanguageManager.Singleton.GetTranslation(ETranslations.ConfigNewAccount));
             account.SetIndex(AccountSettings.Count);
             account.SetPID(uint.MaxValue);
             AccountSettings.Add(account);
         }
 
-        public void EraseAccountList() { AccountSettings.Clear(); }
+        public void EraseAccountList()
+        {
+            AccountSettings.Clear();
+        }
 
         public static void SaveSettingsToFile()
         {
@@ -98,11 +104,11 @@ namespace MinionReloggerLib.Configuration
             catch (ProtoException ex)
             {
                 Logger.LoggingObject.Log(ELogType.Critical,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.ConfigErrorDuringEncryption));
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.ConfigErrorDuringEncryption));
                 Logger.LoggingObject.Log(ELogType.Critical, ex.Message);
                 Logger.LoggingObject.Log(ELogType.Critical,
-                                         LanguageManager.Singleton.GetTranslation(ETranslations.ConfigOldSaveFileDeleted));
+                    LanguageManager.Singleton.GetTranslation(ETranslations.ConfigOldSaveFileDeleted));
                 try
                 {
                     File.Delete("Launcher.bin");
@@ -139,12 +145,12 @@ namespace MinionReloggerLib.Configuration
                 catch (ProtoException ex)
                 {
                     Logger.LoggingObject.Log(ELogType.Critical,
-                                             LanguageManager.Singleton.GetTranslation(
-                                                 ETranslations.ConfigErrorDuringEncryption));
+                        LanguageManager.Singleton.GetTranslation(
+                            ETranslations.ConfigErrorDuringEncryption));
                     Logger.LoggingObject.Log(ELogType.Critical, ex.Message);
                     Logger.LoggingObject.Log(ELogType.Critical,
-                                             LanguageManager.Singleton.GetTranslation(
-                                                 ETranslations.ConfigOldSaveFileDeleted));
+                        LanguageManager.Singleton.GetTranslation(
+                            ETranslations.ConfigOldSaveFileDeleted));
                     try
                     {
                         File.Delete("Launcher.bin");
@@ -175,8 +181,8 @@ namespace MinionReloggerLib.Configuration
             if (manual)
             {
                 Logger.LoggingObject.Log(ELogType.Error,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.ConfigCouldntFindValidSaveFile));
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.ConfigCouldntFindValidSaveFile));
             }
             return false;
         }
@@ -207,11 +213,11 @@ namespace MinionReloggerLib.Configuration
         private static void DumpIntegersToLog()
         {
             Logger.LoggingObject.Log(ELogType.Verbose,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.ConfigDumpIntegers),
-                                     Singleton.GeneralSettings.PollingDelay,
-                                     Singleton.GeneralSettings.LaunchDelay,
-                                     Singleton.GeneralSettings.RestartDelay,
-                                     Singleton.GeneralSettings.FrozenTime);
+                LanguageManager.Singleton.GetTranslation(ETranslations.ConfigDumpIntegers),
+                Singleton.GeneralSettings.PollingDelay,
+                Singleton.GeneralSettings.LaunchDelay,
+                Singleton.GeneralSettings.RestartDelay,
+                Singleton.GeneralSettings.FrozenTime);
         }
 
         private static void HandleFixingOfLists()

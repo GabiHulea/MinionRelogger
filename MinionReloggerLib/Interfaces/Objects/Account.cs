@@ -41,7 +41,10 @@ namespace MinionReloggerLib.Interfaces.Objects
             StartTime = DateTime.Now;
             EndTime = DateTime.Now.AddYears(1);
             BotPath = AppDomain.CurrentDomain.BaseDirectory;
+            PerformedCheck = false;
         }
+
+        public bool PerformedCheck { get; set; }
 
         [ProtoMember(3)]
         public bool NoSound { get; private set; }
@@ -63,6 +66,9 @@ namespace MinionReloggerLib.Interfaces.Objects
 
         [ProtoMember(9)]
         public DateTime EndTime { get; private set; }
+
+        [ProtoMember(10)]
+        public bool AttachBot { get; private set; }
 
         public bool ShouldBeRunning { get; private set; }
         public uint PID { get; private set; }
@@ -101,41 +107,94 @@ namespace MinionReloggerLib.Interfaces.Objects
             }
         }
 
-        public bool Check() { return true; }
+        public bool Check()
+        {
+            return true;
+        }
 
-        public IObject DoWork() { return this; }
+        public IObject DoWork()
+        {
+            return this;
+        }
 
-        public bool IsReady() { return true; }
+        public bool IsReady()
+        {
+            return true;
+        }
 
-        public void Update() { }
+        public void Update()
+        {
+        }
 
-        public void SetNoSound(bool newNoSound) { NoSound = newNoSound; }
+        public void SetNoSound(bool newNoSound)
+        {
+            NoSound = newNoSound;
+        }
 
-        public void SetLoginName(string newLoginName) { LoginName = newLoginName; }
+        public void SetLoginName(string newLoginName)
+        {
+            LoginName = newLoginName;
+        }
 
-        public void SetPassword(string newPassword) { Password = newPassword; }
+        public void SetPassword(string newPassword)
+        {
+            Password = newPassword;
+        }
 
-        public void SetIndex(int newIndex) { Index = newIndex; }
+        public void SetIndex(int newIndex)
+        {
+            Index = newIndex;
+        }
 
-        public void SetLastCrash(DateTime newLastCrash) { LastCrash = newLastCrash; }
+        public void SetLastCrash(DateTime newLastCrash)
+        {
+            LastCrash = newLastCrash;
+        }
 
-        public void SetPID(uint newPID) { PID = newPID; }
+        public void SetPID(uint newPID)
+        {
+            PID = newPID;
+        }
 
-        public void SetStartTime(DateTime newStartTime) { StartTime = newStartTime; }
+        public void SetStartTime(DateTime newStartTime)
+        {
+            StartTime = newStartTime;
+        }
 
-        public void SetEndTime(DateTime newEndTime) { EndTime = newEndTime; }
+        public void SetEndTime(DateTime newEndTime)
+        {
+            EndTime = newEndTime;
+        }
 
-        public void SetLastStartTime(DateTime newStartTime) { LastStart = newStartTime; }
+        public void SetLastStartTime(DateTime newStartTime)
+        {
+            LastStart = newStartTime;
+        }
 
-        public void SetLastStopTime(DateTime newStopTime) { LastStop = newStopTime; }
+        public void SetLastStopTime(DateTime newStopTime)
+        {
+            LastStop = newStopTime;
+        }
 
-        public void SetShouldBeRunning(bool newShouldBeRunning) { ShouldBeRunning = newShouldBeRunning; }
+        public void SetShouldBeRunning(bool newShouldBeRunning)
+        {
+            ShouldBeRunning = newShouldBeRunning;
+        }
 
-        public void SetManuallyScheduled(bool newManuallyScheduled) { ManuallyScheduled = newManuallyScheduled; }
+        public void SetManuallyScheduled(bool newManuallyScheduled)
+        {
+            ManuallyScheduled = newManuallyScheduled;
+        }
 
-        public void SetSchedulingEnabled(bool newSchedulingEnabled) { EnableScheduling = newSchedulingEnabled; }
+        public void SetSchedulingEnabled(bool newSchedulingEnabled)
+        {
+            EnableScheduling = newSchedulingEnabled;
+        }
 
-        public void SetBotPath(string newPath) { BotPath = newPath; }
+        public void SetBotPath(string newPath)
+        {
+            BotPath = newPath;
+        }
 
         public void SetBreak(BreakObject newBreak)
         {
@@ -143,6 +202,14 @@ namespace MinionReloggerLib.Interfaces.Objects
             BreakObject.LoginName = LoginName;
         }
 
-        public void SetRestartDelayActive(bool newRestartDelayActive) { RestartDelayActive = newRestartDelayActive; }
+        public void SetAttachBot(bool newValue)
+        {
+            AttachBot = newValue;
+        }
+
+        public void SetRestartDelayActive(bool newRestartDelayActive)
+        {
+            RestartDelayActive = newRestartDelayActive;
+        }
     }
 }

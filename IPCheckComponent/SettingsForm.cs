@@ -44,7 +44,10 @@ namespace IPCheckComponent
             metroToggle1.Checked = Config.Singleton.GeneralSettings.CheckForIP;
         }
 
-        private void BtnCancelClick(object sender, EventArgs e) { Close(); }
+        private void BtnCancelClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void BtnOkClick(object sender, EventArgs e)
         {
@@ -91,7 +94,7 @@ namespace IPCheckComponent
             if (dialogResult == DialogResult.OK)
             {
                 var first3 = new[]
-                    {final.GetAddressBytes()[0], final.GetAddressBytes()[1], final.GetAddressBytes()[2]};
+                {final.GetAddressBytes()[0], final.GetAddressBytes()[1], final.GetAddressBytes()[2]};
                 for (int i = 0; i < 256; i++)
                 {
                     _currentIPList.Add(string.Format("{0}.{1}.{2}.{3}", first3[0], first3[1], first3[2], i));

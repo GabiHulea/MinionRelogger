@@ -35,35 +35,55 @@ namespace BasicStartComponent
             {
                 Update(account);
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Start,
-                    };
+                {
+                    Result = EComponentResult.Start,
+                };
             }
             else
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Ignore,
-                    };
+                {
+                    Result = EComponentResult.Ignore,
+                };
             }
             return this;
         }
 
-        public string GetName() { return "BasicStartComponent"; }
+        public string GetName()
+        {
+            return "BasicStartComponent";
+        }
 
-        public void OnEnable() { }
+        public void OnEnable()
+        {
+        }
 
-        public void OnDisable() { }
+        public void OnDisable()
+        {
+        }
 
-        public void OnLoad() { }
+        public void OnLoad()
+        {
+        }
 
-        public void OnUnload() { }
+        public void OnUnload()
+        {
+        }
 
-        public Form ShowSettingsForm(Account account = null) { return new Form(); }
+        public Form ShowSettingsForm(Account account = null)
+        {
+            return new Form();
+        }
 
-        public ESettingsType GetSettingType() { return ESettingsType.None; }
+        public ESettingsType GetSettingType()
+        {
+            return ESettingsType.None;
+        }
 
-        public bool Check(Account account) { return !account.Running && account.ShouldBeRunning; }
+        public bool Check(Account account)
+        {
+            return !account.Running && account.ShouldBeRunning;
+        }
 
         public bool IsReady(Account account)
         {
@@ -71,8 +91,13 @@ namespace BasicStartComponent
                                                  (DateTime.Now - account.EndTime).TotalSeconds < 0);
         }
 
-        public void Update(Account account) { account.Update(); }
+        public void Update(Account account)
+        {
+            account.Update();
+        }
 
-        public void PostWork(Account account) { }
+        public void PostWork(Account account)
+        {
+        }
     }
 }

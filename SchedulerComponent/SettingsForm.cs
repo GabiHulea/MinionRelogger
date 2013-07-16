@@ -50,7 +50,10 @@ namespace SchedulerComponent
             Close();
         }
 
-        private void BtnCancelClick(object sender, EventArgs e) { Close(); }
+        private void BtnCancelClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void BindEvents()
         {
@@ -62,17 +65,17 @@ namespace SchedulerComponent
         private void SaveScheduleSettings()
         {
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.SchedulerComponentSaveSettings),
-                                     _account.LoginName,
-                                     lblTimeInMinutes.Text);
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.SchedulerComponentSaveSettings),
+                _account.LoginName,
+                lblTimeInMinutes.Text);
             DateTime currentTime = DateTime.Now;
             var startingTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day,
-                                            dateTimePicker2.Value.Hour, dateTimePicker2.Value.Minute,
-                                            dateTimePicker2.Value.Second);
+                dateTimePicker2.Value.Hour, dateTimePicker2.Value.Minute,
+                dateTimePicker2.Value.Second);
             var endingTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day,
-                                          dateTimePicker3.Value.Hour, dateTimePicker3.Value.Minute,
-                                          dateTimePicker3.Value.Second);
+                dateTimePicker3.Value.Hour, dateTimePicker3.Value.Minute,
+                dateTimePicker3.Value.Second);
             endingTime = endingTime.AddDays(1);
             TimeSpan t = endingTime - startingTime;
             if (t.Days > 0)
@@ -90,11 +93,11 @@ namespace SchedulerComponent
             if (_account.ManuallyScheduled)
             {
                 dateTimePicker2.Text = (_account.StartTime - DateTime.Now).TotalSeconds > 0
-                                           ? _account.StartTime.ToShortTimeString()
-                                           : DateTime.Now.ToShortTimeString();
+                    ? _account.StartTime.ToShortTimeString()
+                    : DateTime.Now.ToShortTimeString();
                 dateTimePicker3.Text = (_account.EndTime - DateTime.Now).TotalSeconds > 0
-                                           ? _account.EndTime.ToShortTimeString()
-                                           : (DateTime.Now + new TimeSpan(23, 57, 59)).ToShortTimeString();
+                    ? _account.EndTime.ToShortTimeString()
+                    : (DateTime.Now + new TimeSpan(23, 57, 59)).ToShortTimeString();
             }
             else
             {
@@ -106,9 +109,9 @@ namespace SchedulerComponent
         private TimeSpan GetDuration()
         {
             TimeSpan t = new DateTime(1990, 1, 2, dateTimePicker3.Value.Hour, dateTimePicker3.Value.Minute,
-                                      dateTimePicker3.Value.Second) -
+                dateTimePicker3.Value.Second) -
                          new DateTime(1990, 1, 1, dateTimePicker2.Value.Hour, dateTimePicker2.Value.Minute,
-                                      dateTimePicker2.Value.Second);
+                             dateTimePicker2.Value.Second);
             if (t.Days > 0)
                 t = new TimeSpan(0, t.Hours, t.Minutes, t.Seconds);
             var t2 = new TimeSpan((int) numericUpDown1.Value, 0, 0, 0);
@@ -116,8 +119,14 @@ namespace SchedulerComponent
             return final;
         }
 
-        private void SetTotalValue() { lblTimeInMinutes.Text = GetDuration().TotalMinutes.ToString(CultureInfo.InvariantCulture); }
+        private void SetTotalValue()
+        {
+            lblTimeInMinutes.Text = GetDuration().TotalMinutes.ToString(CultureInfo.InvariantCulture);
+        }
 
-        private void OnValueChanged(object sender, EventArgs eventArgs) { SetTotalValue(); }
+        private void OnValueChanged(object sender, EventArgs eventArgs)
+        {
+            SetTotalValue();
+        }
     }
 }

@@ -39,6 +39,7 @@ namespace MinionLauncherGUI
             InitializeComponent();
             _account = account;
             _type = type;
+            metroToggle2.Checked = true;
             metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
             metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
             switch (type)
@@ -54,9 +55,10 @@ namespace MinionLauncherGUI
             }
             if (account != null)
             {
-                txtBoxLoginName.Text = account.LoginName;
+                txtBoxLoginName.Text = account.LoginName.Replace(@"""", "");
                 txtBoxPassword.Text = account.Password;
                 metroToggle1.Checked = account.NoSound;
+                metroToggle2.Checked = account.AttachBot;
             }
         }
 
@@ -69,12 +71,16 @@ namespace MinionLauncherGUI
                         Config.Singleton.AccountSettings.All(account => account.LoginName != txtBoxLoginName.Text))
                     {
                         var toAdd = new Account();
+                        string pass = txtBoxPassword.Text;
+                        if (!pass.Contains(@""""))
+                            pass = @"""" + pass + @"""";
                         toAdd.SetLoginName(txtBoxLoginName.Text);
-                        toAdd.SetPassword(txtBoxPassword.Text);
+                        toAdd.SetPassword(pass);
                         toAdd.SetBotPath(AppDomain.CurrentDomain.BaseDirectory);
                         toAdd.SetEndTime(DateTime.Now.AddYears(1337));
                         toAdd.SetManuallyScheduled(false);
                         toAdd.SetNoSound(metroToggle1.Checked);
+                        toAdd.SetAttachBot(metroToggle2.Checked);
                         Config.Singleton.AddAccount(toAdd);
                     }
                     break;
@@ -84,16 +90,23 @@ namespace MinionLauncherGUI
                             account => account.LoginName == _account.LoginName);
                     if (wanted != null)
                     {
-                        wanted.SetPassword(txtBoxPassword.Text);
+                        string pass = txtBoxPassword.Text;
+                        if (!pass.Contains(@""""))
+                            pass = @"""" + pass + @"""";
+                        wanted.SetPassword(pass);
                         wanted.SetNoSound(metroToggle1.Checked);
                         wanted.SetLoginName(txtBoxLoginName.Text);
+                        wanted.SetAttachBot(metroToggle2.Checked);
                     }
                     break;
             }
             Close();
         }
 
-        private void BtnCancelClick(object sender, EventArgs e) { Close(); }
+        private void BtnCancelClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void BtnDeleteClick(object sender, EventArgs e)
         {

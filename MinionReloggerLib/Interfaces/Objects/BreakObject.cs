@@ -77,11 +77,20 @@ namespace MinionReloggerLib.Interfaces.Objects
         [ProtoMember(6)]
         public int BreakDurationDelay { get; set; }
 
-        public bool Check() { return BreakEnabled && (DateTime.Now - TimeActualStartBreak).TotalSeconds > 0; }
+        public bool Check()
+        {
+            return BreakEnabled && (DateTime.Now - TimeActualStartBreak).TotalSeconds > 0;
+        }
 
-        public IObject DoWork() { return this; }
+        public IObject DoWork()
+        {
+            return this;
+        }
 
-        public bool IsReady() { return BreakEnabled && (DateTime.Now - TimeActualStopBreak).TotalSeconds <= 0; }
+        public bool IsReady()
+        {
+            return BreakEnabled && (DateTime.Now - TimeActualStopBreak).TotalSeconds <= 0;
+        }
 
         public void Update()
         {
@@ -89,8 +98,8 @@ namespace MinionReloggerLib.Interfaces.Objects
             Account wanted = Config.Singleton.AccountSettings.FirstOrDefault(a => a.LoginName == LoginName);
             TimeSinceLastBreak = wanted != null &&
                                  (wanted.EnableScheduling && (wanted.StartTime - DateTime.Now).TotalSeconds > 0)
-                                     ? wanted.StartTime
-                                     : DateTime.Now;
+                ? wanted.StartTime
+                : DateTime.Now;
             TimeSpanInterval = new TimeSpan(0, Interval, 0);
             TimeSpanToAddToLastBreak = new TimeSpan(0, r.Next(0, IntervalDelay), 0);
             TimeSpanToPause = new TimeSpan(0, BreakDuration, 0);
@@ -104,13 +113,13 @@ namespace MinionReloggerLib.Interfaces.Objects
             if (wanted != null)
             {
                 Logger.LoggingObject.Log(ELogType.Info,
-                                         LanguageManager.Singleton.GetTranslation(ETranslations.BreakObjectExpired),
-                                         wanted.LoginName);
+                    LanguageManager.Singleton.GetTranslation(ETranslations.BreakObjectExpired),
+                    wanted.LoginName);
             }
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.BreakObjectNew),
-                                     TimeActualStartBreak,
-                                     TimeActualStopBreak);
+                LanguageManager.Singleton.GetTranslation(ETranslations.BreakObjectNew),
+                TimeActualStartBreak,
+                TimeActualStopBreak);
         }
     }
 }
