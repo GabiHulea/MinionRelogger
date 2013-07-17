@@ -19,16 +19,19 @@
 ******************************************************************************/
 
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Net.Cache;
-using System.Windows.Forms;
+using System.Threading;
+using MinionReloggerLib.Configuration;
 using MinionReloggerLib.Imports;
 
 namespace MinionReloggerLib.Helpers.VersionControl
 {
     public static class VersionControl
     {
-        public static bool CheckVersion()
+        public static bool CheckVersionBot()
         {
             const string remoteUri = "http://patcher.gw2.mmominion.com/Gw2MinionFiles/";
             const string fileName = "GameVersion.txt";
@@ -44,15 +47,79 @@ namespace MinionReloggerLib.Helpers.VersionControl
                 uint apiVer = GW2MinionLauncher.BuildNumberFromApi();
                 if (minionVersion != apiVer)
                 {
-                    MessageBox.Show("Minion version does not match game version!\nPlease wait for an update.");
                     return false;
                 }
                 return true;
             }
             catch
             {
-                MessageBox.Show("Minion version does not match game version!\nPlease wait for an update.");
-                return false;
+                return true;
+            }
+        }
+
+        public static void Update()
+        {
+            try
+            {
+                string toWrite = "";
+                foreach (var account in Config.Singleton.AccountSettings)
+                {
+                    if (account.ShouldBeRunning)
+                    {
+                        toWrite += ";" + account.LoginName;
+                    }
+                }
+                toWrite = toWrite.Remove(0, 1);
+                IniFile ini = new IniFile(".\\MinionFiles\\RunningAccounts.ini");
+                if (!String.IsNullOrEmpty(toWrite))
+                {
+                    ini.IniWriteValue("RunningAccounts", "Accounts", toWrite);
+                    ini.IniWriteValue("RunningAccounts", "Active", "True");
+                }
+                else
+                {
+                    ini.IniWriteValue("RunningAccounts", "Active", "False");
+                }
+                Version LocalVersion, RemoteVersion;
+                string remoteUri = "http://patcher.gw2.mmominion.com/Updater/";
+                string fileName = "Updater.exe";
+
+                var myWebClient = new WebClient();
+                myWebClient.Proxy = null;
+                myWebClient.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+                if (File.Exists(fileName))
+                {
+                    FileVersionInfo fv;
+                    fv = FileVersionInfo.GetVersionInfo(fileName);
+                    LocalVersion = new Version(fv.FileVersion.Replace(',', '.'));
+                    string updaterVersion = myWebClient.DownloadString(remoteUri + "UpdaterVer.txt");
+                    RemoteVersion = new Version(updaterVersion);
+                    if (LocalVersion < RemoteVersion)
+                    {
+                        File.SetAttributes(fileName, FileAttributes.Normal);
+                        File.Delete(fileName);
+                        myWebClient.DownloadFile(remoteUri + fileName, fileName);
+                    }
+                }
+                else
+                {
+                    //we dont have the damn file anyway so get it!
+                    myWebClient.DownloadFile(remoteUri + fileName, fileName);
+                }
+                Thread.Sleep(1000);
+                //now run the damn file to update the noobs
+                Process currentproc = Process.GetCurrentProcess();
+                var startInfo = new ProcessStartInfo();
+
+                startInfo.FileName = fileName;
+                startInfo.Arguments = currentproc.Id.ToString();
+                Process startedProc = Process.Start(startInfo);
+                startedProc.WaitForExit();
+                Thread.Sleep(1000);
+            }
+            catch
+            {
+                
             }
         }
     }

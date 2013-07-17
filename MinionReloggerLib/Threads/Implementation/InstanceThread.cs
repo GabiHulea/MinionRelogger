@@ -210,8 +210,10 @@ namespace MinionReloggerLib.Threads.Implementation
                             }
                             else if (results.Any(r => r.Result == EComponentResult.Start))
                             {
-                                if (VersionControl.CheckVersion())
+                                if (VersionControl.CheckVersionBot())
                                     new StartWorker().DoWork(account).Update(account);
+                                else
+                                    VersionControl.Update();
                             }
                             else if (results.Any(r => r.Result == EComponentResult.Continue))
                             {

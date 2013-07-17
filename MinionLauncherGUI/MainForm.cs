@@ -56,12 +56,10 @@ namespace MinionLauncherGUI
             InitializeComponent();
             try
             {
-                if (!MinionReloggerLib.Helpers.VersionControl.VersionControl.CheckVersion())
+                if (!MinionReloggerLib.Helpers.VersionControl.VersionControl.CheckVersionBot())
                 {
-                    Close();
-                    Application.Exit();
+                    MessageBox.Show("Minion version does not match game version!\nPlease wait for an update.");
                 }
-
                 else
                 {
                     Logger.Initialize(lstBoxLog);
@@ -70,6 +68,32 @@ namespace MinionLauncherGUI
                     if (!LoadConfig(false) || !File.Exists(Config.Singleton.GeneralSettings.GW2Path))
                         FreshStart();
                     FixNamesForLanguage();
+
+                    if (File.Exists(".\\MinionFiles\\RunningAccounts.ini"))
+                    {
+                        IniFile ini = new IniFile(".\\MinionFiles\\RunningAccounts.ini");
+                        bool value;
+                        string str = ini.IniReadValue("RunningAccounts", "Active");
+                        if (bool.TryParse(str, out value))
+                        {
+                            if (value)
+                            {
+                                str = ini.IniReadValue("RunningAccounts", "Accounts");
+                                string[] strSplitted = str.Split(';');
+                                foreach (var accName in strSplitted)
+                                {
+                                    foreach (
+                                        var account in
+                                            Config.Singleton.AccountSettings.Where(
+                                                account => account.LoginName == accName))
+                                    {
+                                        account.SetShouldBeRunning(true);
+                                    }
+                                }
+                            }
+                        }
+                        ini.IniWriteValue("RunningAccounts", "Active", "False");
+                    }
                 }
             }
             catch

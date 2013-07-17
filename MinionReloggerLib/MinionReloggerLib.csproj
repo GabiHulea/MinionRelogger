@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\IniFile.cs" />
     <Compile Include="Configuration\Settings\GeneralSettings.cs" />
     <Compile Include="Core\ComponentClass.cs" />
     <Compile Include="Core\ComponentManager.cs" />
