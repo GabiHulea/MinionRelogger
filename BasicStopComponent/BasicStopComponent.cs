@@ -41,8 +41,6 @@ namespace BasicStopComponent
                 };
                 if (IsReady(account))
                 {
-                    Logger.LoggingObject.Log("WTF {0}, {1}, {2}", account.PerformedCheck, account.Running,
-                        account.ShouldBeRunning);
                     if (!account.PerformedCheck)
                     {
                         account.PerformedCheck = true;
