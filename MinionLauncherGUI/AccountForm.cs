@@ -39,7 +39,7 @@ namespace MinionLauncherGUI
             InitializeComponent();
             _account = account;
             _type = type;
-            metroToggle2.Checked = true;
+           // metroToggle2.Checked = true;
             metroStyleManager.Theme = Config.Singleton.GeneralSettings.ThemeSetting;
             metroStyleManager.Style = Config.Singleton.GeneralSettings.StyleSetting;
             switch (type)
@@ -58,7 +58,7 @@ namespace MinionLauncherGUI
                 txtBoxLoginName.Text = account.LoginName.Replace(@"""", "");
                 txtBoxPassword.Text = account.Password;
                 metroToggle1.Checked = account.NoSound;
-                metroToggle2.Checked = account.AttachBot;
+                metroToggle2.Checked = account.AttachBot2;
             }
         }
 
@@ -117,6 +117,11 @@ namespace MinionLauncherGUI
                 Config.Singleton.DeleteAccount(wanted);
             }
             Close();
+        }
+
+        private void metroLabel4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

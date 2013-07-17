@@ -88,7 +88,7 @@ namespace MinionLauncherGUI
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(57, 131);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(63, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(64, 19);
             this.metroLabel2.TabIndex = 2;
             this.metroLabel2.Text = "Password";
             // 
@@ -162,11 +162,12 @@ namespace MinionLauncherGUI
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(57, 218);
+            this.metroLabel4.Location = new System.Drawing.Point(17, 218);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(75, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(123, 19);
             this.metroLabel4.TabIndex = 9;
-            this.metroLabel4.Text = "Attach Bot?";
+            this.metroLabel4.Text = "Do Not Attach Bot?";
+            this.metroLabel4.Click += new System.EventHandler(this.metroLabel4_Click);
             // 
             // AccountForm
             // 

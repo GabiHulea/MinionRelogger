@@ -117,7 +117,7 @@ namespace MinionLauncherGUI
             this.metroTabControl1.Controls.Add(this.tabPage3);
             this.metroTabControl1.Location = new System.Drawing.Point(23, 109);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(941, 520);
             this.metroTabControl1.TabIndex = 1;
             // 
@@ -513,6 +513,7 @@ namespace MinionLauncherGUI
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.SystemAeroShadow;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pctBoxLogo)).EndInit();
             this.metroTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

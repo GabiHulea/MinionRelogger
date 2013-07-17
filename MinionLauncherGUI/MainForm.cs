@@ -474,6 +474,13 @@ namespace MinionLauncherGUI
             UpdateFormWithAccountSettings();
         }
 
+        private void NewControlOnResetTimeClick(object sender, ReloggerEventArgs reloggereventargs)
+        {
+            reloggereventargs.Account.SetLastStartTime(new DateTime());
+            reloggereventargs.Account.SetLastStopTime(new DateTime());
+            reloggereventargs.Account.SetLastCrash(new DateTime());
+        }
+
         private void BtnSetFrozenTimeClick(object sender, EventArgs e)
         {
             SetFrozenTime(false, Config.Singleton.GeneralSettings.FrozenTime);
@@ -733,6 +740,7 @@ namespace MinionLauncherGUI
             newControl.KillClick += NewControlOnKillClick;
             newControl.ManageClick += NewControlOnManageClick;
             newControl.SettingsClick += NewControlOnSettingsClick;
+            newControl.ResetTimeClick += NewControlOnResetTimeClick;
             PopulateAccountSettings(newControl.CmbSettings);
             AccountControls.Add(newControl);
             _totalAccounts++;
@@ -797,6 +805,11 @@ namespace MinionLauncherGUI
             {
                 CreateCustomControlForLauncher(account);
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Config.SaveSettingsToFile();
         }
     }
 }

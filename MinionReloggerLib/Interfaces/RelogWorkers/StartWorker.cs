@@ -124,7 +124,7 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
                         string pwd = account.Password;
                         if (!pwd.Contains(@""""))
                             pwd = @"""" + pwd + @"""";
-                        if (account.AttachBot)
+                        if (!account.AttachBot2)
                             newPID = GW2MinionLauncher.LaunchAccount(Config.Singleton.GeneralSettings.GW2Path,
                                 account.LoginName, pwd, account.NoSound,
                                 Config.Singleton.GeneralSettings.UseBeta);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using MetroFramework;
 using MetroFramework.Components;
 using MetroFramework.Controls;
 using MetroFramework.Drawing;
@@ -22,6 +23,7 @@ namespace MinionLauncherGUI.CustomControls
         internal MetroButton BtnSetDirectory = new MetroButton();
         internal MetroButton BtnSettings = new MetroButton();
         internal MetroButton BtnStart = new MetroButton();
+        internal MetroButton BtnResetTime = new MetroButton();
         internal MetroComboBox CmbSettings = new MetroComboBox();
         internal MetroLabel LblAccountName = new MetroLabel();
         internal MetroLabel LblStatus = new MetroLabel();
@@ -57,6 +59,7 @@ namespace MinionLauncherGUI.CustomControls
             BtnKill.Click += OnKillClick;
             BtnManage.Click += OnManageClick;
             BtnSettings.Click += OnSettingsClick;
+            BtnResetTime.Click += OnResetClick;
         }
 
         private void AddControlsToForm(MetroTabControl tabControl, MetroStyleManager styleManager, int activeCount,
@@ -96,6 +99,7 @@ namespace MinionLauncherGUI.CustomControls
             page.Controls.Add(LblStatus);
             page.Controls.Add(CmbSettings);
             page.Controls.Add(BtnSettings);
+            page.Controls.Add(BtnResetTime);
         }
 
         private void FixControls(int newSet, MetroStyleManager styleManager, Account account)
@@ -117,6 +121,9 @@ namespace MinionLauncherGUI.CustomControls
             BtnSettings.Theme = styleManager.Theme;
             BtnSettings.Style = styleManager.Style;
             BtnSettings.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlSettings);
+            BtnResetTime.Theme = styleManager.Theme;
+            BtnResetTime.Style = styleManager.Style;
+            BtnResetTime.Text = "Reset Delay";
             LblStatus.Theme = styleManager.Theme;
             LblStatus.Style = styleManager.Style;
             LblStatus.Text =
@@ -132,16 +139,18 @@ namespace MinionLauncherGUI.CustomControls
             BtnStart.Height = 23;
             BtnKill.Width = 46;
             BtnKill.Height = 23;
+            BtnResetTime.Height = 23;
             BtnSettings.Width = 75;
             BtnSettings.Height = 23;
-            CmbSettings.Width = 234;
+            CmbSettings.Width = 153;
             CmbSettings.Height = 29;
             LblStatus.Width = 70;
             BtnStart.Location = new Point(290, heightPosition);
             BtnKill.Location = new Point(349, heightPosition);
             BtnManage.Location = new Point(402, heightPosition);
             LblStatus.Location = new Point(490, heightPosition);
-            CmbSettings.Location = new Point(563, heightPosition - 3);
+            BtnResetTime.Location = new Point(563, heightPosition);
+            CmbSettings.Location = new Point(650, heightPosition - 3);
             BtnSettings.Location = new Point(817, heightPosition);
             BtnSettings.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
             CmbSettings.Visible = Config.Singleton.GeneralSettings.UseExpertMode;
@@ -151,6 +160,7 @@ namespace MinionLauncherGUI.CustomControls
         internal event ReloggerHandler KillClick;
         internal event ReloggerHandler ManageClick;
         internal event ReloggerHandler SettingsClick;
+        internal event ReloggerHandler ResetTimeClick;
 
         private void OnManageClick(object sender, EventArgs eventArgs)
         {
@@ -174,6 +184,12 @@ namespace MinionLauncherGUI.CustomControls
         {
             if (StartClick != null)
                 StartClick(this, new ReloggerEventArgs(this, _account, ERelogEventArgsType.OnStart));
+        }
+
+        private void OnResetClick(object sender, EventArgs e)
+        {
+            if (ResetTimeClick != null)
+                ResetTimeClick(this, new ReloggerEventArgs(this, _account, ERelogEventArgsType.OnResetTime));
         }
     }
 }

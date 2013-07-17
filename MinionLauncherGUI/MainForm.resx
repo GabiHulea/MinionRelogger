@@ -121,7 +121,7 @@
   <data name="metroTileChangeTheme.TileImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADwAAABQCAYAAABFyhZTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
+        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
         oQAACOBJREFUeF7lmgWMXVUQhlughUIp0uJeXIoWJ1iQErRYQhMsSLDiBIdCkASCFUIDgUBxCw7B3d0t
         uLu7Lf+32bOZDnPv3vf23bfkMMmX7Ju9NveckTPn9uvo6PhfESpzJlTmTKjMmVCZM6EyZ0JlzoTKnAmV
         ORMqcyZU5kyozJlQmTOhMmdCZc6EypwJlTkTKnMmVOZMqMyZUJkzobIX9BeTi4FikBgsphPTiqkE/4/O
@@ -169,7 +169,7 @@
   <data name="metroTileStopAll.TileImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADwAAABQCAYAAABFyhZTAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr0AAA69AUf7kK0AAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
         oQAAAXNJREFUeF7t2rFNxEAQRuEjICEhogyKogwCmqA0KkCiDjD7Yr9Bmw36PSt9yQvsGcuO7m7HcVyK
         xmQak2lMpjGZxmQak2lMpjGZxmQak2lMpjGZxmQak2lMpjGZxmQak2lMpjGZxmQak2lMpjGZxmQak2lM
         pjGZxmQa/3C33C+Py1MzZmAWZrJZlcYCF35YnpeX5XV5a8K9mYFZmGl7aY0FniY3eF8+ls/lqwn3ZgZm

@@ -70,6 +70,12 @@ namespace MinionReloggerLib.Interfaces.Objects
         [ProtoMember(10)]
         public bool AttachBot { get; private set; }
 
+        [ProtoMember(12)]
+        public bool AttachBot2 { get; private set; }
+
+        [ProtoMember(13)]
+        public bool AttachBot3 { get; private set; }
+
         public bool ShouldBeRunning { get; private set; }
         public uint PID { get; private set; }
         public int Index { get; private set; }
@@ -204,7 +210,7 @@ namespace MinionReloggerLib.Interfaces.Objects
 
         public void SetAttachBot(bool newValue)
         {
-            AttachBot = newValue;
+            AttachBot2 = newValue;
         }
 
         public void SetRestartDelayActive(bool newRestartDelayActive)

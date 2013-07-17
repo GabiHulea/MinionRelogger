@@ -38,7 +38,6 @@ namespace RestartDelayComponent
                 account.SetRestartDelayActive(true);
                 account.SetLastStopTime(DateTime.Now);
             }
-            //     result = EComponentResult.Start;
             result = IsReady(account)
                 ? new ComponentResult
                 {
@@ -91,10 +90,10 @@ namespace RestartDelayComponent
 
         public bool IsReady(Account account)
         {
-            return (DateTime.Now - account.LastCrash).TotalSeconds <= Config.Singleton.GeneralSettings.RestartDelay ||
-                   (DateTime.Now - account.LastStop).TotalSeconds <= Config.Singleton.GeneralSettings.RestartDelay ||
-                   (DateTime.Now - account.LastStart).TotalSeconds <=
-                   Config.Singleton.GeneralSettings.RestartDelay;
+            return !account.AttachBot2 &&
+                   ((DateTime.Now - account.LastCrash).TotalSeconds <= Config.Singleton.GeneralSettings.RestartDelay ||
+                    (DateTime.Now - account.LastStop).TotalSeconds <= Config.Singleton.GeneralSettings.RestartDelay ||
+                    (DateTime.Now - account.LastStart).TotalSeconds <= Config.Singleton.GeneralSettings.RestartDelay);
         }
 
         public void Update(Account account)

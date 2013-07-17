@@ -28,6 +28,7 @@ namespace MinionReloggerLib.Enums
         OnManage,
         OnError,
         OnCrash,
+        OnResetTime,
         OnUnknown,
     }
 }
