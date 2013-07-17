@@ -24,6 +24,7 @@ using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Interfaces;
 using MinionReloggerLib.Interfaces.Objects;
+using MinionReloggerLib.Logging;
 
 namespace BasicStopComponent
 {
@@ -34,50 +35,93 @@ namespace BasicStopComponent
             if (Check(account))
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Halt,
-                        LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.BasicStopComponentHalt),
-                    };
+                {
+                    Result = EComponentResult.Halt,
+                    LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.BasicStopComponentHalt),
+                };
                 if (IsReady(account))
                 {
-                    result = new ComponentResult
+                    Logger.LoggingObject.Log("WTF {0}, {1}, {2}", account.PerformedCheck, account.Running,
+                        account.ShouldBeRunning);
+                    if (!account.PerformedCheck)
+                    {
+                        account.PerformedCheck = true;
+                        if (account.Running)
+                            account.SetShouldBeRunning(true);
+                        result = new ComponentResult
+                        {
+                            Result = EComponentResult.ContinueForced,
+                        };
+                    }
+                    else
+                    {
+                        result = new ComponentResult
                         {
                             Result = EComponentResult.Kill,
                             LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.BasicStopComponentStop),
                         };
+                    }
                     Update(account);
                 }
             }
             else
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Ignore,
-                    };
+                {
+                    Result = EComponentResult.Ignore,
+                };
             }
             return this;
         }
 
-        public string GetName() { return "BasicStopComponent"; }
+        public string GetName()
+        {
+            return "BasicStopComponent";
+        }
 
-        public void OnEnable() { }
+        public void OnEnable()
+        {
+        }
 
-        public void OnDisable() { }
+        public void OnDisable()
+        {
+        }
 
-        public void OnLoad() { }
+        public void OnLoad()
+        {
+        }
 
-        public void OnUnload() { }
+        public void OnUnload()
+        {
+        }
 
-        public Form ShowSettingsForm(Account account = null) { return new Form(); }
+        public Form ShowSettingsForm(Account account = null)
+        {
+            return new Form();
+        }
 
-        public ESettingsType GetSettingType() { return ESettingsType.None; }
+        public ESettingsType GetSettingType()
+        {
+            return ESettingsType.None;
+        }
 
-        public bool Check(Account account) { return !account.ShouldBeRunning; }
+        public bool Check(Account account)
+        {
+            return !account.ShouldBeRunning;
+        }
 
-        public bool IsReady(Account account) { return account.Running; }
+        public bool IsReady(Account account)
+        {
+            return account.Running;
+        }
 
-        public void Update(Account account) { account.Update(); }
+        public void Update(Account account)
+        {
+            account.Update();
+        }
 
-        public void PostWork(Account account) { }
+        public void PostWork(Account account)
+        {
+        }
     }
 }

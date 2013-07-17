@@ -19,6 +19,9 @@
 ******************************************************************************/
 
 using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Imports;
@@ -31,7 +34,10 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
     {
         private bool _done;
 
-        public bool Check(Account account) { return account.Running && account.PID != uint.MaxValue && account.PID != 0; }
+        public bool Check(Account account)
+        {
+            return account.Running && account.PID != uint.MaxValue && account.PID != 0;
+        }
 
         public IRelogWorker DoWork(Account account)
         {
@@ -39,9 +45,14 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
             {
                 try
                 {
-                    _done = GW2MinionLauncher.KillInstance(account.PID);
+                    Process[] processes = Process.GetProcessesByName("GW2");
+                    if (processes.Any(p => p.Id == account.PID))
+                        _done = GW2MinionLauncher.KillInstance(account.PID);
+                    Thread.Sleep(3000);
                 }
-                catch {}
+                catch
+                {
+                }
             }
             return this;
         }
@@ -49,11 +60,14 @@ namespace MinionReloggerLib.Interfaces.RelogWorkers
         public void Update(Account account)
         {
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.KillWorkerStoppingProcess),
-                                     account.PID);
+                LanguageManager.Singleton.GetTranslation(ETranslations.KillWorkerStoppingProcess),
+                account.PID);
             account.SetLastStopTime(DateTime.Now);
         }
 
-        public bool PostWork(Account account) { return _done; }
+        public bool PostWork(Account account)
+        {
+            return _done;
+        }
     }
 }

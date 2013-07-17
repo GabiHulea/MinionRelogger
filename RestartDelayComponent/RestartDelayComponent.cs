@@ -40,34 +40,54 @@ namespace RestartDelayComponent
             }
             //     result = EComponentResult.Start;
             result = IsReady(account)
-                         ? new ComponentResult
-                             {
-                                 Result = EComponentResult.Halt,
-                                 LogMessage =
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentHalt),
-                             }
-                         : new ComponentResult
-                             {
-                                 Result = EComponentResult.Ignore,
-                             };
+                ? new ComponentResult
+                {
+                    Result = EComponentResult.Halt,
+                    LogMessage =
+                        LanguageManager.Singleton.GetTranslation(ETranslations.RestartDelayComponentHalt),
+                }
+                : new ComponentResult
+                {
+                    Result = EComponentResult.Ignore,
+                };
             return this;
         }
 
-        public string GetName() { return "RestartDelayComponent"; }
+        public string GetName()
+        {
+            return "RestartDelayComponent";
+        }
 
-        public void OnEnable() { }
+        public void OnEnable()
+        {
+        }
 
-        public void OnDisable() { }
+        public void OnDisable()
+        {
+        }
 
-        public void OnLoad() { }
+        public void OnLoad()
+        {
+        }
 
-        public void OnUnload() { }
+        public void OnUnload()
+        {
+        }
 
-        public Form ShowSettingsForm(Account account = null) { return new SettingsForm(); }
+        public Form ShowSettingsForm(Account account = null)
+        {
+            return new SettingsForm();
+        }
 
-        public ESettingsType GetSettingType() { return ESettingsType.Global; }
+        public ESettingsType GetSettingType()
+        {
+            return ESettingsType.Global;
+        }
 
-        public bool Check(Account account) { return !account.Running && account.PID < uint.MaxValue && account.PID > 0; }
+        public bool Check(Account account)
+        {
+            return !account.Running && account.PID < uint.MaxValue && account.PID > 0;
+        }
 
         public bool IsReady(Account account)
         {
@@ -77,8 +97,12 @@ namespace RestartDelayComponent
                    Config.Singleton.GeneralSettings.RestartDelay;
         }
 
-        public void Update(Account account) { }
+        public void Update(Account account)
+        {
+        }
 
-        public void PostWork(Account account) { }
+        public void PostWork(Account account)
+        {
+        }
     }
 }

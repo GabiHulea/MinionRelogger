@@ -53,26 +53,29 @@ namespace MinionReloggerLib.Interfaces.Objects
             {
                 if (Process != null && !Process.HasExited)
                 {
-                    bool result = GW2MinionLauncher.KillInstance((uint) Process.Id);
+                    GW2MinionLauncher.KillInstance((uint) Process.Id);
                     Thread.Sleep(3000);
-                    if (!result || (Process != null && !Process.HasExited))
-                        Process.Kill();
                 }
             }
-            catch (Exception) {}
+            catch (Exception)
+            {
+            }
             Update();
             return this;
         }
 
-        public bool IsReady() { return (DateTime.Now - Time).TotalSeconds > 90; }
+        public bool IsReady()
+        {
+            return (DateTime.Now - Time).TotalSeconds > 90;
+        }
 
         public void Update()
         {
             Account.SetLastStopTime(DateTime.Now);
             Account.SetLastCrash(DateTime.Now);
             Logger.LoggingObject.Log(ELogType.Critical,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.WatchObjectNotRespondingFor),
-                                     Account.LoginName);
+                LanguageManager.Singleton.GetTranslation(ETranslations.WatchObjectNotRespondingFor),
+                Account.LoginName);
         }
     }
 }

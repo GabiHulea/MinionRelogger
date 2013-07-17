@@ -38,18 +38,18 @@ namespace MinionReloggerLib.Helpers.Encryption
             try
             {
                 encryptedData = ProtectedData.Protect(Encoding.Unicode.GetBytes(stringToEncrypt),
-                                                      Encoding.Unicode.GetBytes(EntropyValue),
-                                                      DataProtectionScope.LocalMachine);
+                    Encoding.Unicode.GetBytes(EntropyValue),
+                    DataProtectionScope.LocalMachine);
             }
             catch (CryptographicException ex)
             {
                 Logger.LoggingObject.Log(ELogType.Critical,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.DataProtectorErrorOccured));
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.DataProtectorErrorOccured));
                 Logger.LoggingObject.Log(ELogType.Critical, ex.Message);
                 Logger.LoggingObject.Log(ELogType.Critical,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.DataProtectorDeletedSaveFile));
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.DataProtectorDeletedSaveFile));
                 try
                 {
                     File.Delete("Launcher.bin");
@@ -72,18 +72,18 @@ namespace MinionReloggerLib.Helpers.Encryption
             try
             {
                 decryptedData = ProtectedData.Unprotect(Convert.FromBase64String(stringToDecrypt),
-                                                        Encoding.Unicode.GetBytes(EntropyValue),
-                                                        DataProtectionScope.LocalMachine);
+                    Encoding.Unicode.GetBytes(EntropyValue),
+                    DataProtectionScope.LocalMachine);
             }
             catch (CryptographicException ex)
             {
                 Logger.LoggingObject.Log(ELogType.Critical,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.DataProtectorErrorOccured));
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.DataProtectorErrorOccured));
                 Logger.LoggingObject.Log(ELogType.Critical, ex.Message);
                 Logger.LoggingObject.Log(ELogType.Critical,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.DataProtectorDeletedSaveFile));
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.DataProtectorDeletedSaveFile));
                 try
                 {
                     File.Delete("" +

@@ -95,6 +95,7 @@
     <Compile Include="Helpers\Memory\VersionChecker.cs" />
     <Compile Include="Helpers\MyIP\GetMyIP.cs" />
     <Compile Include="Helpers\MyIP\HTTPGet.cs" />
+    <Compile Include="Helpers\VersionControl\VersionControl.cs" />
     <Compile Include="Imports\GW2MinionLauncher.cs" />
     <Compile Include="Imports\Kernel32.cs" />
     <Compile Include="Imports\User32.cs" />

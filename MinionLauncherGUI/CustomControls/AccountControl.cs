@@ -15,7 +15,7 @@ namespace MinionLauncherGUI.CustomControls
     internal class AccountControl
     {
         private readonly Account _account;
-        private readonly MetroStyleManager _formStyleManager;
+        //private readonly MetroStyleManager _formStyleManager;
 
         internal MetroButton BtnKill = new MetroButton();
         internal MetroButton BtnManage = new MetroButton();
@@ -27,7 +27,7 @@ namespace MinionLauncherGUI.CustomControls
         internal MetroLabel LblStatus = new MetroLabel();
 
         internal AccountControl(MetroTabControl tabControl, int totalCount, int activeCount, int newSet,
-                                MetroStyleManager styleManager, Account account)
+            MetroStyleManager styleManager, Account account)
         {
             _account = account;
             FixControls(newSet, styleManager, account);
@@ -60,34 +60,34 @@ namespace MinionLauncherGUI.CustomControls
         }
 
         private void AddControlsToForm(MetroTabControl tabControl, MetroStyleManager styleManager, int activeCount,
-                                       int newSet)
+            int newSet)
         {
             TabPage page = tabControl.TabPages[tabControl.TabPages.Count - 1];
             var newPage = new MetroTabPage
-                {
-                    BackColor = Color.Transparent,
-                    Text = string.Format("{0}-{1}", activeCount + 2, activeCount + 11),
-                };
+            {
+                BackColor = Color.Transparent,
+                Text = string.Format("{0}-{1}", activeCount + 2, activeCount + 11),
+            };
             if (newSet == 10 && tabControl.TabPages.Count < 10)
                 tabControl.TabPages.Add(newPage);
             newPage.Controls.Add(new MetroLabel
-                {
-                    FontWeight = MetroFontWeight.Bold,
-                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlLoginName),
-                    Theme = styleManager.Theme,
-                    Style = styleManager.Style,
-                    Location = new Point(3, 10),
-                    BackColor = Color.Transparent,
-                });
+            {
+                FontWeight = MetroFontWeight.Bold,
+                Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlLoginName),
+                Theme = styleManager.Theme,
+                Style = styleManager.Style,
+                Location = new Point(3, 10),
+                BackColor = Color.Transparent,
+            });
             newPage.Controls.Add(new MetroLabel
-                {
-                    FontWeight = MetroFontWeight.Bold,
-                    Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlStatus),
-                    Theme = styleManager.Theme,
-                    Style = styleManager.Style,
-                    Location = new Point(490, 10),
-                    BackColor = Color.Transparent,
-                });
+            {
+                FontWeight = MetroFontWeight.Bold,
+                Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountControlStatus),
+                Theme = styleManager.Theme,
+                Style = styleManager.Style,
+                Location = new Point(490, 10),
+                BackColor = Color.Transparent,
+            });
 
             page.Controls.Add(LblAccountName);
             page.Controls.Add(BtnStart);
@@ -121,8 +121,8 @@ namespace MinionLauncherGUI.CustomControls
             LblStatus.Style = styleManager.Style;
             LblStatus.Text =
                 LanguageManager.Singleton.GetTranslation(account.ShouldBeRunning
-                                                             ? ETranslations.AccountControlEnabled
-                                                             : ETranslations.AccountControlDisabled);
+                    ? ETranslations.AccountControlEnabled
+                    : ETranslations.AccountControlDisabled);
             LblStatus.BackColor = Color.Transparent;
             CmbSettings.Theme = styleManager.Theme;
             CmbSettings.Style = styleManager.Style;

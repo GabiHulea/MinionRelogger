@@ -57,29 +57,35 @@ namespace MinionReloggerLib.Interfaces.Objects
             {
                 try
                 {
-                    bool result = GW2MinionLauncher.KillInstance((uint) Process.Id);
+                    GW2MinionLauncher.KillInstance((uint) Process.Id);
                     Thread.Sleep(3000);
-                    if (!result || (Process != null && !Process.HasExited))
-                        Process.Kill();
                 }
-                catch {}
+                catch
+                {
+                }
             }
             Update();
             return this;
         }
 
-        public bool IsReady() { return (DateTime.Now - Time).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime; }
+        public bool IsReady()
+        {
+            return (DateTime.Now - Time).TotalSeconds > Config.Singleton.GeneralSettings.FrozenTime;
+        }
 
         public void Update()
         {
             Account.SetLastStopTime(DateTime.Now);
             Account.SetLastCrash(DateTime.Now);
             Logger.LoggingObject.Log(ELogType.Critical,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.ViewStateObjectClientStuckSomewhere),
-                                     Account.LoginName, Config.Singleton.GeneralSettings.FrozenTime);
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.ViewStateObjectClientStuckSomewhere),
+                Account.LoginName, Config.Singleton.GeneralSettings.FrozenTime);
         }
 
-        public bool IsViewState(EViewState toCompare) { return ViewState == toCompare; }
+        public bool IsViewState(EViewState toCompare)
+        {
+            return ViewState == toCompare;
+        }
     }
 }

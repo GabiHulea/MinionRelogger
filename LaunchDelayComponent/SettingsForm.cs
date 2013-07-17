@@ -41,7 +41,10 @@ namespace LaunchDelayComponent
             UpdateLabelText();
         }
 
-        private void BtnCancelClick(object sender, EventArgs e) { Close(); }
+        private void BtnCancelClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void BtnOkClick(object sender, EventArgs e)
         {
@@ -49,7 +52,10 @@ namespace LaunchDelayComponent
             Close();
         }
 
-        private void BtnNewValueClick(object sender, EventArgs e) { SetLaunchDelay(false, Config.Singleton.GeneralSettings.LaunchDelay); }
+        private void BtnNewValueClick(object sender, EventArgs e)
+        {
+            SetLaunchDelay(false, Config.Singleton.GeneralSettings.LaunchDelay);
+        }
 
         private void UpdateLabelText()
         {

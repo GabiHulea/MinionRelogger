@@ -40,9 +40,9 @@ namespace MinionReloggerLib.Logging
         internal void Go()
         {
             var thread = new Thread(DoWork)
-                {
-                    IsBackground = true,
-                };
+            {
+                IsBackground = true,
+            };
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
         }

@@ -36,55 +36,82 @@ namespace IPCheckComponent
             if (Check(account))
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Continue,
-                    };
+                {
+                    Result = EComponentResult.Continue,
+                };
                 if (IsReady(account))
                 {
                     result = new ComponentResult
-                        {
-                            Result = EComponentResult.Halt,
-                            LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentHalt),
-                        };
+                    {
+                        Result = EComponentResult.Halt,
+                        LogMessage = LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentHalt),
+                    };
                     if (account.Running)
                         result = new ComponentResult
-                            {
-                                Result = EComponentResult.Kill,
-                                LogMessage =
-                                    LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentKill),
-                            };
+                        {
+                            Result = EComponentResult.Kill,
+                            LogMessage =
+                                LanguageManager.Singleton.GetTranslation(ETranslations.IPCheckComponentKill),
+                        };
                 }
             }
             else
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Ignore,
-                    };
+                {
+                    Result = EComponentResult.Ignore,
+                };
             }
             return this;
         }
 
-        public string GetName() { return "IPCheckComponent"; }
+        public string GetName()
+        {
+            return "IPCheckComponent";
+        }
 
-        public void OnEnable() { }
+        public void OnEnable()
+        {
+        }
 
-        public void OnDisable() { }
+        public void OnDisable()
+        {
+        }
 
-        public void OnLoad() { }
+        public void OnLoad()
+        {
+        }
 
-        public void OnUnload() { }
+        public void OnUnload()
+        {
+        }
 
-        public Form ShowSettingsForm(Account account = null) { return new SettingsForm(); }
+        public Form ShowSettingsForm(Account account = null)
+        {
+            return new SettingsForm();
+        }
 
-        public ESettingsType GetSettingType() { return ESettingsType.Global; }
+        public ESettingsType GetSettingType()
+        {
+            return ESettingsType.Global;
+        }
 
-        public bool Check(Account account) { return Config.Singleton.GeneralSettings.CheckForIP; }
+        public bool Check(Account account)
+        {
+            return Config.Singleton.GeneralSettings.CheckForIP;
+        }
 
-        public bool IsReady(Account account) { return !GetMyIP.ListContainsMyIPAddress(Config.Singleton.GeneralSettings.AllowedIPAddresses); }
+        public bool IsReady(Account account)
+        {
+            return !GetMyIP.ListContainsMyIPAddress(Config.Singleton.GeneralSettings.AllowedIPAddresses);
+        }
 
-        public void Update(Account account) { }
+        public void Update(Account account)
+        {
+        }
 
-        public void PostWork(Account account) { }
+        public void PostWork(Account account)
+        {
+        }
     }
 }

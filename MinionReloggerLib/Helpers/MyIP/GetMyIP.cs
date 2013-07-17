@@ -44,12 +44,16 @@ namespace MinionReloggerLib.Helpers.MyIP
             }
         }
 
-        public static bool IsMyAddress(IPAddress toCheck) { return toCheck.Equals(GetMyCurrentIPAddress()); }
+        public static bool IsMyAddress(IPAddress toCheck)
+        {
+            return toCheck.Equals(GetMyCurrentIPAddress());
+        }
 
         public static bool ListContainsMyIPAddress(List<IPAddress> listOfAddresses)
         {
             IPAddress myAddress = GetMyCurrentIPAddress();
-            return listOfAddresses.Any(ip => ip.Equals(myAddress));
+            return listOfAddresses.Any(ip => ip.Equals(myAddress)) ||
+                   myAddress.Equals(new IPAddress(new byte[] {255, 255, 255, 255}));
         }
     }
 }

@@ -75,7 +75,9 @@ namespace MinionLauncherGUI.VersionControl
                         }
                     }
                 }
-                catch (Exception) {}
+                catch (Exception)
+                {
+                }
                 finally
                 {
                     if (reader != null) reader.Close();
@@ -90,14 +92,16 @@ namespace MinionLauncherGUI.VersionControl
                     string question = "Go to the forums to download the new version?";
                     if (DialogResult.Yes ==
                         MessageBox.Show(owner, question, title,
-                                        MessageBoxButtons.YesNo,
-                                        MessageBoxIcon.Question))
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
                     {
                         Process.Start(url);
                     }
                 }
             }
-            catch {}
+            catch
+            {
+            }
             finally
             {
                 if (reader != null) reader.Close();

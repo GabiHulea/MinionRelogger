@@ -37,55 +37,79 @@ namespace LaunchDelayComponent
             if (Check(account))
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Continue,
-                    };
+                {
+                    Result = EComponentResult.Continue,
+                };
                 if (IsReady(account))
                 {
                     result = new ComponentResult
-                        {
-                            Result = EComponentResult.Halt,
-                            LogMessage =
-                                LanguageManager.Singleton.GetTranslation(ETranslations.LaunchDelayComponentHalt),
-                        };
+                    {
+                        Result = EComponentResult.Halt,
+                        LogMessage =
+                            LanguageManager.Singleton.GetTranslation(ETranslations.LaunchDelayComponentHalt),
+                    };
                 }
             }
             else
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Ignore,
-                    };
+                {
+                    Result = EComponentResult.Ignore,
+                };
             }
             return this;
         }
 
-        public string GetName() { return "LaunchDelayComponent"; }
+        public string GetName()
+        {
+            return "LaunchDelayComponent";
+        }
 
-        public void OnEnable() { }
+        public void OnEnable()
+        {
+        }
 
-        public void OnDisable() { }
+        public void OnDisable()
+        {
+        }
 
-        public void OnLoad() { }
+        public void OnLoad()
+        {
+        }
 
-        public void OnUnload() { }
+        public void OnUnload()
+        {
+        }
 
-        public Form ShowSettingsForm(Account account = null) { return new SettingsForm(); }
+        public Form ShowSettingsForm(Account account = null)
+        {
+            return new SettingsForm();
+        }
 
-        public ESettingsType GetSettingType() { return ESettingsType.Global; }
+        public ESettingsType GetSettingType()
+        {
+            return ESettingsType.Global;
+        }
 
-        public bool Check(Account account) { return !account.Running; }
+        public bool Check(Account account)
+        {
+            return !account.Running;
+        }
 
         public bool IsReady(Account account)
         {
             return
                 Config.Singleton.AccountSettings.Any(
                     acc =>
-                    (DateTime.Now - acc.LastStart).TotalSeconds < Config.Singleton.GeneralSettings.LaunchDelay);
+                        (DateTime.Now - acc.LastStart).TotalSeconds < Config.Singleton.GeneralSettings.LaunchDelay);
         }
 
-        public void Update(Account account) { }
+        public void Update(Account account)
+        {
+        }
 
-        public void PostWork(Account account) { }
+        public void PostWork(Account account)
+        {
+        }
     }
 }

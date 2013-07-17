@@ -29,6 +29,7 @@ using MinionReloggerLib.Core;
 using MinionReloggerLib.Enums;
 using MinionReloggerLib.Helpers.Language;
 using MinionReloggerLib.Helpers.Memory;
+using MinionReloggerLib.Helpers.VersionControl;
 using MinionReloggerLib.Imports;
 using MinionReloggerLib.Interfaces.Objects;
 using MinionReloggerLib.Interfaces.RelogWorkers;
@@ -48,7 +49,7 @@ namespace MinionReloggerLib.Threads.Implementation
         private readonly bool _enableViewStateChecks;
         private readonly Thread _instanceThread;
         private uint _buildNumber;
-        private uint _buildNumberNeedUpdate;
+        //private uint _buildNumberNeedUpdate;
         private int _delay;
         private bool _isRunning;
         private bool _keepAlive;
@@ -57,9 +58,9 @@ namespace MinionReloggerLib.Threads.Implementation
         public InstanceThread()
         {
             _instanceThread = new Thread(DoWork)
-                {
-                    IsBackground = true,
-                };
+            {
+                IsBackground = true,
+            };
             _delay = 0;
             _needDelay = false;
             _isRunning = false;
@@ -75,11 +76,20 @@ namespace MinionReloggerLib.Threads.Implementation
             }
         }
 
-        public Thread GetThread() { return _instanceThread; }
+        public Thread GetThread()
+        {
+            return _instanceThread;
+        }
 
-        public string GetName() { return "InstanceThread"; }
+        public string GetName()
+        {
+            return "InstanceThread";
+        }
 
-        public bool IsRunning() { return _instanceThread.IsAlive && _isRunning; }
+        public bool IsRunning()
+        {
+            return _instanceThread.IsAlive && _isRunning;
+        }
 
         public void Delay(int delay)
         {
@@ -87,7 +97,10 @@ namespace MinionReloggerLib.Threads.Implementation
             _needDelay = true;
         }
 
-        public void Stop() { _isRunning = false; }
+        public void Stop()
+        {
+            _isRunning = false;
+        }
 
         public void Start()
         {
@@ -132,7 +145,7 @@ namespace MinionReloggerLib.Threads.Implementation
                                             results.Where(r => r.Result == EComponentResult.KillForced))
                                     {
                                         Logger.LoggingObject.Log(ELogType.Debug, componentResult.LogMessage,
-                                                                 account.LoginName);
+                                            account.LoginName);
                                     }
                                 }
                                 new KillWorker().DoWork(account).Update(account);
@@ -146,7 +159,7 @@ namespace MinionReloggerLib.Threads.Implementation
                                             results.Where(r => r.Result == EComponentResult.HaltForced))
                                     {
                                         Logger.LoggingObject.Log(ELogType.Debug, componentResult.LogMessage,
-                                                                 account.LoginName);
+                                            account.LoginName);
                                     }
                                 }
                                 account.SetLastStopTime(DateTime.Now);
@@ -160,14 +173,13 @@ namespace MinionReloggerLib.Threads.Implementation
                                             results.Where(r => r.Result == EComponentResult.StartForced))
                                     {
                                         Logger.LoggingObject.Log(ELogType.Debug, componentResult.LogMessage,
-                                                                 account.LoginName);
+                                            account.LoginName);
                                     }
                                 }
                                 new StartWorker().DoWork(account);
                             }
                             else if (results.Any(r => r.Result == EComponentResult.ContinueForced))
                             {
-                                continue;
                             }
                             else if (results.Any(r => r.Result == EComponentResult.Kill))
                             {
@@ -178,7 +190,7 @@ namespace MinionReloggerLib.Threads.Implementation
                                             results.Where(r => r.Result == EComponentResult.Kill))
                                     {
                                         Logger.LoggingObject.Log(ELogType.Debug, componentResult.LogMessage,
-                                                                 account.LoginName);
+                                            account.LoginName);
                                     }
                                 }
                                 new KillWorker().DoWork(account).Update(account);
@@ -192,26 +204,23 @@ namespace MinionReloggerLib.Threads.Implementation
                                             results.Where(r => r.Result == EComponentResult.Halt))
                                     {
                                         Logger.LoggingObject.Log(ELogType.Debug, componentResult.LogMessage,
-                                                                 account.LoginName);
+                                            account.LoginName);
                                     }
                                 }
-                                continue;
                             }
                             else if (results.Any(r => r.Result == EComponentResult.Start))
                             {
-                                new StartWorker().DoWork(account).Update(account);
+                                if (VersionControl.CheckVersion())
+                                    new StartWorker().DoWork(account).Update(account);
                             }
                             else if (results.Any(r => r.Result == EComponentResult.Continue))
                             {
-                                continue;
                             }
                             else if (results.Any(r => r.Result == EComponentResult.Ignore))
                             {
-                                continue;
                             }
                             else if (results.Any(r => r.Result == EComponentResult.Default))
                             {
-                                continue;
                             }
                         }
                         User32.EnumWindows(EnumTheWindows, IntPtr.Zero);
@@ -289,7 +298,9 @@ namespace MinionReloggerLib.Threads.Implementation
                         }
                         _checkAll = !_checkAll;
                     }
-                    catch (Exception) {}
+                    catch (Exception)
+                    {
+                    }
                     Thread.Sleep(Config.Singleton.GeneralSettings.PollingDelay*1000);
                 }
                 Thread.Sleep(10000);
@@ -324,7 +335,9 @@ namespace MinionReloggerLib.Threads.Implementation
                             firstOrDefault.Kill();
                         }
                     }
-                    catch (Exception) {}
+                    catch (Exception)
+                    {
+                    }
                 }
             }
             return true;
@@ -344,7 +357,9 @@ namespace MinionReloggerLib.Threads.Implementation
                     }
                 }
             }
-            catch (Exception) {}
+            catch (Exception)
+            {
+            }
             return toReturn;
         }
 
@@ -393,9 +408,9 @@ namespace MinionReloggerLib.Threads.Implementation
             {
                 FrozenGW2Windows.Add(gw2Process, new WatchObject(wanted, DateTime.Now, gw2Process));
                 Logger.LoggingObject.Log(ELogType.Critical,
-                                         LanguageManager.Singleton.GetTranslation(
-                                             ETranslations.GW2ManagerThreadStoppedResponding),
-                                         wanted.LoginName);
+                    LanguageManager.Singleton.GetTranslation(
+                        ETranslations.GW2ManagerThreadStoppedResponding),
+                    wanted.LoginName);
             }
             else
             {
@@ -432,7 +447,9 @@ namespace MinionReloggerLib.Threads.Implementation
                         {
                             wanted.Value.DoWork();
                         }
-                        catch {}
+                        catch
+                        {
+                        }
                     }
                 }
             }
@@ -464,9 +481,9 @@ namespace MinionReloggerLib.Threads.Implementation
             {
                 if (wanted.Value.Account != null)
                     Logger.LoggingObject.Log(ELogType.Critical,
-                                             LanguageManager.Singleton.GetTranslation(
-                                                 ETranslations.GW2ManagerThreadStartedRespondingAgain),
-                                             wanted.Value.Account.LoginName);
+                        LanguageManager.Singleton.GetTranslation(
+                            ETranslations.GW2ManagerThreadStartedRespondingAgain),
+                        wanted.Value.Account.LoginName);
                 FrozenGW2Windows.Remove(wanted.Key);
             }
         }
@@ -494,7 +511,9 @@ namespace MinionReloggerLib.Threads.Implementation
                         User32.ShowWindowAsync(hwnd, User32.SW_SHOWMINIMIZED);
                     }
                 }
-                catch {}
+                catch
+                {
+                }
             }
         }
     }

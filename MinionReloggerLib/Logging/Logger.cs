@@ -39,7 +39,10 @@ namespace MinionReloggerLib.Logging
     {
         public static ListBoxLog LoggingObject;
 
-        public static void Initialize(ListBox listBox) { LoggingObject = new ListBoxLog(listBox); }
+        public static void Initialize(ListBox listBox)
+        {
+            LoggingObject = new ListBoxLog(listBox);
+        }
 
         public sealed class ListBoxLog : IDisposable
         {
@@ -54,10 +57,14 @@ namespace MinionReloggerLib.Logging
             private bool _paused;
 
             public ListBoxLog(ListBox listBox)
-                : this(listBox, DefaultMessageFormat, DefaultMaxLinesInListbox) { }
+                : this(listBox, DefaultMessageFormat, DefaultMaxLinesInListbox)
+            {
+            }
 
             public ListBoxLog(ListBox listBox, string messageFormat)
-                : this(listBox, messageFormat, DefaultMaxLinesInListbox) { }
+                : this(listBox, messageFormat, DefaultMaxLinesInListbox)
+            {
+            }
 
             public ListBoxLog(ListBox listBox, string messageFormat, int maxLinesInListbox)
             {
@@ -99,9 +106,15 @@ namespace MinionReloggerLib.Logging
                 }
             }
 
-            private void OnHandleCreated(object sender, EventArgs e) { _canAdd = true; }
+            private void OnHandleCreated(object sender, EventArgs e)
+            {
+                _canAdd = true;
+            }
 
-            private void OnHandleDestroyed(object sender, EventArgs e) { _canAdd = false; }
+            private void OnHandleDestroyed(object sender, EventArgs e)
+            {
+                _canAdd = false;
+            }
 
             private void DrawItemHandler(object sender, DrawItemEventArgs e)
             {
@@ -112,7 +125,7 @@ namespace MinionReloggerLib.Logging
 
                     LogEventArgs logEvent = ((ListBox) sender).Items[e.Index] as LogEventArgs ??
                                             new LogEventArgs(ELogType.Critical,
-                                                             ((ListBox) sender).Items[e.Index].ToString());
+                                                ((ListBox) sender).Items[e.Index].ToString());
 
                     Color color;
                     switch (logEvent.Type)
@@ -142,8 +155,8 @@ namespace MinionReloggerLib.Logging
                         e.Graphics.FillRectangle(new SolidBrush(Color.Red), e.Bounds);
                     }
                     e.Graphics.DrawString(FormatALogEventMessage(logEvent, _messageFormat),
-                                          new Font("Lucida Console", 8, FontStyle.Regular), new SolidBrush(color),
-                                          e.Bounds);
+                        new Font("Lucida Console", 8, FontStyle.Regular), new SolidBrush(color),
+                        e.Bounds);
                 }
             }
 
@@ -155,7 +168,10 @@ namespace MinionReloggerLib.Logging
                 }
             }
 
-            private void CopyMenuOnClickHandler(object sender, EventArgs e) { CopyToClipboard(); }
+            private void CopyMenuOnClickHandler(object sender, EventArgs e)
+            {
+                CopyToClipboard();
+            }
 
             private void CopyMenuPopupHandler(object sender, EventArgs e)
             {
@@ -211,15 +227,15 @@ namespace MinionReloggerLib.Logging
             {
                 string message = logEvent.Message ?? "<NULL>";
                 return string.Format(messageFormat,
-                                     logEvent.EventTime.ToString("HH:mm:ss"),
-                                     logEvent.EventTime.ToString("HH:mm:ss"),
-                                     logEvent.EventTime.ToString("HH:mm:ss"),
-                                     logEvent.EventTime.ToString("HH:mm:ss"),
-                                     logEvent.EventTime.ToString("HH:mm:ss"),
-                                     LogTypeName(logEvent.Type)[0],
-                                     LogTypeName(logEvent.Type),
-                                     (int) logEvent.Type,
-                                     message);
+                    logEvent.EventTime.ToString("HH:mm:ss"),
+                    logEvent.EventTime.ToString("HH:mm:ss"),
+                    logEvent.EventTime.ToString("HH:mm:ss"),
+                    logEvent.EventTime.ToString("HH:mm:ss"),
+                    logEvent.EventTime.ToString("HH:mm:ss"),
+                    LogTypeName(logEvent.Type)[0],
+                    LogTypeName(logEvent.Type),
+                    (int) logEvent.Type,
+                    message);
             }
 
             private void CopyToClipboard()
@@ -236,13 +252,25 @@ namespace MinionReloggerLib.Logging
                 }
             }
 
-            public void Log(string message) { Log(ELogType.Debug, message); }
+            public void Log(string message)
+            {
+                Log(ELogType.Debug, message);
+            }
 
-            public void Log(string format, params object[] args) { Log(ELogType.Debug, (format == null) ? null : string.Format(format, args)); }
+            public void Log(string format, params object[] args)
+            {
+                Log(ELogType.Debug, (format == null) ? null : string.Format(format, args));
+            }
 
-            public void Log(ELogType type, string format, params object[] args) { Log(type, (format == null) ? null : string.Format(format, args)); }
+            public void Log(ELogType type, string format, params object[] args)
+            {
+                Log(type, (format == null) ? null : string.Format(format, args));
+            }
 
-            public void Log(ELogType type, string message) { WriteEvent(new LogEventArgs(type, message)); }
+            public void Log(ELogType type, string message)
+            {
+                WriteEvent(new LogEventArgs(type, message));
+            }
 
             ~ListBoxLog()
             {

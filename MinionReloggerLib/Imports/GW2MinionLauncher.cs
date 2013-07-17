@@ -32,17 +32,23 @@ namespace MinionReloggerLib.Imports
         [DllImport(".\\MinionFiles\\GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, SetLastError = true,
             CallingConvention = CallingConvention.Cdecl)]
         internal static extern uint LaunchAccount([MarshalAs(UnmanagedType.LPWStr)] string exePath,
-                                                  [MarshalAs(UnmanagedType.LPWStr)] string account,
-                                                  [MarshalAs(UnmanagedType.LPWStr)] string password, bool noSound,
-                                                  bool useBeta);
+            [MarshalAs(UnmanagedType.LPWStr)] string account,
+            [MarshalAs(UnmanagedType.LPWStr)] string password, bool noSound,
+            bool useBeta);
+
+        [DllImport(".\\MinionFiles\\GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, SetLastError = true,
+            CallingConvention = CallingConvention.Cdecl)]
+        internal static extern uint LaunchGW([MarshalAs(UnmanagedType.LPWStr)] string exePath,
+            [MarshalAs(UnmanagedType.LPWStr)] string account,
+            [MarshalAs(UnmanagedType.LPWStr)] string password, bool noGui, bool noSound);
 
         [DllImport(".\\MinionFiles\\GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode, SetLastError = true,
             CallingConvention = CallingConvention.Cdecl)]
         internal static extern uint LaunchAccountFromPath([MarshalAs(UnmanagedType.LPWStr)] string startupPath,
-                                                          [MarshalAs(UnmanagedType.LPWStr)] string exePath,
-                                                          [MarshalAs(UnmanagedType.LPWStr)] string account,
-                                                          [MarshalAs(UnmanagedType.LPWStr)] string password,
-                                                          bool noSound, bool useBeta);
+            [MarshalAs(UnmanagedType.LPWStr)] string exePath,
+            [MarshalAs(UnmanagedType.LPWStr)] string account,
+            [MarshalAs(UnmanagedType.LPWStr)] string password,
+            bool noSound, bool useBeta);
 
         [DllImport(".\\MinionFiles\\GW2MinionLauncherDLL.dll", CharSet = CharSet.Unicode,
             CallingConvention = CallingConvention.Cdecl,
@@ -62,10 +68,12 @@ namespace MinionReloggerLib.Imports
                 try
                 {
                     Process process = Process.GetProcessById((int) pid);
-                    if (!process.HasExited && process.StartTime.Ticks > 5000)
+                    if (!process.HasExited && (DateTime.Now - process.StartTime).TotalMilliseconds > 5000)
                         AccountName(pid, buf, buf.Capacity);
                 }
-                catch (Exception ex) {}
+                catch
+                {
+                }
                 return buf.ToString();
             }
             catch (Exception ex)

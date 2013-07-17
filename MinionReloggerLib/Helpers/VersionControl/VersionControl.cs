@@ -18,41 +18,42 @@
 *                                                                            *
 ******************************************************************************/
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-using System.Reflection;
-using System.Runtime.InteropServices;
+using System;
+using System.Net;
+using System.Net.Cache;
+using System.Windows.Forms;
+using MinionReloggerLib.Imports;
 
-[assembly: AssemblyTitle("MinionReloggerLib")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("The Internet")]
-[assembly: AssemblyProduct("MinionReloggerLib")]
-[assembly: AssemblyCopyright("Copyright © The Internet 2013")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
-
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-
-[assembly: Guid("1c57faab-4cb1-43f5-a30e-41416ee90f1e")]
-
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+namespace MinionReloggerLib.Helpers.VersionControl
+{
+    public static class VersionControl
+    {
+        public static bool CheckVersion()
+        {
+            const string remoteUri = "http://patcher.gw2.mmominion.com/Gw2MinionFiles/";
+            const string fileName = "GameVersion.txt";
+            try
+            {
+                var myWebClient = new WebClient
+                {
+                    Proxy = null,
+                    CachePolicy =
+                        new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore)
+                };
+                uint minionVersion = Convert.ToUInt32(myWebClient.DownloadString(remoteUri + fileName));
+                uint apiVer = GW2MinionLauncher.BuildNumberFromApi();
+                if (minionVersion != apiVer)
+                {
+                    MessageBox.Show("Minion version does not match game version!\nPlease wait for an update.");
+                    return false;
+                }
+                return true;
+            }
+            catch
+            {
+                MessageBox.Show("Minion version does not match game version!\nPlease wait for an update.");
+                return false;
+            }
+        }
+    }
+}

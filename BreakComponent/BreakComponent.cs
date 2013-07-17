@@ -36,33 +36,33 @@ namespace BreakComponent
                 if (account.BreakObject.IsReady())
                 {
                     result = Check(account)
-                                 ? new ComponentResult
-                                     {
-                                         Result = EComponentResult.Kill,
-                                         LogMessage =
-                                             LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentKill),
-                                     }
-                                 : new ComponentResult
-                                     {
-                                         Result = EComponentResult.Halt,
-                                         LogMessage =
-                                             LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentHalt),
-                                     };
+                        ? new ComponentResult
+                        {
+                            Result = EComponentResult.Kill,
+                            LogMessage =
+                                LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentKill),
+                        }
+                        : new ComponentResult
+                        {
+                            Result = EComponentResult.Halt,
+                            LogMessage =
+                                LanguageManager.Singleton.GetTranslation(ETranslations.BreakComponentHalt),
+                        };
                 }
                 else
                 {
                     result = new ComponentResult
-                        {
-                            Result = EComponentResult.Continue,
-                        };
+                    {
+                        Result = EComponentResult.Continue,
+                    };
                 }
             }
             else
             {
                 result = new ComponentResult
-                    {
-                        Result = EComponentResult.Ignore,
-                    };
+                {
+                    Result = EComponentResult.Ignore,
+                };
             }
             if (IsReady(account))
             {
@@ -71,26 +71,54 @@ namespace BreakComponent
             return this;
         }
 
-        public string GetName() { return "BreakComponent"; }
+        public string GetName()
+        {
+            return "BreakComponent";
+        }
 
-        public void OnEnable() { }
+        public void OnEnable()
+        {
+        }
 
-        public void OnDisable() { }
+        public void OnDisable()
+        {
+        }
 
-        public void OnLoad() { }
+        public void OnLoad()
+        {
+        }
 
-        public void OnUnload() { }
+        public void OnUnload()
+        {
+        }
 
-        public Form ShowSettingsForm(Account account = null) { return new SettingsForm(account); }
+        public Form ShowSettingsForm(Account account = null)
+        {
+            return new SettingsForm(account);
+        }
 
-        public ESettingsType GetSettingType() { return ESettingsType.AccountSpecific; }
+        public ESettingsType GetSettingType()
+        {
+            return ESettingsType.AccountSpecific;
+        }
 
-        public bool Check(Account account) { return account.Running; }
+        public bool Check(Account account)
+        {
+            return account.Running;
+        }
 
-        public bool IsReady(Account account) { return account.BreakObject != null && (account.BreakObject.Check() && !account.BreakObject.IsReady()); }
+        public bool IsReady(Account account)
+        {
+            return account.BreakObject != null && (account.BreakObject.Check() && !account.BreakObject.IsReady());
+        }
 
-        public void Update(Account account) { account.BreakObject.Update(); }
+        public void Update(Account account)
+        {
+            account.BreakObject.Update();
+        }
 
-        public void PostWork(Account account) { }
+        public void PostWork(Account account)
+        {
+        }
     }
 }

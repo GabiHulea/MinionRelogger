@@ -32,54 +32,58 @@ namespace MinionReloggerLib.Helpers.Language.Languages
 
             // class ComponentManager
             Translations.Add(ETranslations.ComponentManagerAddedComponent,
-                             "Un élément avec le nom {0} a été ajouté à la liste.");
+                "Un élément avec le nom {0} a été ajouté à la liste.");
             Translations.Add(ETranslations.ComponentManagerDisableComponent,
-                             "Un élément avec le nom {0} a été désactivé.");
+                "Un élément avec le nom {0} a été désactivé.");
             Translations.Add(ETranslations.ComponentManagerEnableComponent,
-                             "Un élément avec le nom {0} a été activé.");
+                "Un élément avec le nom {0} a été activé.");
 
             // class: Config
             Translations.Add(ETranslations.ConfigNewAccount, "Un nouvel objet d'Account été ajouté.");
-            Translations.Add(ETranslations.ConfigErrorDuringEncryption, "Une erreur s'est produite lors de l'encryption de données.!");
+            Translations.Add(ETranslations.ConfigErrorDuringEncryption,
+                "Une erreur s'est produite lors de l'encryption de données.!");
             Translations.Add(ETranslations.ConfigOldSaveFileDeleted,
-                             " Anciens fichiers de sauvegarde ont été supprimés, ça devait être une vielle version ou corrompu!");
+                " Anciens fichiers de sauvegarde ont été supprimés, ça devait être une vielle version ou corrompu!");
             Translations.Add(ETranslations.ConfigCouldntFindValidSaveFile,
-                             " N'a pas pu trouver une sauvegarde valide. Veuillez en créer unen nouvelle.");
+                " N'a pas pu trouver une sauvegarde valide. Veuillez en créer unen nouvelle.");
             Translations.Add(ETranslations.ConfigDumpIntegers,
-                             "Delai d'interrogation: {0}, Delai de démarrage: {1}, Delai de redémarrage: {2}, Temps figé: {3}.");
+                "Delai d'interrogation: {0}, Delai de démarrage: {1}, Delai de redémarrage: {2}, Temps figé: {3}.");
 
             // class: DataProtector
-            Translations.Add(ETranslations.DataProtectorErrorOccured, "Une erreur s'est produite lors de l'encryption de données.!");
+            Translations.Add(ETranslations.DataProtectorErrorOccured,
+                "Une erreur s'est produite lors de l'encryption de données.!");
 
             Translations.Add(ETranslations.DataProtectorDeletedSaveFile,
-                          "Anciens fichiers de sauvegarde ont été supprimés, ça devait être une vielle version ou corrompu!");
+                "Anciens fichiers de sauvegarde ont été supprimés, ça devait être une vielle version ou corrompu!");
 
 
             // class: General Settings
-            Translations.Add(ETranslations.GeneralSettingsGW2PathChanged, "Le dossier cible de GW2 a été changé pour: [{0}].");
+            Translations.Add(ETranslations.GeneralSettingsGW2PathChanged,
+                "Le dossier cible de GW2 a été changé pour: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsPollingDelayChanged,
-                             "Delai d'interrogation a été changé à: [{0}].");
+                "Delai d'interrogation a été changé à: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsFrozenTimeChanged,
-                             "Temps figé a été changé à: [{0}].");
-            Translations.Add(ETranslations.GeneralSettingsLaunchDelayChanged, "Delai de démarrage a été changé à: [{0}].");
+                "Temps figé a été changé à: [{0}].");
+            Translations.Add(ETranslations.GeneralSettingsLaunchDelayChanged,
+                "Delai de démarrage a été changé à: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsRestartDelayChanged,
-                             "Delai de redémarrage a été changé pour: [{0}].");
+                "Delai de redémarrage a été changé pour: [{0}].");
             Translations.Add(ETranslations.GeneralSettingsColorChanged, "Changé pour la couleur: {0}.");
             Translations.Add(ETranslations.GeneralSettingsThemeChanged, "Changé pour le thème: {0}.");
             Translations.Add(ETranslations.GeneralSettingsMinimizeWindowsChanged,
-                             "Réduction de la fenêtre à été changé pour: {0}.");
+                "Réduction de la fenêtre à été changé pour: {0}.");
             Translations.Add(ETranslations.GeneralSettingsCheckForIPChanged,
-                             "Verification de l'IP . A été changé à: {0}.");
+                "Verification de l'IP . A été changé à: {0}.");
             Translations.Add(ETranslations.GeneralSettingsAddedIP,
-                             "L'adresse IP {0} a été ajoutée à  la liste des adresses autorisées.");
+                "L'adresse IP {0} a été ajoutée à  la liste des adresses autorisées.");
             Translations.Add(ETranslations.GeneralSettingsDeletedIP,
-                             "L'adresse IP {0} a été retirée de la liste des adresses autorisées.");
+                "L'adresse IP {0} a été retirée de la liste des adresses autorisées.");
 
             // class: GW2ManagerThread
             Translations.Add(ETranslations.GW2ManagerThreadStoppedResponding,
-                             "Une instance de GW2 roulant {0}, a cessée de fonctionner. Nous gardons un d'oeil dessus.");
+                "Une instance de GW2 roulant {0}, a cessée de fonctionner. Nous gardons un d'oeil dessus.");
             Translations.Add(ETranslations.GW2ManagerThreadStartedRespondingAgain,
-                             "L'instance de GW2 roulant{0}, a recommencée à répondre.");
+                "L'instance de GW2 roulant{0}, a recommencée à répondre.");
 
             // class: InputBox
             Translations.Add(ETranslations.InputBoxOk, "OK");
@@ -92,22 +96,24 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.StartWorkerLaunchingInstance, " Démarrage de l'instance pour {0} avec {1}.");
             Translations.Add(ETranslations.StartWorkerScanningForExisting, "Analyse des instances de GW2 existance.");
             Translations.Add(ETranslations.StartWorkerFoundWantedProcess,
-                             "Trouvé le processus voulu pour {0}, pas besoin de démarrer.");
+                "Trouvé le processus voulu pour {0}, pas besoin de démarrer.");
             Translations.Add(ETranslations.StartWorkerAttachingTo, "Liaison au {0} avec {1}.");
 
             // class: ViewStateObject
             Translations.Add(ETranslations.ViewStateObjectClientStuckSomewhere,
-                             "L'instance GW2, roulant {0}, n'a pas été sur le jeu pour {1} secondes, planification d'un redémarrage.");
+                "L'instance GW2, roulant {0}, n'a pas été sur le jeu pour {1} secondes, planification d'un redémarrage.");
 
             // class: WatchObject
             Translations.Add(ETranslations.WatchObjectNotRespondingFor,
-                             "L'instance GW2,roulant {0}, n'a pas répondu depuis 90 secondes, planification d'un redémarrage.");
+                "L'instance GW2,roulant {0}, n'a pas répondu depuis 90 secondes, planification d'un redémarrage.");
 
             // component: BreakComponent
             Translations.Add(ETranslations.BreakComponentPauseEvery, "Pause chaque"); // ... minutes
-            Translations.Add(ETranslations.BreakComponentDelayPrePause, "Delai aléatoire de pré-pause de"); // ... minutes
+            Translations.Add(ETranslations.BreakComponentDelayPrePause, "Delai aléatoire de pré-pause de");
+                // ... minutes
             Translations.Add(ETranslations.BreakComponentPause, "Durée de la pause de"); // ... minutes
-            Translations.Add(ETranslations.BreakComponentDelayPostPause, "Delai aléatoire d'après pause de"); // ... minutes
+            Translations.Add(ETranslations.BreakComponentDelayPostPause, "Delai aléatoire d'après pause de");
+                // ... minutes
             Translations.Add(ETranslations.BreakComponentEnableBreaks, "Activation des pauses?");
             Translations.Add(ETranslations.BreakComponentMinutes, "minutes");
             Translations.Add(ETranslations.BreakComponentOk, "OK");
@@ -120,12 +126,12 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.IPCheckComponentEnableIPChecks, "Activer vérification d'IP?");
             Translations.Add(ETranslations.IPCheckComponentIPToAdd, "IP à Ajouter");
             Translations.Add(ETranslations.IPCheckComponentEnterIP,
-                             "Veuillez entrer l'adresse IP désiré sous le format: (127.0.0.1).");
+                "Veuillez entrer l'adresse IP désiré sous le format: (127.0.0.1).");
             Translations.Add(ETranslations.IPCheckComponentAddingNewIPRange,
-                             "Ajout de la nouvelle plage IP, la dernière paire de chiffres sera sautée, 192.168.1.1 devient 192.168.1.0-255. Par contre, entrez une adresse IP valide!");
+                "Ajout de la nouvelle plage IP, la dernière paire de chiffres sera sautée, 192.168.1.1 devient 192.168.1.0-255. Par contre, entrez une adresse IP valide!");
             Translations.Add(ETranslations.IPCheckComponentIPRangeToAdd, "Plage IP À Ajouté:");
             Translations.Add(ETranslations.IPCheckComponentEnterIPRange,
-                             "Veuillez entrer la plage IP désirée à ajouter (sous le format : 192.168.1.0).");
+                "Veuillez entrer la plage IP désirée à ajouter (sous le format : 192.168.1.0).");
             Translations.Add(ETranslations.IPCheckComponentOk, "OK");
             Translations.Add(ETranslations.IPCheckComponentCancel, "Annuler");
 
@@ -137,7 +143,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.LaunchDelayComponentCancel, "Annuler");
             Translations.Add(ETranslations.LaunchDelayComponentLaunchDelay, "Delai Démarrage");
             Translations.Add(ETranslations.LaunchDelayComponentEntireDesiredDelay,
-                             "Veullez entrer le delai désiré entre chaque démarrage de GW2(!minimum: 20, en secondes!).");
+                "Veullez entrer le delai désiré entre chaque démarrage de GW2(!minimum: 20, en secondes!).");
 
             // component: RestartDelayComponent
             Translations.Add(ETranslations.RestartDelayComponentCurrentValue, "Valeur courante:");
@@ -147,7 +153,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.RestartDelayComponentCancel, "Annuler");
             Translations.Add(ETranslations.RestartDelayComponentRestartDelay, "Delai Redémarrage");
             Translations.Add(ETranslations.RestartDelayComponentEntireDesiredDelay,
-                             "Veuillez entrer le delai de redémarrage désiré (pour empêcher la limite de clé maximale) (!en secondes!).");
+                "Veuillez entrer le delai de redémarrage désiré (pour empêcher la limite de clé maximale) (!en secondes!).");
 
             // component: SchedulerComponent
             Translations.Add(ETranslations.SchedulerComponentStartTime, "Heure démarrage:");
@@ -158,7 +164,7 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.SchedulerComponentOk, "OK");
             Translations.Add(ETranslations.SchedulerComponentCancel, "Annuler");
             Translations.Add(ETranslations.SchedulerComponentSaveSettings,
-                             "Sauvegarde de configuration du planificateur pour{0} (minutes: {1}).");
+                "Sauvegarde de configuration du planificateur pour{0} (minutes: {1}).");
             // class: AccountControl
             Translations.Add(ETranslations.AccountControlStart, "Démarrer");
             Translations.Add(ETranslations.AccountControlStop, "Arrêter");
@@ -201,13 +207,13 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.MainFormSettings, "Configurations");
             Translations.Add(ETranslations.MainFormLog, "Log");
             Translations.Add(ETranslations.MainFormFreshConfig,
-                             "Bonjour, puisque vous démarrez avec une nouvelle configuration, vous devrez suivre les prochaines étapes.");
+                "Bonjour, puisque vous démarrez avec une nouvelle configuration, vous devrez suivre les prochaines étapes.");
             Translations.Add(ETranslations.MainFormWelcome, "Bienvenu");
             Translations.Add(ETranslations.MainFormWhichComponents,
-                             "Ok, vous devez maintenant configurer quels modules utiliser avec le relogger. Si vous êtes un débutant, je vous recommande de les activer tous. Vous pouvez le faire en cliquant sur le bouton \"Bouger À Gauche\".");
+                "Ok, vous devez maintenant configurer quels modules utiliser avec le relogger. Si vous êtes un débutant, je vous recommande de les activer tous. Vous pouvez le faire en cliquant sur le bouton \"Bouger À Gauche\".");
             Translations.Add(ETranslations.MainFormFirstStep, "Première Étape");
             Translations.Add(ETranslations.MainFormPleaseSave,
-                             "Après avoir terminé, n'oublier surtout pas d'appuyer sur Sauvegarder ou vous devrez refaire les étapes prédédentes.");
+                "Après avoir terminé, n'oublier surtout pas d'appuyer sur Sauvegarder ou vous devrez refaire les étapes prédédentes.");
             Translations.Add(ETranslations.MainFormTip, "Conseil!");
             Translations.Add(ETranslations.MainFormEnabled, "Activé");
             Translations.Add(ETranslations.MainFormDisabled, "Désactivé");
@@ -215,44 +221,44 @@ namespace MinionReloggerLib.Helpers.Language.Languages
             Translations.Add(ETranslations.MainFormLocateGW2Long, "Veuillez cibler l'exécutable de votre GW2.");
             Translations.Add(ETranslations.MainFormPollingDelayShort, "Delai d'Intervalle");
             Translations.Add(ETranslations.MainFormPollingDelayLong,
-                             "Veuillez entrer le délai d'intervalle désiré(!minimum: 3, en secondse!).");
+                "Veuillez entrer le délai d'intervalle désiré(!minimum: 3, en secondse!).");
             Translations.Add(ETranslations.MainFormFrozenTimeShort, "Temps Figé");
             Translations.Add(ETranslations.MainFormFrozenTimeLong,
-                             "Veuillez entrer le temps désiré pour lequel votre instance GW2 sera considéré figé/bloqué (!minimum: 60, en secondes!).");
+                "Veuillez entrer le temps désiré pour lequel votre instance GW2 sera considéré figé/bloqué (!minimum: 60, en secondes!).");
             Translations.Add(ETranslations.MainFormLoginName, "Nom Login");
             Translations.Add(ETranslations.MainFormStatus, "Statut");
 
             // component: BasicStopComponent
             Translations.Add(ETranslations.BasicStopComponentStop,
-                             "Arrêt de l'instance pour {0}, ne devrait pas être en exécution(désactivé).");
+                "Arrêt de l'instance pour {0}, ne devrait pas être en exécution(désactivé).");
             Translations.Add(ETranslations.BasicStopComponentHalt,
-                             "Arrêt du départ pour {0}, ne devrait plus être en exécution(désactivé).");
+                "Arrêt du départ pour {0}, ne devrait plus être en exécution(désactivé).");
 
             // component: BreakComponent
             Translations.Add(ETranslations.BreakComponentKill,
-                             "Retardement du démarrage  {0}, ne devrait plus être en exécution du à une configuration de pause.");
+                "Retardement du démarrage  {0}, ne devrait plus être en exécution du à une configuration de pause.");
             Translations.Add(ETranslations.BreakComponentHalt,
-                             "Retardement du démarrage pour {0}, ne devrait plus être en exécution du à une configuration de pause.");
+                "Retardement du démarrage pour {0}, ne devrait plus être en exécution du à une configuration de pause.");
 
             // component: IPCheckComponent
             Translations.Add(ETranslations.IPCheckComponentHalt,
-                             "Retardement du démarrage pour {0}, ne devrait plus être en exécution. L'IP courante n'a pas été permise.");
+                "Retardement du démarrage pour {0}, ne devrait plus être en exécution. L'IP courante n'a pas été permise.");
             Translations.Add(ETranslations.IPCheckComponentKill,
-                             "Arrêt de l'instance pour{0}, ne devrait plus être en exécution. L'ip courrante n'a pas été permise.");
+                "Arrêt de l'instance pour{0}, ne devrait plus être en exécution. L'ip courrante n'a pas été permise.");
 
             // component: LaunchDelayComponent
             Translations.Add(ETranslations.LaunchDelayComponentHalt,
-                             "Retardement du démarrage pour {0}, ne devrait plus être en exécution. Le delai de lancement n'est pas encore expiré.");
+                "Retardement du démarrage pour {0}, ne devrait plus être en exécution. Le delai de lancement n'est pas encore expiré.");
 
             // component: RestartDelayComponent
             Translations.Add(ETranslations.RestartDelayComponentHalt,
-                             "Retadement du démarrage pour {0}, ne devrait plus être en exécution. Le délai de redémarrage n'est pas encore expiré.");
+                "Retadement du démarrage pour {0}, ne devrait plus être en exécution. Le délai de redémarrage n'est pas encore expiré.");
 
             // component: SchedulerComponent
             Translations.Add(ETranslations.SchedulerComponentHalt,
-                             "Retardement du démarrage pour {0}, ne devrait plus être en exécution en raison de la configuration du planificateur.");
+                "Retardement du démarrage pour {0}, ne devrait plus être en exécution en raison de la configuration du planificateur.");
             Translations.Add(ETranslations.SchedulerComponentKill,
-                             "Arrêt de l'instance pour {0}, ne devrait plus être en exécution en raison de la configuration du planificateur.");
+                "Arrêt de l'instance pour {0}, ne devrait plus être en exécution en raison de la configuration du planificateur.");
         }
 
         public override string GetLanguageDescription()

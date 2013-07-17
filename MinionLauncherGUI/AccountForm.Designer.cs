@@ -62,6 +62,8 @@ namespace MinionLauncherGUI
             this.metroToggle1 = new MetroFramework.Controls.MetroToggle();
             this.btnDelete = new MetroFramework.Controls.MetroButton();
             this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.metroToggle2 = new MetroFramework.Controls.MetroToggle();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +74,7 @@ namespace MinionLauncherGUI
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(81, 19);
             this.metroLabel1.TabIndex = 0;
-            this.metroLabel1.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormLoginName);
+            this.metroLabel1.Text = "Login Name";
             // 
             // txtBoxLoginName
             // 
@@ -86,9 +88,9 @@ namespace MinionLauncherGUI
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(57, 131);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(64, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(63, 19);
             this.metroLabel2.TabIndex = 2;
-            this.metroLabel2.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormPassword);
+            this.metroLabel2.Text = "Password";
             // 
             // txtBoxPassword
             // 
@@ -104,7 +106,7 @@ namespace MinionLauncherGUI
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 4;
-            this.btnOk.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormOk);
+            this.btnOk.Text = "OK";
             this.btnOk.Click += new System.EventHandler(this.BtnOkClick);
             // 
             // btnCancel
@@ -113,7 +115,7 @@ namespace MinionLauncherGUI
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormCancel);
+            this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
             // 
             // metroLabel3
@@ -123,7 +125,7 @@ namespace MinionLauncherGUI
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(74, 19);
             this.metroLabel3.TabIndex = 6;
-            this.metroLabel3.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormNoSound);
+            this.metroLabel3.Text = "No Sound?";
             // 
             // metroToggle1
             // 
@@ -140,7 +142,7 @@ namespace MinionLauncherGUI
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(68, 23);
             this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = LanguageManager.Singleton.GetTranslation(ETranslations.AccountFormDelete);
+            this.btnDelete.Text = "Delete";
             this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.BtnDeleteClick);
             // 
@@ -148,11 +150,31 @@ namespace MinionLauncherGUI
             // 
             this.metroStyleManager.Owner = this;
             // 
+            // metroToggle2
+            // 
+            this.metroToggle2.AutoSize = true;
+            this.metroToggle2.Location = new System.Drawing.Point(138, 218);
+            this.metroToggle2.Name = "metroToggle2";
+            this.metroToggle2.Size = new System.Drawing.Size(80, 17);
+            this.metroToggle2.TabIndex = 10;
+            this.metroToggle2.Text = "Off";
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(57, 218);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(75, 19);
+            this.metroLabel4.TabIndex = 9;
+            this.metroLabel4.Text = "Attach Bot?";
+            // 
             // AccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(286, 294);
+            this.Controls.Add(this.metroToggle2);
+            this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.metroToggle1);
             this.Controls.Add(this.metroLabel3);
@@ -186,5 +208,7 @@ namespace MinionLauncherGUI
         private MetroFramework.Controls.MetroToggle metroToggle1;
         private MetroFramework.Controls.MetroButton btnDelete;
         private MetroFramework.Components.MetroStyleManager metroStyleManager;
+        private MetroFramework.Controls.MetroToggle metroToggle2;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
     }
 }

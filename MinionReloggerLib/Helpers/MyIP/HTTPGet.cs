@@ -131,7 +131,7 @@ namespace MinionReloggerLib.Helpers.MyIP
             var headers = new StringBuilder();
             for (int i = 0; i < _response.Headers.Count; ++i)
                 headers.Append(String.Format("{0}: {1}\n",
-                                             _response.Headers.Keys[i], _response.Headers[i]));
+                    _response.Headers.Keys[i], _response.Headers[i]));
 
             return headers.ToString();
         }
@@ -142,7 +142,7 @@ namespace MinionReloggerLib.Helpers.MyIP
             if (_response == null)
                 return "No Server Response";
             return String.Format("HTTP/{0} {1} {2}", _response.ProtocolVersion,
-                                 (int) _response.StatusCode, _response.StatusDescription);
+                (int) _response.StatusCode, _response.StatusDescription);
         }
     }
 }

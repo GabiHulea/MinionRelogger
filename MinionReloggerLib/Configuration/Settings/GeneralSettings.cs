@@ -90,40 +90,40 @@ namespace MinionReloggerLib.Configuration.Settings
         public void SetGW2Path(string newPath)
         {
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.GeneralSettingsGW2PathChanged), newPath);
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.GeneralSettingsGW2PathChanged), newPath);
             GW2Path = newPath;
         }
 
         public void SetFrozenTime(int newTime)
         {
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.GeneralSettingsFrozenTimeChanged), newTime);
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.GeneralSettingsFrozenTimeChanged), newTime);
             FrozenTime = newTime;
         }
 
         public void SetPollingDelay(int newDelay)
         {
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.GeneralSettingsPollingDelayChanged), newDelay);
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.GeneralSettingsPollingDelayChanged), newDelay);
             PollingDelay = newDelay;
         }
 
         public void SetLaunchDelay(int newDelay)
         {
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.GeneralSettingsLaunchDelayChanged), newDelay);
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.GeneralSettingsLaunchDelayChanged), newDelay);
             LaunchDelay = newDelay;
         }
 
         public void SetRestartDelay(int newDelay)
         {
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.GeneralSettingsRestartDelayChanged), newDelay);
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.GeneralSettingsRestartDelayChanged), newDelay);
             RestartDelay = newDelay;
         }
 
@@ -131,16 +131,16 @@ namespace MinionReloggerLib.Configuration.Settings
         {
             MinimizeWindows = newMinimize;
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.GeneralSettingsMinimizeWindowsChanged), newMinimize);
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.GeneralSettingsMinimizeWindowsChanged), newMinimize);
         }
 
         public void AddIP(IPAddress newAddress)
         {
             AllowedIPAddresses.Add(newAddress);
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.GeneralSettingsAddedIP),
-                                     newAddress.ToString());
+                LanguageManager.Singleton.GetTranslation(ETranslations.GeneralSettingsAddedIP),
+                newAddress.ToString());
         }
 
         public void DeleteIP(IPAddress toDeleteAddress)
@@ -150,33 +150,57 @@ namespace MinionReloggerLib.Configuration.Settings
                 return;
             AllowedIPAddresses.Remove(wanted);
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(ETranslations.GeneralSettingsDeletedIP),
-                                     toDeleteAddress.ToString());
+                LanguageManager.Singleton.GetTranslation(ETranslations.GeneralSettingsDeletedIP),
+                toDeleteAddress.ToString());
         }
 
         public void SetCheckForIP(bool newValue)
         {
             CheckForIP = newValue;
             Logger.LoggingObject.Log(ELogType.Info,
-                                     LanguageManager.Singleton.GetTranslation(
-                                         ETranslations.GeneralSettingsCheckForIPChanged), newValue);
+                LanguageManager.Singleton.GetTranslation(
+                    ETranslations.GeneralSettingsCheckForIPChanged), newValue);
         }
 
-        public void SetExtensiveLogging(bool newExtensiveLogging) { ExtensiveLogging = newExtensiveLogging; }
+        public void SetExtensiveLogging(bool newExtensiveLogging)
+        {
+            ExtensiveLogging = newExtensiveLogging;
+        }
 
 
-        public void SetUseBeta(bool newUseBeta) { UseBeta = newUseBeta; }
+        public void SetUseBeta(bool newUseBeta)
+        {
+            UseBeta = newUseBeta;
+        }
 
-        public void SetUseExpertMode(bool newUseExpertMode) { UseExpertMode = newUseExpertMode; }
+        public void SetUseExpertMode(bool newUseExpertMode)
+        {
+            UseExpertMode = newUseExpertMode;
+        }
 
-        public void SetLanguage(ELanguages newLanguage) { CurrentLanguage = (int) newLanguage; }
+        public void SetLanguage(ELanguages newLanguage)
+        {
+            CurrentLanguage = (int) newLanguage;
+        }
 
-        public bool AlreadyContainsIP(IPAddress newAddress) { return (AllowedIPAddresses.Any(ip => ip.Equals(newAddress))); }
+        public bool AlreadyContainsIP(IPAddress newAddress)
+        {
+            return (AllowedIPAddresses.Any(ip => ip.Equals(newAddress)));
+        }
 
-        public void EmptyIPList() { AllowedIPAddresses.Clear(); }
+        public void EmptyIPList()
+        {
+            AllowedIPAddresses.Clear();
+        }
 
-        public void SetStyle(string newStyle) { StyleSetting = newStyle; }
+        public void SetStyle(string newStyle)
+        {
+            StyleSetting = newStyle;
+        }
 
-        public void SetTheme(string newTheme) { ThemeSetting = newTheme; }
+        public void SetTheme(string newTheme)
+        {
+            ThemeSetting = newTheme;
+        }
     }
 }

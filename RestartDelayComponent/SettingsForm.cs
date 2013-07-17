@@ -41,7 +41,10 @@ namespace RestartDelayComponent
             UpdateLabelText();
         }
 
-        private void BtnCancelClick(object sender, EventArgs e) { Close(); }
+        private void BtnCancelClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void BtnOkClick(object sender, EventArgs e)
         {
@@ -49,7 +52,10 @@ namespace RestartDelayComponent
             Close();
         }
 
-        private void BtnNewValueClick(object sender, EventArgs e) { SetRestartDelay(false, Config.Singleton.GeneralSettings.RestartDelay); }
+        private void BtnNewValueClick(object sender, EventArgs e)
+        {
+            SetRestartDelay(false, Config.Singleton.GeneralSettings.RestartDelay);
+        }
 
         private void UpdateLabelText()
         {
